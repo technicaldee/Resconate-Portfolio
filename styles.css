@@ -1,0 +1,126 @@
+/* Import Tailwind CSS */
+@import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
+
+/* Custom styles that extend Tailwind */
+:root {
+    --blue-gradient: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.1) 100%);
+    --orange-gradient: linear-gradient(135deg, rgba(249, 115, 22, 0.2) 0%, rgba(234, 88, 12, 0.1) 100%);
+    --green-gradient: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.1) 100%);
+    --yellow-gradient: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.1) 100%);
+    --purple-gradient: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(124, 58, 237, 0.1) 100%);
+    --pink-gradient: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(219, 39, 119, 0.1) 100%);
+    --teal-gradient: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(13, 148, 136, 0.1) 100%);
+    --red-gradient: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.1) 100%);
+}
+
+/* Font settings */
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Project card gradients */
+.project-card {
+    position: relative;
+    background-color: #111827; /* gray-900 */
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Gradient borders for project cards */
+.blue-gradient {
+    background: var(--blue-gradient);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.orange-gradient {
+    background: var(--orange-gradient);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.green-gradient {
+    background: var(--green-gradient);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.yellow-gradient {
+    background: var(--yellow-gradient);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.purple-gradient {
+    background: var(--purple-gradient);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.pink-gradient {
+    background: var(--pink-gradient);
+    border: 1px solid rgba(236, 72, 153, 0.3);
+}
+
+.teal-gradient {
+    background: var(--teal-gradient);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+.red-gradient {
+    background: var(--red-gradient);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Certificate card hover effect */
+.certificate-card {
+    transition: transform 0.3s ease;
+}
+
+.certificate-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Mobile menu transitions */
+#mobile-menu {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}

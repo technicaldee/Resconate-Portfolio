@@ -3,36 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inimfon - Developer Portfolio</title>
+    <title>Resconate - Premium Software Development Agency</title>
     <link rel="stylesheet" href="./styles.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-black text-white font-inter">
+<body class="bg-black text-gray-100 font-inter">
     <!-- Header -->
-    <header class="container mx-auto py-4 px-4 md:px-6 flex justify-between items-center">
-        <div class="flex items-center">
-            <a href="#" class="text-xl font-bold">
-                <span class="text-white">Inimfon Udoh's</span>
-                <span class="text-gray-500">Portfolio</span>
-            </a>
-        </div>
-        <nav class="hidden md:flex space-x-6">
-            <a href="#about" class="text-gray-300 hover:text-white transition-colors">About Me</a>
-            <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Portfolio</a>
-            <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
-        </nav>
-        <a href="mailto:inimfonudoh2004@gmail.com" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity">Hire Me</a>
-        
-        <!-- Mobile menu button -->
-        <div class="md:hidden">
-            <button id="mobile-menu-button" class="text-white">
-                <i class="fas fa-bars text-xl"></i>
-            </button>
+    <header class="fixed w-full top-0 z-50 backdrop-blur-md bg-black/80 border-b border-gray-800">
+        <div class="container mx-auto py-4 px-4 md:px-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="text-xl font-bold font-plus-jakarta">
+                    <img src="RLogo.png" alt="Resconate Logo" class="h-8">
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-200 hover:text-white transition-colors">Home</a>
+                <a href="#services" class="text-gray-200 hover:text-white transition-colors">Services</a>
+                <a href="#projects" class="text-gray-200 hover:text-white transition-colors">Projects</a>
+                <a href="#team" class="text-gray-200 hover:text-white transition-colors">Team</a>
+                <a href="#about" class="text-gray-200 hover:text-white transition-colors">About</a>
+                <a href="#contact" class="text-gray-200 hover:text-white transition-colors">Contact</a>
+            </nav>
+            <a href="#contact" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity">Get Quote</a>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -62,74 +66,138 @@
             <i class="fas fa-times text-xl"></i>
         </button>
         <nav class="flex flex-col items-center space-y-8 text-xl">
-            <a href="#about" class="text-white hover:text-blue-500 transition-colors">About Me</a>
-            <a href="#projects" class="text-white hover:text-blue-500 transition-colors">Portfolio</a>
-            <a href="#contact" class="text-white hover:text-blue-500 transition-colors">Contact</a>
+            <a href="#home" class="text-white hover:text-[#6366F1] transition-colors">Home</a>
+            <a href="#services" class="text-white hover:text-[#6366F1] transition-colors">Services</a>
+            <a href="#projects" class="text-white hover:text-[#6366F1] transition-colors">Projects</a>
+            <a href="#team" class="text-white hover:text-[#6366F1] transition-colors">Team</a>
+            <a href="#about" class="text-white hover:text-[#6366F1] transition-colors">About</a>
+            <a href="#contact" class="text-white hover:text-[#6366F1] transition-colors">Contact</a>
         </nav>
         <div class="mt-12">
-            <a href="mailto:inimfonudoh2004@gmail.com" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">Hire Me</a>
+            <a href="#contact" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">Get Quote</a>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="container mx-auto py-20 px-4 md:px-6 text-center">
-        <div class="flex flex-col items-center justify-center">
-            <div class="relative w-32 h-32 mb-6 overflow-hidden rounded-full border-4 border-gray-800">
-                <img src="WhatsApp Image 2025-04-04 at 21.16.11_fcd783c4.jpg" alt="Inimfon Udoh" class="object-cover w-full h-full cursor-pointer" id="profileImage">
-            </div>
-
-            <div class="flex justify-center space-x-3 mb-6">
-                <!-- Social media icons -->
-                <a href="https://www.linkedin.com/in/inimfon-udoh-b5b569222/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/Innie4" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://x.com/And_There_Was?t=_U58wEEtV9eqEv3Cfvs00Q&s=09" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                  <!--  <a href="https://www.youtube.com/@inimfonudoh" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fab fa-youtube"></i>
-                </a>  -->
-             <!--   <a href="https://www.instagram.com/inimfon.udoh" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            -->
-                <a href="https://wa.me/+2349072415907" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://facebook.com/innie.udoh" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="mailto:inimfonudoh2004@gmail.com" class="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-
-            <h1 class="text-3xl md:text-4xl font-bold mb-2">
-                Hi, I'm <span class="text-white">Inimfon Udoh</span>
+    <section id="home" class="pt-32 pb-20 px-4 md:px-6 relative overflow-hidden">
+        <div class="container mx-auto text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 font-plus-jakarta text-white">
+                We Build Digital Solutions That Drive Results
             </h1>
-            <p class="text-xl md:text-2xl mb-6 text-gray-300">
-                I develop Mobile Apps and Websites
+            <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
+                Resconate delivers cutting-edge web and mobile applications that transform businesses and engage users worldwide
             </p>
-            <a href="#projects" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity flex items-center">
-                <span>View My Work</span>
-                <i class="fas fa-arrow-right ml-2"></i>
-            </a>
+            <div class="flex flex-col md:flex-row justify-center gap-4 mb-16">
+                <a href="#projects" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-8 py-3 rounded-md hover:opacity-90 transition-opacity">
+                    View Our Work
+                </a>
+                <a href="#contact" class="border border-[#6366F1] text-white px-8 py-3 rounded-md hover:bg-[#6366F1]/10 transition-colors">
+                    Start Your Project
+                </a>
+            </div>
+            
+            <!-- Statistics -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div class="stat-card">
+                    <div class="text-3xl md:text-4xl font-bold text-[#6366F1] mb-2" data-count="150">0</div>
+                    <p class="text-gray-200">Projects Completed</p>
+                </div>
+                <div class="stat-card">
+                    <div class="text-3xl md:text-4xl font-bold text-[#EC4899] mb-2" data-count="5">0</div>
+                    <p class="text-gray-200">Years Experience</p>
+                </div>
+                <div class="stat-card">
+                    <div class="text-3xl md:text-4xl font-bold text-[#6366F1] mb-2" data-count="50">0</div>
+                    <p class="text-gray-200">Happy Clients</p>
+                </div>
+                <div class="stat-card">
+                    <div class="text-3xl md:text-4xl font-bold text-[#EC4899] mb-2" data-count="12">0</div>
+                    <p class="text-gray-200">Technologies</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-black to-gray-900 opacity-50"></div>
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full">
+                <!-- Add animated geometric shapes here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container mx-auto py-20 px-4 md:px-6">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 font-plus-jakarta text-white">Our Services</h2>
+            <p class="text-gray-200 text-lg">
+                We deliver comprehensive software solutions that drive business growth and user engagement
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Web Development Card -->
+            <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                <div class="w-12 h-12 bg-[#6366F1]/20 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-globe text-2xl text-[#6366F1]"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-white">Web Development</h3>
+                <p class="text-gray-200 mb-6">
+                    Custom websites, web applications, and e-commerce solutions built with cutting-edge technologies
+                </p>
+                <ul class="space-y-3 text-gray-200">
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-[#6366F1] mr-3"></i>
+                        Custom Website Development
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-[#6366F1] mr-3"></i>
+                        E-commerce Solutions
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-[#6366F1] mr-3"></i>
+                        Web Application Development
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Mobile Development Card -->
+            <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
+                <div class="w-12 h-12 bg-[#EC4899]/20 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-mobile-alt text-2xl text-[#EC4899]"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-white">Mobile Development</h3>
+                <p class="text-gray-200 mb-6">
+                    Native and cross-platform mobile applications that deliver exceptional user experiences
+                </p>
+                <ul class="space-y-3 text-gray-200">
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-[#EC4899] mr-3"></i>
+                        iOS & Android Development
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-[#EC4899] mr-3"></i>
+                        Cross-platform Solutions
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-[#EC4899] mr-3"></i>
+                        App Maintenance & Support
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 
     <!-- Project Showcase -->
     <section class="container mx-auto py-10 px-4 md:px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="project-card overflow-hidden rounded-lg">
+            <div class="project-card overflow-hidden rounded-lg bg-black/50 backdrop-blur-sm border border-gray-800">
                 <img src="Report and Analytics.png" alt="Project 1" class="w-full h-48 object-cover project-image cursor-pointer">
             </div>
-            <div class="project-card overflow-hidden rounded-lg">
+            <div class="project-card overflow-hidden rounded-lg bg-black/50 backdrop-blur-sm border border-gray-800">
                 <img src="Schedule Management.png" alt="Project 2" class="w-full h-48 object-cover project-image cursor-pointer">
             </div>
-            <div class="project-card overflow-hidden rounded-lg">
+            <div class="project-card overflow-hidden rounded-lg bg-black/50 backdrop-blur-sm border border-gray-800">
                 <img src="Employee Details.png" alt="Project 3" class="w-full h-48 object-cover project-image cursor-pointer">
             </div>
         </div>
@@ -138,14 +206,36 @@
     <!-- About Section -->
     <section id="about" class="container mx-auto py-16 px-4 md:px-6">
         <div class="max-w-3xl mx-auto text-center">
-            <div class="inline-block px-3 py-1 bg-blue-500 bg-opacity-20 text-blue-400 rounded-full text-sm font-medium mb-4">
-                ABOUT ME
+            <div class="inline-block px-3 py-1 bg-[#6366F1] bg-opacity-20 text-[#6366F1] rounded-full text-sm font-medium mb-4">
+                ABOUT US
             </div>
-            <h2 class="text-3xl font-bold mb-6">Professional Summary</h2>
-            <p class="text-gray-400 mb-8">
-                "Full-stack engineer with 5 years of experience building impactful web and mobile applications. I transform ideas into scalable, user-friendly solutions by combining strong technical skills with creative problem-solving. Passionate about collaborative development and delivering products that truly connect with users."
+            <h2 class="text-3xl font-bold mb-6 font-plus-jakarta">Our Story</h2>
+            <p class="text-gray-200 mb-8">
+                Resconate is a premier software development agency that has been transforming businesses through innovative digital solutions since 2019. Our team of expert developers, designers, and project managers work together to deliver cutting-edge web and mobile applications that drive real business results.
             </p>
-            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#6366F1]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-rocket text-2xl text-[#6366F1]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Mission</h3>
+                    <p class="text-gray-200">To empower businesses with innovative digital solutions that drive growth and success</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#EC4899]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-eye text-2xl text-[#EC4899]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Vision</h3>
+                    <p class="text-gray-200">To be the leading force in digital transformation and innovation</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-[#6366F1]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-2xl text-[#6366F1]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Values</h3>
+                    <p class="text-gray-200">Innovation, Excellence, Collaboration, and Client Success</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -204,108 +294,303 @@
         </div>
         <div class="text-center mt-10">
             <p class="text-gray-400 mb-6">
-                I've earned a variety of certifications and gained diverse experience in software development. Feel free to ask about more beyond what's listed here or explore further in my resume.
+                We've earned a variety of certifications and gained diverse experience in software development. Feel free to ask about more beyond what's listed here or explore further in my resume.
             </p>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="container mx-auto py-16 px-4 md:px-6">
-        <h2 class="text-3xl font-bold mb-10 text-center">
-            Some projects and teams I've worked with
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="project-card blue-gradient rounded-lg overflow-hidden p-4 cursor-pointer transform hover:-translate-y-1 transition-transform">
-                <a href="https://dsa-main2.vercel.app/" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="h-40 mb-4 overflow-hidden rounded-lg">
-                        <img src="DSA-logo.png" alt="Digital Scouting Africa" class="w-full h-full object-contain transition-transform duration-300 hover:scale-105">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 font-plus-jakarta">Our Featured Projects</h2>
+            <p class="text-gray-200 text-lg">
+                Discover how we've helped businesses transform their digital presence
+            </p>
+        </div>
+
+        <!-- Web Development Projects -->
+        <div class="mb-16">
+            <h3 class="text-2xl font-bold mb-8 text-center">Web Development</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="DSA-logo.png" alt="Digital Scouting Africa" class="w-full h-full object-contain bg-black/20">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <h4 class="text-white font-bold mb-2">Digital Scouting Africa</h4>
+                                <p class="text-gray-300 text-sm">A comprehensive football scouting platform</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-1">Digital Scouting Africa</h3>
-                    <p class="text-gray-400 text-sm">Minimalistic Football Scouting Site</p>
-                    <div class="absolute bottom-4 right-4 w-4 h-4 rounded-full flex items-center justify-center">
-                        <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Node.js</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">MongoDB</span>
+                        </div>
+                        <a href="https://dsa-main2.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-[#6366F1] hover:text-[#EC4899] transition-colors inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="project-card orange-gradient rounded-lg overflow-hidden p-4 cursor-pointer transform hover:-translate-y-1 transition-transform">
-                <a href="https://su-shi-kohl.vercel.app/" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="h-40 mb-4 overflow-hidden rounded-lg">
-                        <img src="SuShi.png" alt="SuShi" class="w-full h-full object-contain transition-transform duration-300 hover:scale-105">
+                </div>
+
+                <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="SuShi.png" alt="SuShi" class="w-full h-full object-contain bg-black/20">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <h4 class="text-white font-bold mb-2">SuShi Restaurant</h4>
+                                <p class="text-gray-300 text-sm">Modern restaurant ordering system</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-1">SuShi</h3>
-                    <p class="text-gray-400 text-sm">Sushi App</p>
-                    <div class="absolute bottom-4 right-4 w-4 h-4 rounded-full flex items-center justify-center">
-                        <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Vue.js</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Firebase</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Tailwind</span>
+                        </div>
+                        <a href="https://su-shi-kohl.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-[#6366F1] hover:text-[#EC4899] transition-colors inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="project-card green-gradient rounded-lg overflow-hidden p-4 cursor-pointer transform hover:-translate-y-1 transition-transform">
-                <a href="https://khoj.dev/" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="h-40 mb-4 overflow-hidden rounded-lg">
-                        <img src="khoj.png" alt="EasyFund" class="w-full h-full object-contain transition-transform duration-300 hover:scale-105">
+                </div>
+
+                <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="khoj.png" alt="Khoj" class="w-full h-full object-contain bg-black/20">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <h4 class="text-white font-bold mb-2">Khoj AI</h4>
+                                <p class="text-gray-300 text-sm">AI-powered research assistant</p>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-1">Khoj</h3>
-                    <p class="text-gray-400 text-sm">Your AI Research Copilot</p>
-                    <div class="absolute bottom-4 right-4 w-4 h-4 rounded-full flex items-center justify-center">
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Next.js</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">OpenAI</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">TypeScript</span>
+                        </div>
+                        <a href="https://khoj.dev/" target="_blank" rel="noopener noreferrer" class="text-[#6366F1] hover:text-[#EC4899] transition-colors inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="project-card yellow-gradient rounded-lg overflow-hidden p-4 cursor-pointer transform hover:-translate-y-1 transition-transform">
-                <a href="https://jaramarket.com.ng/" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="h-40 mb-4 overflow-hidden rounded-lg">
-                        <img src="JARA-MARKET-01_1 (1).png" alt="Fill Easy" class="w-full h-full object-contain transition-transform duration-300 hover:scale-105">
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">JARAmarket</h3>
-                    <p class="text-gray-400 text-sm">Foodstuff grocery shopping software</p>
-                    <div class="absolute bottom-4 right-4 w-4 h-4 rounded-full flex items-center justify-center">
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    </div>
-                </a>
+                </div>
             </div>
         </div>
-        <div class="text-center mt-10 text-gray-400">
-            <p>25+ projects completed across websites, mobile apps, and design systems. React and beyond!</p>
+
+        <!-- Mobile Development Projects -->
+        <div>
+            <h3 class="text-2xl font-bold mb-8 text-center">Mobile Development</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="JARA-MARKET-01_1 (1).png" alt="JARAmarket" class="w-full h-full object-contain bg-black/20">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div>
+                                <h4 class="text-white font-bold mb-2">JARAmarket</h4>
+                                <p class="text-gray-300 text-sm">Foodstuff grocery shopping app</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">React Native</span>
+                            <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Firebase</span>
+                            <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Redux</span>
+                        </div>
+                        <a href="https://jaramarket.com.ng/" target="_blank" rel="noopener noreferrer" class="text-[#EC4899] hover:text-[#6366F1] transition-colors inline-flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="container mx-auto py-16 px-4 md:px-6">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 font-plus-jakarta">The Minds Behind The Magic</h2>
+            <p class="text-gray-200 text-lg">
+                Meet our team of expert developers, designers, and project managers
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Team Member 1 -->
+            <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                <div class="relative">
+                    <img src="innie.jpg" alt="Inimfon Udoh" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/in/inimfon-udoh-b5b569222/" class="text-white hover:text-[#6366F1] transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/Innie4" class="text-white hover:text-[#6366F1] transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Inimfon Udoh</h3>
+                    <p class="text-[#6366F1] mb-4">CEO & Lead Fullstack Developer</p>
+                    <p class="text-gray-200 text-sm mb-4">
+                        Full-stack developer with 5+ years of experience in building scalable applications
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">React Native</span>
+                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">NextJS</span>
+                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Flutter</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Sarah Chen" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-white hover:text-[#EC4899] transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-[#EC4899] transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Michael Nwankwo</h3>
+                    <p class="text-[#EC4899] mb-4">Lead Frontend Developer</p>
+                    <p class="text-gray-200 text-sm mb-4">
+                        Web development expert specializing in frontend building of web applications
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">ReactJS</span>
+                        <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">NextJS</span>
+                        <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Marcus Johnson" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-white hover:text-[#6366F1] transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-[#6366F1] transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Marcus Johnson</h3>
+                    <p class="text-[#6366F1] mb-4">Senior Full-Stack Developer</p>
+                    <p class="text-gray-200 text-sm mb-4">
+                        Expert in building scalable web applications and microservices
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Python</span>
+                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Django</span>
+                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Docker</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="container mx-auto py-16 px-4 md:px-6">
-        <h2 class="text-3xl font-bold mb-10 text-center">Testimonials</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-gray-900 p-6 rounded-lg">
-                <p class="text-gray-400 mb-6">"Working with Inimfon Udoh was a game-changer for our project. His technical expertise and problem-solving skills helped us overcome complex challenges and deliver on time."</p>
-                <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center text-white font-bold">
-                        S
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 font-plus-jakarta">Client Success Stories</h2>
+            <p class="text-gray-200 text-lg">
+                Hear what our clients have to say about working with Resconate
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1] font-bold text-xl">
+                        <i class="fas fa-star"></i>
                     </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold">Shannon</h4>
-                        <p class="text-sm text-gray-500">Product Manager</p>
+                    <div class="ml-4">
+                        <div class="flex text-yellow-400 mb-1">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-400">Tech Startup</p>
+                    </div>
+                </div>
+                <p class="text-gray-200 mb-6">"Resconate transformed our business with their innovative web platform. The team's technical expertise and attention to detail resulted in a 200% increase in user engagement."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="John Smith" class="w-12 h-12 rounded-full object-cover">
+                    <div class="ml-4">
+                        <h4 class="font-bold">John Smith</h4>
+                        <p class="text-sm text-gray-500">CEO, TechStart</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-gray-900 p-6 rounded-lg">
-                <p class="text-gray-400 mb-6">"An exceptional collaborator who bridges the gap between design and development seamlessly. Inimfon Udoh took our designs and not only implemented them perfectly but enhanced them with thoughtful interactions."</p>
-                <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
-                        N
+
+            <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-[#EC4899]/20 flex items-center justify-center text-[#EC4899] font-bold text-xl">
+                        <i class="fas fa-star"></i>
                     </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold">Nisha Pashmin</h4>
-                        <p class="text-sm text-gray-500">UX Designer</p>
+                    <div class="ml-4">
+                        <div class="flex text-yellow-400 mb-1">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-400">E-commerce</p>
+                    </div>
+                </div>
+                <p class="text-gray-200 mb-6">"The mobile app developed by Resconate has revolutionized our customer experience. Their team's dedication to quality and timely delivery exceeded our expectations."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Sarah Johnson" class="w-12 h-12 rounded-full object-cover">
+                    <div class="ml-4">
+                        <h4 class="font-bold">Sarah Johnson</h4>
+                        <p class="text-sm text-gray-500">Founder, ShopEasy</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-gray-900 p-6 rounded-lg">
-                <p class="text-gray-400 mb-6">"Inimfon Udoh is our team's secret weapon—delivering consistently excellent code with a blend of technical brilliance and reliability that's become absolutely indispensable to our success."</p>
-                <div class="flex items-center">
-                    <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold">
-                        EI
+
+            <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1] font-bold text-xl">
+                        <i class="fas fa-star"></i>
                     </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold">Emediong Inwek</h4>
-                        <p class="text-sm text-gray-500">UI/UX Designer</p>
+                    <div class="ml-4">
+                        <div class="flex text-yellow-400 mb-1">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-400">Non-Profit</p>
+                    </div>
+                </div>
+                <p class="text-gray-200 mb-6">"Resconate's team went above and beyond to create a platform that perfectly serves our community's needs. Their commitment to understanding our mission made all the difference."</p>
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Michael Brown" class="w-12 h-12 rounded-full object-cover">
+                    <div class="ml-4">
+                        <h4 class="font-bold">Michael Brown</h4>
+                        <p class="text-sm text-gray-500">Director, CommunityFirst</p>
                     </div>
                 </div>
             </div>
@@ -314,36 +599,487 @@
 
     <!-- Contact Section -->
     <section id="contact" class="container mx-auto py-16 px-4 md:px-6">
-        <div class="max-w-3xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-6">Get In Touch</h2>
-            <p class="text-gray-400 mb-8">
-                Interested in working together? Feel free to reach out for collaborations or just a friendly hello.
-            </p>
-            <div class="flex justify-center space-x-4 mb-8">
-                <a href="https://github.com/Innie4" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-colors">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/inimfon-udoh-b5b569222/" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-colors">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://x.com/And_There_Was?t=_U58wEEtV9eqEv3Cfvs00Q&s=09" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-3 rounded-full hover:bg-gray-700 transition-colors">
-                    <i class="fab fa-twitter"></i>
-                </a>
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 font-plus-jakarta">Ready to Transform Your Business?</h2>
+                <p class="text-gray-200 text-lg max-w-3xl mx-auto">
+                    Let's discuss how we can help you achieve your digital goals. Fill out the form below and we'll get back to you within 24 hours.
+                </p>
             </div>
-            
-            <div class="mt-8">
-                <a href="mailto:inimfonudoh2004@gmail.com" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-2 rounded-md hover:opacity-90 transition-opacity inline-block">Contact Me</a>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" name="name" required
+                                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-300 mb-2">Company</label>
+                            <input type="text" id="company" name="company"
+                                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
+                        </div>
+                        <div>
+                            <label for="projectType" class="block text-sm font-medium text-gray-300 mb-2">Project Type</label>
+                            <select id="projectType" name="projectType" required
+                                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
+                                <option value="">Select a project type</option>
+                                <option value="web">Web Development</option>
+                                <option value="mobile">Mobile App Development</option>
+                                <option value="ecommerce">E-commerce Solution</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="budget" class="block text-sm font-medium text-gray-300 mb-2">Budget Range</label>
+                            <select id="budget" name="budget" required
+                                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
+                                <option value="">Select a budget range</option>
+                                <option value="small">$5,000 - $10,000</option>
+                                <option value="medium">$10,000 - $25,000</option>
+                                <option value="large">$25,000 - $50,000</option>
+                                <option value="enterprise">$50,000+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1]">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-medium text-gray-200">Email</h4>
+                                    <a href="mailto:contact@resconate.com" class="text-gray-400 hover:text-[#6366F1] transition-colors">
+                                        contact@resconate.com
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-[#EC4899]/20 flex items-center justify-center text-[#EC4899]">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-medium text-gray-200">Phone</h4>
+                                    <a href="tel:+1234567890" class="text-gray-400 hover:text-[#EC4899] transition-colors">
+                                        +1 (234) 567-890
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1]">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="font-medium text-gray-200">Location</h4>
+                                    <p class="text-gray-400">
+                                        123 Tech Street<br>
+                                        San Francisco, CA 94107<br>
+                                        United States
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
+                        <h3 class="text-xl font-bold mb-6">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1] hover:bg-[#6366F1] hover:text-white transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#EC4899]/20 flex items-center justify-center text-[#EC4899] hover:bg-[#EC4899] hover:text-white transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1] hover:bg-[#6366F1] hover:text-white transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-[#EC4899]/20 flex items-center justify-center text-[#EC4899] hover:bg-[#EC4899] hover:text-white transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-gray-400">© <span id="current-year"></span> Inimfon Udoh's Portfolio. All rights reserved.</p>
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 font-plus-jakarta">
+                        <span class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] bg-clip-text text-transparent">Resconate</span>
+                    </h3>
+                    <p class="text-gray-200 mb-4">
+                        Transforming businesses through innovative digital solutions
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-[#6366F1] transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#EC4899] transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-[#6366F1] transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-[#6366F1] transition-colors">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#6366F1] transition-colors">Mobile Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#6366F1] transition-colors">E-commerce Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#6366F1] transition-colors">UI/UX Design</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="openModal('aboutModal'); return false;" class="text-gray-400 hover:text-[#6366F1] transition-colors">About Us</a></li>
+                        <li><a href="#" onclick="openModal('teamModal'); return false;" class="text-gray-400 hover:text-[#6366F1] transition-colors">Our Team</a></li>
+                        <li><a href="#" onclick="openModal('careersModal'); return false;" class="text-gray-400 hover:text-[#6366F1] transition-colors">Careers</a></li>
+                        <li><a href="#" onclick="openModal('contactModal'); return false;" class="text-gray-400 hover:text-[#6366F1] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="openModal('privacyModal'); return false;" class="text-gray-400 hover:text-[#6366F1] transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" onclick="openModal('termsModal'); return false;" class="text-gray-400 hover:text-[#6366F1] transition-colors">Terms of Service</a></li>
+                        <li><a href="#" onclick="openModal('cookieModal'); return false;" class="text-gray-400 hover:text-[#6366F1] transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">© <span id="current-year"></span> Resconate. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script src="./script.js"></script>
+
+    <!-- Policy Modals -->
+    <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Privacy Policy</h2>
+                <button onclick="closeModal('privacyModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-gray-300 space-y-4">
+                <p>Last updated: March 2024</p>
+                <h3 class="text-xl font-semibold text-white">1. Information We Collect</h3>
+                <p>We collect information that you provide directly to us, including but not limited to:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Name and contact information</li>
+                    <li>Company details</li>
+                    <li>Project requirements and specifications</li>
+                    <li>Communication preferences</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-white">2. How We Use Your Information</h3>
+                <p>We use the collected information to:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Provide and maintain our services</li>
+                    <li>Communicate with you about your projects</li>
+                    <li>Send you updates and marketing communications</li>
+                    <li>Improve our services and user experience</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-white">3. Data Protection</h3>
+                <p>We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Terms of Service</h2>
+                <button onclick="closeModal('termsModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-gray-300 space-y-4">
+                <p>Last updated: March 2024</p>
+                <h3 class="text-xl font-semibold text-white">1. Acceptance of Terms</h3>
+                <p>By accessing and using Resconate's services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+
+                <h3 class="text-xl font-semibold text-white">2. Services</h3>
+                <p>Resconate provides software development services including but not limited to:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Web application development</li>
+                    <li>Mobile application development</li>
+                    <li>UI/UX design</li>
+                    <li>Consulting services</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-white">3. Intellectual Property</h3>
+                <p>All intellectual property rights related to our services, including but not limited to software, designs, and content, remain the property of Resconate unless otherwise specified in a written agreement.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="cookieModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Cookie Policy</h2>
+                <button onclick="closeModal('cookieModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-gray-300 space-y-4">
+                <p>Last updated: March 2024</p>
+                <h3 class="text-xl font-semibold text-white">1. What Are Cookies</h3>
+                <p>Cookies are small text files that are placed on your device when you visit our website. They help us provide you with a better experience and allow certain features to function properly.</p>
+
+                <h3 class="text-xl font-semibold text-white">2. How We Use Cookies</h3>
+                <p>We use cookies for the following purposes:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Essential cookies for website functionality</li>
+                    <li>Analytics cookies to understand how visitors use our site</li>
+                    <li>Preference cookies to remember your settings</li>
+                    <li>Marketing cookies to deliver relevant advertisements</li>
+                </ul>
+
+                <h3 class="text-xl font-semibold text-white">3. Managing Cookies</h3>
+                <p>You can control and manage cookies through your browser settings. However, please note that disabling certain cookies may affect the functionality of our website.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Modals -->
+    <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">About Resconate</h2>
+                <button onclick="closeModal('aboutModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-gray-300 space-y-6">
+                <p>Resconate is a premier software development agency that has been transforming businesses through innovative digital solutions since 2019. Our team of expert developers, designers, and project managers work together to deliver cutting-edge web and mobile applications that drive real business results.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-[#6366F1]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-rocket text-2xl text-[#6366F1]"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Our Mission</h3>
+                        <p class="text-gray-200">To empower businesses with innovative digital solutions that drive growth and success</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-[#EC4899]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-eye text-2xl text-[#EC4899]"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Our Vision</h3>
+                        <p class="text-gray-200">To be the leading force in digital transformation and innovation</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-[#6366F1]/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-heart text-2xl text-[#6366F1]"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Our Values</h3>
+                        <p class="text-gray-200">Innovation, Excellence, Collaboration, and Client Success</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="teamModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 max-w-4xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Our Team</h2>
+                <button onclick="closeModal('teamModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-gray-300 space-y-8">
+                <p>Meet our team of expert developers, designers, and project managers who are passionate about creating exceptional digital solutions.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-black/50 p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <img src="innie.jpg" alt="Inimfon Udoh" class="w-16 h-16 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold">Inimfon Udoh</h3>
+                                <p class="text-[#6366F1]">CEO & Lead Fullstack Developer</p>
+                            </div>
+                        </div>
+                        <p class="mb-4">Full-stack developer with 5+ years of experience in building scalable applications</p>
+                        <div class="flex space-x-4">
+                            <a href="https://www.linkedin.com/in/inimfon-udoh-b5b569222/" class="text-gray-400 hover:text-[#6366F1]">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/Innie4" class="text-gray-400 hover:text-[#6366F1]">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/50 p-6 rounded-xl">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Michael Nwankwo" class="w-16 h-16 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h3 class="text-xl font-bold">Michael Nwankwo</h3>
+                                <p class="text-[#EC4899]">Lead Frontend Developer</p>
+                            </div>
+                        </div>
+                        <p class="mb-4">Web development expert specializing in frontend building of web applications</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-[#EC4899]">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-[#EC4899]">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="careersModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Careers at Resconate</h2>
+                <button onclick="closeModal('careersModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-gray-300 space-y-6">
+                <p>Join our team of passionate developers and designers who are shaping the future of digital solutions.</p>
+
+                <div class="space-y-6">
+                    <div class="bg-black/50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-2">Senior Full Stack Developer</h3>
+                        <p class="mb-4">We're looking for an experienced Full Stack Developer to join our team and help build innovative solutions for our clients.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Node.js</span>
+                            <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">TypeScript</span>
+                        </div>
+                        <a href="#contact" onclick="closeModal('careersModal')" class="inline-block bg-[#6366F1] text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity">Apply Now</a>
+                    </div>
+
+                    <div class="bg-black/50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-2">UI/UX Designer</h3>
+                        <p class="mb-4">Join our design team to create beautiful and intuitive user interfaces for web and mobile applications.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Figma</span>
+                            <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Adobe XD</span>
+                            <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Sketch</span>
+                        </div>
+                        <a href="#contact" onclick="closeModal('careersModal')" class="inline-block bg-[#EC4899] text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Contact Us</h2>
+                <button onclick="closeModal('contactModal')" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="text-gray-300 space-y-6">
+                <p>Get in touch with us to discuss your project or career opportunities.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1]">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-gray-200">Email</h4>
+                                <a href="mailto:contact@resconate.com" class="text-gray-400 hover:text-[#6366F1] transition-colors">
+                                    contact@resconate.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-[#EC4899]/20 flex items-center justify-center text-[#EC4899]">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-gray-200">Phone</h4>
+                                <a href="tel:+1234567890" class="text-gray-400 hover:text-[#EC4899] transition-colors">
+                                    +1 (234) 567-890
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 rounded-full bg-[#6366F1]/20 flex items-center justify-center text-[#6366F1]">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-medium text-gray-200">Location</h4>
+                                <p class="text-gray-400">
+                                    123 Tech Street<br>
+                                    San Francisco, CA 94107<br>
+                                    United States
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/50 p-6 rounded-xl">
+                        <h3 class="text-xl font-bold mb-4">Send us a message</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="modalName" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                                <input type="text" id="modalName" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
+                            </div>
+                            <div>
+                                <label for="modalEmail" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                <input type="email" id="modalEmail" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
+                            </div>
+                            <div>
+                                <label for="modalMessage" class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                <textarea id="modalMessage" rows="4" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

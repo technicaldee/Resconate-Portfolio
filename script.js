@@ -298,3 +298,40 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProjects();
     loadTestimonials();
 });
+
+// Modal functions
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+    const modals = ['privacyModal', 'termsModal', 'cookieModal', 'aboutModal', 'teamModal', 'careersModal', 'contactModal'];
+    modals.forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (event.target === modal) {
+            closeModal(modalId);
+        }
+    });
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modals = ['privacyModal', 'termsModal', 'cookieModal', 'aboutModal', 'teamModal', 'careersModal', 'contactModal'];
+        modals.forEach(modalId => {
+            const modal = document.getElementById(modalId);
+            if (!modal.classList.contains('hidden')) {
+                closeModal(modalId);
+            }
+        });
+    }
+});

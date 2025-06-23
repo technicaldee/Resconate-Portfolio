@@ -1,0 +1,1136 @@
+/* DRAMATIC RESPONSIVE DESIGN ENHANCEMENTS */
+
+/* MOBILE FIRST - COMPACT & STACKED (320px - 639px) */
+@media (max-width: 639px) {
+  /* Mobile Header - Ultra Compact */
+  .header {
+    padding: 0.25rem 0 !important;
+    background: rgba(0, 0, 0, 0.99) !important;
+    backdrop-filter: blur(30px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .header__container {
+    padding: 0 0.5rem !important;
+    gap: 0.25rem !important;
+  }
+
+  .header__brand {
+    font-size: 0.875rem !important;
+    gap: 0.125rem !important;
+  }
+
+  .header__logo {
+    height: 1rem !important;
+  }
+
+  .header__nav {
+    display: none !important;
+  }
+
+  .header__actions {
+    gap: 0.125rem !important;
+  }
+
+  .header__theme-toggle {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    font-size: 0.625rem !important;
+  }
+
+  .btn {
+    padding: 0.375rem 0.5rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 0.25rem !important;
+  }
+
+  /* Mobile Hero - Ultra Compact */
+  #home {
+    padding: 3rem 0.5rem 1.5rem !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+
+  #home h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 900 !important;
+  }
+
+  #home p {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.3 !important;
+  }
+
+  #home .flex {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  #home .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Mobile Statistics - Tiny Grid */
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .stat-card {
+    text-align: center !important;
+    padding: 0.5rem !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0.375rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .stat-card div {
+    font-size: 1rem !important;
+    font-weight: 900 !important;
+    margin-bottom: 0.125rem !important;
+  }
+
+  .stat-card p {
+    font-size: 0.5rem !important;
+    opacity: 0.7 !important;
+  }
+
+  /* Mobile Services - Single Column */
+  #services {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  #services h2 {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.75rem !important;
+    text-align: center !important;
+  }
+
+  #services .grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .bg-black\/50 {
+    padding: 0.75rem !important;
+    border-radius: 0.375rem !important;
+  }
+
+  .bg-black\/50 h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.375rem !important;
+  }
+
+  .bg-black\/50 p {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .bg-black\/50 ul {
+    font-size: 0.625rem !important;
+  }
+
+  .bg-black\/50 li {
+    margin-bottom: 0.125rem !important;
+  }
+
+  /* Mobile Project Showcase - Tiny */
+  .project-card {
+    margin-bottom: 0.5rem !important;
+    border-radius: 0.375rem !important;
+  }
+
+  .project-card img {
+    height: 120px !important;
+    border-radius: 0.375rem 0.375rem 0 0 !important;
+  }
+
+  /* Mobile About - Stacked */
+  #about {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  #about h2 {
+    font-size: 1.25rem !important;
+    text-align: center !important;
+  }
+
+  #about .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  #about .text-center {
+    padding: 0.75rem !important;
+  }
+
+  #about .w-16 {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  #about .text-2xl {
+    font-size: 1rem !important;
+  }
+
+  /* Mobile Certifications - Tiny */
+  .certificate-card {
+    padding: 0.5rem !important;
+    border-radius: 0.375rem !important;
+  }
+
+  .certificate-card h3 {
+    font-size: 0.75rem !important;
+  }
+
+  .certificate-card p {
+    font-size: 0.625rem !important;
+  }
+
+  /* Mobile Projects - Single Column */
+  #projects {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  #projects h2 {
+    font-size: 1.25rem !important;
+    text-align: center !important;
+  }
+
+  #projects .grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  #projects h3 {
+    font-size: 1rem !important;
+    text-align: center !important;
+  }
+
+  /* Mobile Team - Single Column */
+  #team {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  #team h2 {
+    font-size: 1.25rem !important;
+    text-align: center !important;
+  }
+
+  #team .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .team-card {
+    padding: 0.75rem !important;
+    border-radius: 0.375rem !important;
+  }
+
+  .team-card img {
+    height: 150px !important;
+    border-radius: 0.375rem 0.375rem 0 0 !important;
+  }
+
+  .team-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .team-card p {
+    font-size: 0.75rem !important;
+  }
+
+  /* Mobile Testimonials - Single Column */
+  #testimonials {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  #testimonials h2 {
+    font-size: 1.25rem !important;
+    text-align: center !important;
+  }
+
+  #testimonials .grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  /* Mobile Contact - Stacked */
+  #contact {
+    padding: 1.5rem 0.5rem !important;
+  }
+
+  #contact h2 {
+    font-size: 1.25rem !important;
+    text-align: center !important;
+  }
+
+  #contact .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Mobile Footer - Stacked */
+  footer {
+    padding: 1rem 0.5rem !important;
+  }
+
+  footer .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    text-align: center !important;
+  }
+
+  footer h3, footer h4 {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  footer ul {
+    font-size: 0.75rem !important;
+  }
+
+  /* Mobile Container */
+  .container {
+    padding: 0 0.5rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Mobile Typography - Ultra Small */
+  h1 { font-size: 1.5rem !important; line-height: 1.1 !important; }
+  h2 { font-size: 1.25rem !important; line-height: 1.2 !important; }
+  h3 { font-size: 1rem !important; line-height: 1.2 !important; }
+  h4 { font-size: 0.875rem !important; line-height: 1.3 !important; }
+  h5 { font-size: 0.75rem !important; line-height: 1.3 !important; }
+  h6 { font-size: 0.625rem !important; line-height: 1.3 !important; }
+
+  /* Mobile Spacing - Ultra Tight */
+  .py-20 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  .py-16 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+  .py-12 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+  .py-8 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+
+  .mb-16 { margin-bottom: 1rem !important; }
+  .mb-12 { margin-bottom: 0.75rem !important; }
+  .mb-8 { margin-bottom: 0.5rem !important; }
+  .mb-6 { margin-bottom: 0.375rem !important; }
+
+  /* Mobile Grid - Single Column */
+  .grid-cols-1 { grid-template-columns: 1fr !important; }
+  .grid-cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid-cols-3 { grid-template-columns: 1fr !important; }
+  .grid-cols-4 { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Mobile Mobile Menu */
+  .mobile-menu__nav-link {
+    font-size: 1rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .mobile-menu__actions {
+    margin-top: 1rem !important;
+  }
+
+  /* Mobile Form */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    padding: 0.5rem !important;
+    font-size: 0.75rem !important;
+    border-radius: 0.25rem !important;
+  }
+
+  /* Mobile Modal */
+  .modal__content {
+    margin: 0.25rem !important;
+    padding: 0.75rem !important;
+    max-width: calc(100vw - 0.5rem) !important;
+    border-radius: 0.375rem !important;
+  }
+
+  /* Certifications grid: responsive columns */
+  .certifications-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* TABLET - TRANSITIONAL (640px - 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* Tablet Header */
+  .header__container {
+    padding: 0 1.5rem !important;
+  }
+
+  .header__brand {
+    font-size: 1.125rem !important;
+  }
+
+  .header__logo {
+    height: 1.5rem !important;
+  }
+
+  /* Tablet Hero */
+  #home {
+    padding: 5rem 1.5rem 3rem !important;
+  }
+
+  #home h1 {
+    font-size: 2rem !important;
+  }
+
+  #home p {
+    font-size: 1rem !important;
+  }
+
+  #home .flex {
+    flex-direction: row !important;
+    gap: 1rem !important;
+  }
+
+  #home .btn {
+    width: auto !important;
+  }
+
+  /* Tablet Statistics */
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .stat-card div {
+    font-size: 1.5rem !important;
+  }
+
+  /* Tablet Services */
+  #services .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Tablet About */
+  #about .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Tablet Projects */
+  #projects .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Tablet Team */
+  #team .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Tablet Testimonials */
+  #testimonials .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Tablet Contact */
+  #contact .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  /* Tablet Footer */
+  footer .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem !important;
+  }
+
+  /* Tablet Container */
+  .container {
+    padding: 0 1.5rem !important;
+    max-width: 768px !important;
+  }
+
+  /* Tablet Typography */
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.75rem !important; }
+  h3 { font-size: 1.5rem !important; }
+  h4 { font-size: 1.25rem !important; }
+  h5 { font-size: 1.125rem !important; }
+  h6 { font-size: 1rem !important; }
+
+  /* Tablet Spacing */
+  .py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .py-16 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+  .py-12 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  .py-8 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+
+  .mb-16 { margin-bottom: 2rem !important; }
+  .mb-12 { margin-bottom: 1.5rem !important; }
+  .mb-8 { margin-bottom: 1rem !important; }
+  .mb-6 { margin-bottom: 0.75rem !important; }
+}
+
+/* DESKTOP - FULL FEATURED (1024px - 1279px) */
+@media (min-width: 1024px) {
+  /* Desktop Header - Full Navigation */
+  .header__nav {
+    display: flex !important;
+  }
+
+  .header__mobile-toggle {
+    display: none !important;
+  }
+
+  .header__container {
+    padding: 0 3rem !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+  }
+
+  .header__brand {
+    font-size: 1.75rem !important;
+  }
+
+  .header__logo {
+    height: 2.5rem !important;
+  }
+
+  .header__nav-list {
+    gap: 4rem !important;
+  }
+
+  .header__nav-link {
+    font-size: 1.125rem !important;
+    position: relative !important;
+  }
+
+  .header__nav-link::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -0.75rem !important;
+    left: 0 !important;
+    width: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500)) !important;
+    transition: width 0.3s ease !important;
+  }
+
+  .header__nav-link:hover::after {
+    width: 100% !important;
+  }
+
+  /* Desktop Hero - Full Screen Experience */
+  #home {
+    padding: 10rem 3rem 8rem !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  #home::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%) !important;
+    z-index: -1 !important;
+  }
+
+  #home h1 {
+    font-size: 5rem !important;
+    line-height: 1.05 !important;
+    margin-bottom: 3rem !important;
+    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 900 !important;
+  }
+
+  #home p {
+    font-size: 1.75rem !important;
+    margin-bottom: 4rem !important;
+    max-width: 900px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    color: var(--text-secondary) !important;
+    line-height: 1.6 !important;
+  }
+
+  #home .flex {
+    gap: 3rem !important;
+    margin-bottom: 6rem !important;
+  }
+
+  #home .btn {
+    padding: 1.25rem 2.5rem !important;
+    font-size: 1.25rem !important;
+    border-radius: 1rem !important;
+    transition: all 0.3s ease !important;
+  }
+
+  #home .btn:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* Desktop Statistics - Prominent Display */
+  .grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  .stat-card {
+    padding: 4rem 2rem !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 1.5rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-10px) !important;
+    border-color: var(--primary-500) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .stat-card div {
+    font-size: 4.5rem !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 900 !important;
+    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  .stat-card p {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+  }
+
+  /* Desktop Services - Enhanced Cards */
+  #services {
+    padding: 10rem 3rem !important;
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%) !important;
+  }
+
+  #services h2 {
+    font-size: 4.5rem !important;
+    margin-bottom: 4rem !important;
+    text-align: center !important;
+    background: linear-gradient(135deg, var(--primary-500), var(--secondary-500)) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  #services .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 4rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  .bg-black\/50 {
+    padding: 4rem !important;
+    min-height: 550px !important;
+    border-radius: 2rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(30px) !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .bg-black\/50::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500)) !important;
+    transform: scaleX(0) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .bg-black\/50:hover::before {
+    transform: scaleX(1) !important;
+  }
+
+  .bg-black\/50:hover {
+    transform: translateY(-15px) !important;
+    border-color: var(--primary-500) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* Desktop Project Showcase - Enhanced */
+  .project-card {
+    margin-bottom: 4rem !important;
+    border-radius: 1.5rem !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .project-card:hover {
+    transform: translateY(-15px) !important;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .project-card img {
+    height: 450px !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .project-card:hover img {
+    transform: scale(1.1) !important;
+  }
+
+  /* Desktop About - Enhanced Layout */
+  #about {
+    padding: 10rem 3rem !important;
+  }
+
+  #about h2 {
+    font-size: 4.5rem !important;
+    text-align: center !important;
+    margin-bottom: 4rem !important;
+  }
+
+  #about .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  #about .text-center {
+    padding: 3rem 2rem !important;
+    border-radius: 1.5rem !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  #about .text-center:hover {
+    transform: translateY(-10px) !important;
+    border-color: var(--primary-500) !important;
+  }
+
+  #about .w-16 {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+
+  #about .text-2xl {
+    font-size: 2rem !important;
+  }
+
+  /* Desktop Certifications - Enhanced */
+  .certificate-card {
+    padding: 3rem !important;
+    min-height: 400px !important;
+    border-radius: 1.5rem !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .certificate-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500)) !important;
+    transform: scaleX(0) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .certificate-card:hover::before {
+    transform: scaleX(1) !important;
+  }
+
+  .certificate-card:hover {
+    transform: translateY(-15px) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .certificate-card h3 {
+    font-size: 2rem !important;
+  }
+
+  /* Desktop Projects - Enhanced Grid */
+  #projects {
+    padding: 10rem 3rem !important;
+  }
+
+  #projects h2 {
+    font-size: 4.5rem !important;
+    text-align: center !important;
+    margin-bottom: 5rem !important;
+  }
+
+  #projects .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4rem !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+  }
+
+  #projects h3 {
+    font-size: 2.5rem !important;
+    text-align: center !important;
+    margin-bottom: 3rem !important;
+  }
+
+  /* Desktop Team - Enhanced Cards */
+  #team {
+    padding: 10rem 3rem !important;
+  }
+
+  #team h2 {
+    font-size: 4.5rem !important;
+    text-align: center !important;
+    margin-bottom: 5rem !important;
+  }
+
+  #team .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  .team-card {
+    padding: 4rem 3rem !important;
+    min-height: 650px !important;
+    border-radius: 2rem !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .team-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, var(--primary-500), var(--secondary-500)) !important;
+    transform: scaleX(0) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .team-card:hover::before {
+    transform: scaleX(1) !important;
+  }
+
+  .team-card:hover {
+    transform: translateY(-20px) !important;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .team-card img {
+    height: 350px !important;
+    border-radius: 1.5rem 1.5rem 0 0 !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .team-card:hover img {
+    transform: scale(1.1) !important;
+  }
+
+  .team-card h3 {
+    font-size: 2rem !important;
+  }
+
+  .team-card p {
+    font-size: 1.25rem !important;
+  }
+
+  /* Desktop Testimonials - Enhanced */
+  #testimonials {
+    padding: 10rem 3rem !important;
+  }
+
+  #testimonials h2 {
+    font-size: 4.5rem !important;
+    text-align: center !important;
+    margin-bottom: 5rem !important;
+  }
+
+  #testimonials .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Desktop Contact - Enhanced Layout */
+  #contact {
+    padding: 10rem 3rem !important;
+  }
+
+  #contact h2 {
+    font-size: 4.5rem !important;
+    text-align: center !important;
+    margin-bottom: 5rem !important;
+  }
+
+  #contact .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 5rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Desktop Footer - Enhanced */
+  footer {
+    padding: 6rem 3rem 4rem !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 1) 100%) !important;
+  }
+
+  footer .grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 4rem !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Desktop Container */
+  .container {
+    padding: 0 3rem !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Desktop Typography - Larger */
+  h1 { font-size: 5rem !important; line-height: 1.05 !important; }
+  h2 { font-size: 4.5rem !important; line-height: 1.1 !important; }
+  h3 { font-size: 3rem !important; line-height: 1.2 !important; }
+  h4 { font-size: 2.5rem !important; line-height: 1.2 !important; }
+  h5 { font-size: 2rem !important; line-height: 1.3 !important; }
+  h6 { font-size: 1.75rem !important; line-height: 1.3 !important; }
+
+  /* Desktop Spacing - Generous */
+  .py-20 { padding-top: 10rem !important; padding-bottom: 10rem !important; }
+  .py-16 { padding-top: 8rem !important; padding-bottom: 8rem !important; }
+  .py-12 { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+  .py-8 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+
+  .mb-16 { margin-bottom: 8rem !important; }
+  .mb-12 { margin-bottom: 6rem !important; }
+  .mb-8 { margin-bottom: 4rem !important; }
+  .mb-6 { margin-bottom: 3rem !important; }
+
+  /* Desktop Grid - Full Layout */
+  .grid-cols-1 { grid-template-columns: 1fr !important; }
+  .grid-cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid-cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+  .grid-cols-4 { grid-template-columns: repeat(4, 1fr) !important; }
+
+  /* Desktop Form - Enhanced */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    padding: 1.5rem 2rem !important;
+    font-size: 1.25rem !important;
+    border-radius: 1rem !important;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    border-color: var(--primary-500) !important;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+  }
+
+  /* Desktop Modal - Enhanced */
+  .modal__content {
+    padding: 4rem !important;
+    max-width: 1000px !important;
+    border-radius: 2rem !important;
+    backdrop-filter: blur(30px) !important;
+  }
+
+  /* Certifications grid: 3 columns on desktop */
+  .certifications-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* LARGE DESKTOP - ULTRA WIDE (1280px+) */
+@media (min-width: 1280px) {
+  /* Large Desktop Header */
+  .header__container {
+    padding: 0 4rem !important;
+    max-width: 1600px !important;
+  }
+
+  .header__brand {
+    font-size: 2rem !important;
+  }
+
+  .header__logo {
+    height: 3rem !important;
+  }
+
+  .header__nav-list {
+    gap: 5rem !important;
+  }
+
+  /* Large Desktop Hero */
+  #home {
+    padding: 12rem 4rem 10rem !important;
+  }
+
+  #home h1 {
+    font-size: 6rem !important;
+  }
+
+  #home p {
+    font-size: 2rem !important;
+  }
+
+  /* Large Desktop Container */
+  .container {
+    padding: 0 4rem !important;
+    max-width: 1800px !important;
+  }
+
+  /* Large Desktop Grid */
+  .grid-cols-4 {
+    gap: 5rem !important;
+  }
+
+  /* Large Desktop Services */
+  #services .grid {
+    gap: 5rem !important;
+  }
+
+  .bg-black\/50 {
+    padding: 5rem !important;
+    min-height: 600px !important;
+  }
+
+  /* Large Desktop Projects */
+  #projects .grid {
+    gap: 5rem !important;
+  }
+
+  /* Large Desktop Team */
+  #team .grid {
+    gap: 5rem !important;
+  }
+
+  .team-card {
+    padding: 5rem 4rem !important;
+    min-height: 700px !important;
+  }
+
+  /* Large Desktop Testimonials */
+  #testimonials .grid {
+    gap: 5rem !important;
+  }
+
+  /* Large Desktop Contact */
+  #contact .grid {
+    gap: 6rem !important;
+  }
+
+  /* Large Desktop Footer */
+  footer {
+    padding: 8rem 4rem 5rem !important;
+  }
+
+  footer .grid {
+    gap: 5rem !important;
+  }
+
+  /* Large Desktop Typography */
+  h1 { font-size: 6rem !important; }
+  h2 { font-size: 5rem !important; }
+  h3 { font-size: 4rem !important; }
+  h4 { font-size: 3rem !important; }
+  h5 { font-size: 2.5rem !important; }
+  h6 { font-size: 2rem !important; }
+
+  /* Large Desktop Spacing */
+  .py-20 { padding-top: 12rem !important; padding-bottom: 12rem !important; }
+  .py-16 { padding-top: 10rem !important; padding-bottom: 10rem !important; }
+  .py-12 { padding-top: 8rem !important; padding-bottom: 8rem !important; }
+  .py-8 { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+
+  .mb-16 { margin-bottom: 10rem !important; }
+  .mb-12 { margin-bottom: 8rem !important; }
+  .mb-8 { margin-bottom: 6rem !important; }
+  .mb-6 { margin-bottom: 4rem !important; }
+}
+
+/* ULTRA WIDE DESKTOP - MAXIMUM (1536px+) */
+@media (min-width: 1536px) {
+  /* Ultra Wide Container */
+  .container {
+    padding: 0 6rem !important;
+    max-width: 2000px !important;
+  }
+
+  /* Ultra Wide Header */
+  .header__container {
+    padding: 0 6rem !important;
+    max-width: 1800px !important;
+  }
+
+  /* Ultra Wide Hero */
+  #home {
+    padding: 14rem 6rem 12rem !important;
+  }
+
+  #home h1 {
+    font-size: 7rem !important;
+  }
+
+  #home p {
+    font-size: 2.25rem !important;
+  }
+
+  /* Ultra Wide Typography */
+  h1 { font-size: 7rem !important; }
+  h2 { font-size: 6rem !important; }
+  h3 { font-size: 5rem !important; }
+  h4 { font-size: 4rem !important; }
+  h5 { font-size: 3rem !important; }
+  h6 { font-size: 2.5rem !important; }
+
+  /* Ultra Wide Spacing */
+  .py-20 { padding-top: 14rem !important; padding-bottom: 14rem !important; }
+  .py-16 { padding-top: 12rem !important; padding-bottom: 12rem !important; }
+  .py-12 { padding-top: 10rem !important; padding-bottom: 10rem !important; }
+  .py-8 { padding-top: 8rem !important; padding-bottom: 8rem !important; }
+
+  .mb-16 { margin-bottom: 12rem !important; }
+  .mb-12 { margin-bottom: 10rem !important; }
+  .mb-8 { margin-bottom: 8rem !important; }
+  .mb-6 { margin-bottom: 6rem !important; }
+} 

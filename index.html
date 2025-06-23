@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resconate - Premium Software Development Agency</title>
     <link rel="stylesheet" href="./styles.css">
+    <!-- Responsive Enhancement CSS -->
+    <link rel="stylesheet" href="./responsive-enhancement.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,68 +15,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-black text-gray-100 font-inter">
+    <a href="#home" class="skip-link">Skip to main content</a>
     <!-- Header -->
-    <header class="fixed w-full top-0 z-50 backdrop-blur-md bg-black/80 border-b border-gray-800">
-        <div class="container mx-auto py-4 px-4 md:px-6 flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="#" class="text-xl font-bold font-plus-jakarta">
-                    <img src="RLogo.png" alt="Resconate Logo" class="h-8">
-                </a>
-            </div>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#home" class="text-gray-200 hover:text-white transition-colors">Home</a>
-                <a href="#services" class="text-gray-200 hover:text-white transition-colors">Services</a>
-                <a href="#projects" class="text-gray-200 hover:text-white transition-colors">Projects</a>
-                <a href="#team" class="text-gray-200 hover:text-white transition-colors">Team</a>
-                <a href="#about" class="text-gray-200 hover:text-white transition-colors">About</a>
-                <a href="#contact" class="text-gray-200 hover:text-white transition-colors">Contact</a>
+    <header class="header">
+        <div class="header__container">
+            <a href="#home" class="header__brand">
+                <img src="RLogo.png" alt="Resconate Logo" class="header__logo">
+                <span>Resconate</span>
+            </a>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="#home" class="header__nav-link">Home</a></li>
+                    <li><a href="#services" class="header__nav-link">Services</a></li>
+                    <li><a href="#projects" class="header__nav-link">Projects</a></li>
+                    <li><a href="#team" class="header__nav-link">Team</a></li>
+                    <li><a href="#about" class="header__nav-link">About</a></li>
+                    <li><a href="#contact" class="header__nav-link">Contact</a></li>
+                </ul>
             </nav>
-            <a href="#contact" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity">Get Quote</a>
-            
-            <!-- Mobile menu button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white">
-                    <i class="fas fa-bars text-xl"></i>
+            <div class="header__actions">
+                <button id="theme-toggle" class="header__theme-toggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#contact" class="btn btn-primary">Get Quote</a>
+                <button id="mobile-menu-button" class="header__mobile-toggle" aria-label="Open mobile menu">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </header>
 
     <!-- Image Modal (hidden by default) -->
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="relative max-w-3xl mx-auto p-4">
+    <div id="imageModal" class="modal">
+        <div class="modal__content">
             <img id="expandedImage" src="" alt="Inimfon Udoh" class="max-h-[90vh] max-w-full">
-            <button id="closeImageModal" class="absolute top-2 right-2 text-white bg-gray-800 rounded-full p-2">
+            <button id="closeImageModal" class="modal__close" aria-label="Close image modal">
                 <i class="fas fa-times"></i>
             </button>
         </div>
     </div>
     
     <!-- Project Image Modal (hidden by default) -->
-    <div id="projectImageModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="relative max-w-4xl mx-auto p-4">
+    <div id="projectImageModal" class="modal">
+        <div class="modal__content">
             <img id="expandedProjectImage" src="" alt="Project Image" class="max-h-[90vh] max-w-full">
-            <button id="closeProjectImageModal" class="absolute top-2 right-2 text-white bg-gray-800 rounded-full p-2">
+            <button id="closeProjectImageModal" class="modal__close" aria-label="Close project image modal">
                 <i class="fas fa-times"></i>
             </button>
         </div>
     </div>
 
     <!-- Mobile menu (hidden by default) -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center justify-center hidden">
-        <button id="close-menu-button" class="absolute top-4 right-4 text-white">
-            <i class="fas fa-times text-xl"></i>
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="close-menu-button" class="mobile-menu__close" aria-label="Close mobile menu">
+            <i class="fas fa-times"></i>
         </button>
-        <nav class="flex flex-col items-center space-y-8 text-xl">
-            <a href="#home" class="text-white hover:text-[#6366F1] transition-colors">Home</a>
-            <a href="#services" class="text-white hover:text-[#6366F1] transition-colors">Services</a>
-            <a href="#projects" class="text-white hover:text-[#6366F1] transition-colors">Projects</a>
-            <a href="#team" class="text-white hover:text-[#6366F1] transition-colors">Team</a>
-            <a href="#about" class="text-white hover:text-[#6366F1] transition-colors">About</a>
-            <a href="#contact" class="text-white hover:text-[#6366F1] transition-colors">Contact</a>
-        </nav>
-        <div class="mt-12">
-            <a href="#contact" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">Get Quote</a>
+        <div class="mobile-menu__content">
+            <nav class="mobile-menu__nav">
+                <ul class="mobile-menu__nav-list">
+                    <li><a href="#home" class="mobile-menu__nav-link">Home</a></li>
+                    <li><a href="#services" class="mobile-menu__nav-link">Services</a></li>
+                    <li><a href="#projects" class="mobile-menu__nav-link">Projects</a></li>
+                    <li><a href="#team" class="mobile-menu__nav-link">Team</a></li>
+                    <li><a href="#about" class="mobile-menu__nav-link">About</a></li>
+                    <li><a href="#contact" class="mobile-menu__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu__actions">
+                <a href="#contact" class="btn btn-primary">Get Quote</a>
+            </div>
         </div>
     </div>
 
@@ -88,10 +97,10 @@
                 Resconate delivers cutting-edge web and mobile applications that transform businesses and engage users worldwide
             </p>
             <div class="flex flex-col md:flex-row justify-center gap-4 mb-16">
-                <a href="#projects" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-8 py-3 rounded-md hover:opacity-90 transition-opacity">
+                <a href="#projects" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-bold px-8 py-3 rounded-md shadow-lg hover:opacity-90 transition-opacity">
                     View Our Work
                 </a>
-                <a href="#contact" class="border border-[#6366F1] text-white px-8 py-3 rounded-md hover:bg-[#6366F1]/10 transition-colors">
+                <a href="#contact" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-bold px-8 py-3 rounded-md shadow-lg hover:opacity-90 transition-opacity">
                     Start Your Project
                 </a>
             </div>
@@ -242,12 +251,12 @@
     <!-- Certifications Section -->
     <section class="container mx-auto py-16 px-4 md:px-6">
         <h2 class="text-3xl font-bold mb-10 text-center">Certifications</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6">
             <div class="certificate-card bg-gray-900 p-6 rounded-lg transform hover:-translate-y-1 transition-transform">
                 <p class="text-xs text-gray-500 mb-2">ISSUED: APRIL 2025</p>
                 <h3 class="text-lg font-bold mb-2">Data Analysis With Python Certificate</h3>
                 <p class="text-sm text-gray-400 mb-4">freeCodeCamp</p>
-                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/data-analysis-with-python-v7" target="_blank" rel="noopener noreferrer" class="w-full border border-blue-500 text-blue-500 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors inline-block text-center">
+                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/data-analysis-with-python-v7" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-extrabold text-lg py-3 rounded-lg shadow-xl hover:scale-105 hover:opacity-95 transition-all duration-200 inline-block text-center">
                     View Certificate
                 </a>
             </div>
@@ -255,7 +264,7 @@
                 <p class="text-xs text-gray-500 mb-2">ISSUED: APRIL 2025</p>
                 <h3 class="text-lg font-bold mb-2">Responsive Web Design Certificate</h3>
                 <p class="text-sm text-gray-400 mb-4">freeCodeCamp</p>
-                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/responsive-web-design" target="_blank" rel="noopener noreferrer" class="w-full border border-blue-500 text-blue-500 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors inline-block text-center">
+                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/responsive-web-design" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-extrabold text-lg py-3 rounded-lg shadow-xl hover:scale-105 hover:opacity-95 transition-all duration-200 inline-block text-center">
                     View Certificate
                 </a>
             </div>
@@ -263,7 +272,7 @@
                 <p class="text-xs text-gray-500 mb-2">ISSUED: APRIL 2025</p>
                 <h3 class="text-lg font-bold mb-2">Front End Development Libraries Certificate</h3>
                 <p class="text-sm text-gray-400 mb-4">freeCodeCamp</p>
-                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/front-end-development-libraries" target="_blank" rel="noopener noreferrer" class="w-full border border-blue-500 text-blue-500 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors inline-block text-center">
+                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/front-end-development-libraries" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-extrabold text-lg py-3 rounded-lg shadow-xl hover:scale-105 hover:opacity-95 transition-all duration-200 inline-block text-center">
                     View Certificate
                 </a>
             </div>
@@ -271,7 +280,7 @@
                 <p class="text-xs text-gray-500 mb-2">ISSUED: APRIL 2025</p>
                 <h3 class="text-lg font-bold mb-2">Scientific Computing With Python Certificate</h3>
                 <p class="text-sm text-gray-400 mb-4">freeCodeCamp</p>
-                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/scientific-computing-with-python-v7" target="_blank" rel="noopener noreferrer" class="w-full border border-blue-500 text-blue-500 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors inline-block text-center">
+                <a href="https://www.freecodecamp.org/certification/InimfonUdoh/scientific-computing-with-python-v7" target="_blank" rel="noopener noreferrer" class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-extrabold text-lg py-3 rounded-lg shadow-xl hover:scale-105 hover:opacity-95 transition-all duration-200 inline-block text-center">
                     View Certificate
                 </a>
             </div>
@@ -279,7 +288,7 @@
                 <p class="text-xs text-gray-500 mb-2">ISSUED: FEBRUARY 2023</p>
                 <h3 class="text-lg font-bold mb-2">Back End Development and APIs Certificate</h3>
                 <p class="text-sm text-gray-400 mb-4">freeCodeCamp</p>
-                <button class="w-full border border-blue-500 text-blue-500 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors">
+                <button class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-extrabold text-lg py-3 rounded-lg shadow-xl hover:scale-105 hover:opacity-95 transition-all duration-200">
                     View Certificate
                 </button>
             </div>
@@ -287,7 +296,7 @@
                 <p class="text-xs text-gray-500 mb-2">ISSUED: JANUARY 2023</p>
                 <h3 class="text-lg font-bold mb-2">Legacy Full Stack Certificate</h3>
                 <p class="text-sm text-gray-400 mb-4">freeCodeCamp</p>
-                <button class="w-full border border-blue-500 text-blue-500 py-2 rounded-md hover:bg-blue-500 hover:text-white transition-colors">
+                <button class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-extrabold text-lg py-3 rounded-lg shadow-xl hover:scale-105 hover:opacity-95 transition-all duration-200">
                     View Certificate
                 </button>
             </div>
@@ -451,13 +460,13 @@
             <!-- Team Member 2 -->
             <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Sarah Chen" class="w-full h-64 object-cover">
+                    <img src="mike.jpg" alt="Sarah Chen" class="w-full h-64 object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                         <div class="flex space-x-4">
-                            <a href="#" class="text-white hover:text-[#EC4899] transition-colors">
+                            <a href="https://x.com/@RnaEu_" class="text-white hover:text-[#EC4899] transition-colors">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="#" class="text-white hover:text-[#EC4899] transition-colors">
+                            <a href="https://github.com/Michael47009" class="text-white hover:text-[#EC4899] transition-colors">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
@@ -477,35 +486,6 @@
                 </div>
             </div>
 
-            <!-- Team Member 3 -->
-            <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Marcus Johnson" class="w-full h-64 object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-white hover:text-[#6366F1] transition-colors">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" class="text-white hover:text-[#6366F1] transition-colors">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2">Marcus Johnson</h3>
-                    <p class="text-[#6366F1] mb-4">Senior Full-Stack Developer</p>
-                    <p class="text-gray-200 text-sm mb-4">
-                        Expert in building scalable web applications and microservices
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Python</span>
-                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Django</span>
-                        <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Docker</span>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Testimonials Section -->
@@ -786,12 +766,12 @@
     <script src="./script.js"></script>
 
     <!-- Policy Modals -->
-    <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">Privacy Policy</h2>
-                <button onclick="closeModal('privacyModal')" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-xl"></i>
+    <div id="privacyModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">Privacy Policy</h2>
+                <button class="modal__close" onclick="closeModal('privacyModal')" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="text-gray-300 space-y-4">
@@ -820,12 +800,12 @@
         </div>
     </div>
 
-    <div id="termsModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">Terms of Service</h2>
-                <button onclick="closeModal('termsModal')" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-xl"></i>
+    <div id="termsModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">Terms of Service</h2>
+                <button class="modal__close" onclick="closeModal('termsModal')" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="text-gray-300 space-y-4">
@@ -848,12 +828,12 @@
         </div>
     </div>
 
-    <div id="cookieModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">Cookie Policy</h2>
-                <button onclick="closeModal('cookieModal')" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-xl"></i>
+    <div id="cookieModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">Cookie Policy</h2>
+                <button class="modal__close" onclick="closeModal('cookieModal')" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="text-gray-300 space-y-4">
@@ -877,12 +857,12 @@
     </div>
 
     <!-- Company Modals -->
-    <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">About Resconate</h2>
-                <button onclick="closeModal('aboutModal')" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-xl"></i>
+    <div id="aboutModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">About Resconate</h2>
+                <button class="modal__close" onclick="closeModal('aboutModal')" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="text-gray-300 space-y-6">
@@ -915,12 +895,12 @@
         </div>
     </div>
 
-    <div id="teamModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="bg-gray-900 max-w-4xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">Our Team</h2>
-                <button onclick="closeModal('teamModal')" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-xl"></i>
+    <div id="teamModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">Our Team</h2>
+                <button class="modal__close" onclick="closeModal('teamModal')" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="text-gray-300 space-y-8">
@@ -948,7 +928,7 @@
 
                     <div class="bg-black/50 p-6 rounded-xl">
                         <div class="flex items-center mb-4">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Michael Nwankwo" class="w-16 h-16 rounded-full object-cover">
+                            <img src="mike.jpg" alt="Michael Nwankwo" class="w-16 h-16 rounded-full object-cover">
                             <div class="ml-4">
                                 <h3 class="text-xl font-bold">Michael Nwankwo</h3>
                                 <p class="text-[#EC4899]">Lead Frontend Developer</p>
@@ -969,12 +949,12 @@
         </div>
     </div>
 
-    <div id="careersModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">Careers at Resconate</h2>
-                <button onclick="closeModal('careersModal')" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-xl"></i>
+    <div id="careersModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">Careers at Resconate</h2>
+                <button class="modal__close" onclick="closeModal('careersModal')" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="text-gray-300 space-y-6">
@@ -1007,12 +987,12 @@
         </div>
     </div>
 
-    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="bg-gray-900 max-w-3xl w-full mx-4 rounded-xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">Contact Us</h2>
-                <button onclick="closeModal('contactModal')" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-times text-xl"></i>
+    <div id="contactModal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 class="modal__title">Contact Us</h2>
+                <button class="modal__close" onclick="closeModal('contactModal')" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="text-gray-300 space-y-6">

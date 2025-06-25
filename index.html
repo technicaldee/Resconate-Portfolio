@@ -13,6 +13,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+	</script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+	 rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+	 rel="stylesheet">
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'>
+	</script>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+	</script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+	<link href='style.css' rel='stylesheet'>
+<!-- Devicon Icon Library -->
+<link href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" rel="stylesheet">
+
+	<!-- AOS CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+	<!-- AOS JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js">
+	</script>
+
+
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'>
+	</script>
+    <!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-gray-100 font-inter">
     <a href="#home" class="skip-link">Skip to main content</a>
@@ -37,10 +81,14 @@
                 <button id="theme-toggle" class="header__theme-toggle" aria-label="Toggle dark/light mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <a href="#contact" class="btn btn-primary">Get Quote</a>
-                <button id="mobile-menu-button" class="header__mobile-toggle" aria-label="Open mobile menu">
+                <a id="quote-mobile" href="#contact" class="btn btn-primary">Get Quote</a>
+                <button id="mobile-menu-button" class="header__mobile-toggle" aria-label="Open mobile menu" >
                     <i class="fas fa-bars"></i>
                 </button>
+
+
+
+                
             </div>
         </div>
     </header>
@@ -96,8 +144,8 @@
             <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto">
                 Resconate delivers cutting-edge web and mobile applications that transform businesses and engage users worldwide
             </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4 mb-16">
-                <a href="#projects" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-bold px-8 py-3 rounded-md shadow-lg hover:opacity-90 transition-opacity">
+            <div id="projectss" class="flex flex-col md:flex-row justify-center gap-4 mb-16">
+                <a id="project-btn" href="#projects" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-bold px-8 py-3 rounded-md shadow-lg hover:opacity-90 transition-opacity">
                     View Our Work
                 </a>
                 <a href="#contact" class="bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white font-bold px-8 py-3 rounded-md shadow-lg hover:opacity-90 transition-opacity">
@@ -106,7 +154,7 @@
             </div>
             
             <!-- Statistics -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div id="statistics-box" class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
                 <div class="stat-card">
                     <div class="text-3xl md:text-4xl font-bold text-[#6366F1] mb-2" data-count="150">0</div>
                     <p class="text-gray-200">Projects Completed</p>
@@ -144,9 +192,9 @@
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div id="web-dev-card" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <!-- Web Development Card -->
-            <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
+            <div id="crd" class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
                 <div class="w-12 h-12 bg-[#6366F1]/20 rounded-lg flex items-center justify-center mb-6">
                     <i class="fas fa-globe text-2xl text-[#6366F1]"></i>
                 </div>
@@ -171,7 +219,7 @@
             </div>
 
             <!-- Mobile Development Card -->
-            <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
+            <div id="crd" class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
                 <div class="w-12 h-12 bg-[#EC4899]/20 rounded-lg flex items-center justify-center mb-6">
                     <i class="fas fa-mobile-alt text-2xl text-[#EC4899]"></i>
                 </div>
@@ -198,7 +246,7 @@
     </section>
 
     <!-- Project Showcase -->
-    <section class="container mx-auto py-10 px-4 md:px-6">
+    <section id="Showcase" class="container mx-auto py-10 px-4 md:px-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="project-card overflow-hidden rounded-lg bg-black/50 backdrop-blur-sm border border-gray-800">
                 <img src="Report and Analytics.png" alt="Project 1" class="w-full h-48 object-cover project-image cursor-pointer">
@@ -249,7 +297,7 @@
     </section>
 
     <!-- Certifications Section -->
-    <section class="container mx-auto py-16 px-4 md:px-6">
+    <section id="certs" class="container mx-auto py-16 px-4 md:px-6">
         <h2 class="text-3xl font-bold mb-10 text-center">Certifications</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6">
             <div class="certificate-card bg-gray-900 p-6 rounded-lg transform hover:-translate-y-1 transition-transform">

@@ -169,7 +169,7 @@
         <!-- Services Section -->
         <section id="services" class="container mx-auto py-20 px-4 md:px-6">
             <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 font-plus-jakarta text-white">Our Services</h2>
+                <h3 class="text-lg font-semibold mb-6 font-plus-jakarta text-white">Our Services</h3>
                 <p class="text-gray-200 text-lg">
                     We deliver comprehensive digital solutions that drive business growth and user engagement
                 </p>
@@ -181,7 +181,7 @@
                     <div class="w-12 h-12 bg-[#6366F1]/20 rounded-lg flex items-center justify-center mb-6">
                         <i class="fas fa-globe text-2xl text-[#6366F1]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Web Development</h3>
+                    <h3 class="text-lg font-bold mb-4 text-white">Web Development</h3>
                     <p class="text-gray-200 mb-6">
                         Custom websites, web applications, and e-commerce solutions built with cutting-edge technologies
                     </p>
@@ -209,7 +209,7 @@
                     <div class="w-12 h-12 bg-[#EC4899]/20 rounded-lg flex items-center justify-center mb-6">
                         <i class="fas fa-mobile-alt text-2xl text-[#EC4899]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Mobile Development</h3>
+                    <h3 class="text-lg font-bold mb-4 text-white">Mobile Development</h3>
                     <p class="text-gray-200 mb-6">
                         Native and cross-platform mobile applications that deliver exceptional user experiences
                     </p>
@@ -237,7 +237,7 @@
                     <div class="w-12 h-12 bg-[#10B981]/20 rounded-lg flex items-center justify-center mb-6">
                         <i class="fas fa-palette text-2xl text-[#10B981]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">UI/UX Design</h3>
+                    <h3 class="text-lg font-bold mb-4 text-white">UI/UX Design</h3>
                     <p class="text-gray-200 mb-6">
                         Beautiful, intuitive user interfaces and seamless user experiences that delight users
                     </p>
@@ -265,7 +265,7 @@
                     <div class="w-12 h-12 bg-[#F59E0B]/20 rounded-lg flex items-center justify-center mb-6">
                         <i class="fas fa-bullhorn text-2xl text-[#F59E0B]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Digital Marketing</h3>
+                    <h3 class="text-lg font-bold mb-4 text-white">Digital Marketing</h3>
                     <p class="text-gray-200 mb-6">
                         Strategic digital marketing campaigns that increase brand awareness and drive conversions
                     </p>
@@ -293,7 +293,7 @@
                     <div class="w-12 h-12 bg-[#8B5CF6]/20 rounded-lg flex items-center justify-center mb-6">
                         <i class="fas fa-cloud text-2xl text-[#8B5CF6]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Cloud Solutions</h3>
+                    <h3 class="text-lg font-bold mb-4 text-white">Cloud Solutions</h3>
                     <p class="text-gray-200 mb-6">
                         Scalable cloud infrastructure and DevOps solutions for modern applications
                     </p>
@@ -321,7 +321,7 @@
                     <div class="w-12 h-12 bg-[#EF4444]/20 rounded-lg flex items-center justify-center mb-6">
                         <i class="fas fa-chart-line text-2xl text-[#EF4444]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Consulting Services</h3>
+                    <h3 class="text-lg font-bold mb-4 text-white">Consulting Services</h3>
                     <p class="text-gray-200 mb-6">
                         Strategic technology consulting to help businesses make informed digital decisions
                     </p>
@@ -466,135 +466,27 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="container mx-auto py-16 px-4 md:px-6">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 font-plus-jakarta">Our Featured Projects</h2>
-                <p class="text-gray-200 text-lg">
-                    Discover how we've helped businesses transform their digital presence
-                </p>
+        <!-- Project Section -->
+        <section id="projects" class="py-20 bg-black/80 border-t border-b border-gray-800">
+          <div class="container mx-auto flex flex-col md:flex-row gap-8">
+            <!-- Categories Column -->
+            <aside class="w-full md:w-1/4 mb-8 md:mb-0">
+              <nav id="project-categories" class="flex flex-col gap-4">
+                <button class="category-btn" data-category="web">Web Development</button>
+                <button class="category-btn" data-category="mobile">Mobile Development</button>
+                <button class="category-btn" data-category="design">Product Design</button>
+                <button class="category-btn" data-category="writing">Writing</button>
+                <button class="category-btn" data-category="devops">DevOps</button>
+                <!-- Add more categories as needed -->
+              </nav>
+            </aside>
+            <!-- Projects Grid -->
+            <div class="w-full md:w-3/4">
+              <div id="project-grid-wrapper" class="overflow-hidden">
+                <div id="project-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 opacity-0 translate-x-[-40px] pointer-events-none transition-all duration-500"></div>
+              </div>
             </div>
-
-            <!-- Project Filter Bar -->
-            <div id="project-filters" class="flex flex-wrap justify-center gap-4 mb-10">
-                <button class="filter-btn btn btn-secondary" data-filter="all" aria-pressed="true">All</button>
-                <button class="filter-btn btn btn-secondary" data-filter="Web App">Web App</button>
-                <button class="filter-btn btn btn-secondary" data-filter="Mobile App">Mobile App</button>
-                <button class="filter-btn btn btn-secondary" data-filter="SaaS">SaaS</button>
-                <button class="filter-btn btn btn-secondary" data-filter="Dashboard">Dashboard</button>
-            </div>
-
-            <!-- Web Development Projects -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-8 text-center">Web Development</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
-                        <div class="relative overflow-hidden h-48">
-                            <picture>
-                              <source srcset="DSA-logo.webp" type="image/webp">
-                              <img src="DSA-logo.png" alt="Digital Scouting Africa" class="w-full h-full object-contain bg-black/20" data-modal-type="image" data-img-src="DSA-logo.png" data-img-alt="Digital Scouting Africa">
-                            </picture>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                <div>
-                                    <h4 class="text-white font-bold mb-2">Digital Scouting Africa</h4>
-                                    <p class="text-gray-300 text-sm">A comprehensive football scouting platform</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">React</span>
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Node.js</span>
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">MongoDB</span>
-                            </div>
-                            <a href="https://dsa-main2.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-[#6366F1] hover:text-[#EC4899] transition-colors inline-flex items-center">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
-                        <div class="relative overflow-hidden h-48">
-                            <picture>
-                              <source srcset="SuShi.webp" type="image/webp">
-                              <img src="SuShi.png" alt="SuShi" class="w-full h-full object-contain bg-black/20" data-modal-type="image" data-img-src="SuShi.png" data-img-alt="SuShi">
-                            </picture>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                <div>
-                                    <h4 class="text-white font-bold mb-2">SuShi Restaurant</h4>
-                                    <p class="text-gray-300 text-sm">Modern restaurant ordering system</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Vue.js</span>
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Firebase</span>
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Tailwind</span>
-                            </div>
-                            <a href="https://su-shi-kohl.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-[#6366F1] hover:text-[#EC4899] transition-colors inline-flex items-center">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300">
-                        <div class="relative overflow-hidden h-48">
-                            <picture>
-                              <source srcset="khoj.webp" type="image/webp">
-                              <img src="khoj.png" alt="Khoj" class="w-full h-full object-contain bg-black/20" data-modal-type="image" data-img-src="khoj.png" data-img-alt="Khoj">
-                            </picture>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                <div>
-                                    <h4 class="text-white font-bold mb-2">Khoj AI</h4>
-                                    <p class="text-gray-300 text-sm">AI-powered research assistant</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">Next.js</span>
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">OpenAI</span>
-                                <span class="px-3 py-1 bg-[#6366F1]/20 text-[#6366F1] rounded-full text-sm">TypeScript</span>
-                            </div>
-                            <a href="https://khoj.dev/" target="_blank" rel="noopener noreferrer" class="text-[#6366F1] hover:text-[#EC4899] transition-colors inline-flex items-center">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Development Projects -->
-            <div>
-                <h3 class="text-2xl font-bold mb-8 text-center">Mobile Development</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300">
-                        <div class="relative overflow-hidden h-48">
-                            <picture>
-                              <source srcset="JARA-MARKET-01_1 (1).webp" type="image/webp">
-                              <img src="JARA-MARKET-01_1 (1).png" alt="JARAmarket" class="w-full h-full object-contain bg-black/20" data-modal-type="image" data-img-src="JARA-MARKET-01_1 (1).png" data-img-alt="JARAmarket">
-                            </picture>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                <div>
-                                    <h4 class="text-white font-bold mb-2">JARAmarket</h4>
-                                    <p class="text-gray-300 text-sm">Foodstuff grocery shopping app</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">React Native</span>
-                                <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Firebase</span>
-                                <span class="px-3 py-1 bg-[#EC4899]/20 text-[#EC4899] rounded-full text-sm">Redux</span>
-                            </div>
-                            <a href="https://jaramarket.com.ng/" target="_blank" rel="noopener noreferrer" class="text-[#EC4899] hover:text-[#6366F1] transition-colors inline-flex items-center">
-                                View Project <i class="fas fa-arrow-right ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </section>
 
         <!-- Team Section -->

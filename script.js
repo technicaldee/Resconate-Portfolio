@@ -846,3 +846,94 @@ document.addEventListener('click', function(e) {
 document.addEventListener('DOMContentLoaded', () => {
   new PortfolioApp();
 });
+
+// --- Project Section Logic ---
+const projectCategories = {
+  web: [
+    { name: 'Web Project 1', image: 'web1.png', link: 'https://example.com/web1', description: 'Web project description 1' },
+    { name: 'Web Project 2', image: 'web2.png', link: 'https://example.com/web2', description: 'Web project description 2' },
+    { name: 'Web Project 3', image: 'web3.png', link: 'https://example.com/web3', description: 'Web project description 3' },
+    { name: 'Web Project 4', image: 'web4.png', link: 'https://example.com/web4', description: 'Web project description 4' },
+    { name: 'Web Project 5', image: 'web5.png', link: 'https://example.com/web5', description: 'Web project description 5' },
+    { name: 'Web Project 6', image: 'web6.png', link: 'https://example.com/web6', description: 'Web project description 6' }
+  ],
+  mobile: [
+    { name: 'Mobile Project 1', image: 'mobile1.png', link: 'https://example.com/mobile1', description: 'Mobile project description 1' },
+    { name: 'Mobile Project 2', image: 'mobile2.png', link: 'https://example.com/mobile2', description: 'Mobile project description 2' },
+    { name: 'Mobile Project 3', image: 'mobile3.png', link: 'https://example.com/mobile3', description: 'Mobile project description 3' },
+    { name: 'Mobile Project 4', image: 'mobile4.png', link: 'https://example.com/mobile4', description: 'Mobile project description 4' },
+    { name: 'Mobile Project 5', image: 'mobile5.png', link: 'https://example.com/mobile5', description: 'Mobile project description 5' },
+    { name: 'Mobile Project 6', image: 'mobile6.png', link: 'https://example.com/mobile6', description: 'Mobile project description 6' }
+  ],
+  design: [
+    { name: 'Design Project 1', image: 'design1.png', link: 'https://example.com/design1', description: 'Design project description 1' },
+    { name: 'Design Project 2', image: 'design2.png', link: 'https://example.com/design2', description: 'Design project description 2' },
+    { name: 'Design Project 3', image: 'design3.png', link: 'https://example.com/design3', description: 'Design project description 3' },
+    { name: 'Design Project 4', image: 'design4.png', link: 'https://example.com/design4', description: 'Design project description 4' },
+    { name: 'Design Project 5', image: 'design5.png', link: 'https://example.com/design5', description: 'Design project description 5' },
+    { name: 'Design Project 6', image: 'design6.png', link: 'https://example.com/design6', description: 'Design project description 6' }
+  ],
+  writing: [
+    { name: 'Writing Project 1', image: 'writing1.png', link: 'https://example.com/writing1', description: 'Writing project description 1' },
+    { name: 'Writing Project 2', image: 'writing2.png', link: 'https://example.com/writing2', description: 'Writing project description 2' },
+    { name: 'Writing Project 3', image: 'writing3.png', link: 'https://example.com/writing3', description: 'Writing project description 3' },
+    { name: 'Writing Project 4', image: 'writing4.png', link: 'https://example.com/writing4', description: 'Writing project description 4' },
+    { name: 'Writing Project 5', image: 'writing5.png', link: 'https://example.com/writing5', description: 'Writing project description 5' },
+    { name: 'Writing Project 6', image: 'writing6.png', link: 'https://example.com/writing6', description: 'Writing project description 6' }
+  ],
+  devops: [
+    { name: 'DevOps Project 1', image: 'devops1.png', link: 'https://example.com/devops1', description: 'DevOps project description 1' },
+    { name: 'DevOps Project 2', image: 'devops2.png', link: 'https://example.com/devops2', description: 'DevOps project description 2' },
+    { name: 'DevOps Project 3', image: 'devops3.png', link: 'https://example.com/devops3', description: 'DevOps project description 3' },
+    { name: 'DevOps Project 4', image: 'devops4.png', link: 'https://example.com/devops4', description: 'DevOps project description 4' },
+    { name: 'DevOps Project 5', image: 'devops5.png', link: 'https://example.com/devops5', description: 'DevOps project description 5' },
+    { name: 'DevOps Project 6', image: 'devops6.png', link: 'https://example.com/devops6', description: 'DevOps project description 6' }
+  ]
+};
+
+const projectGrid = document.getElementById('project-grid');
+const categoryBtns = document.querySelectorAll('.category-btn');
+
+function showProjects(category) {
+  if (!projectGrid) return;
+  // Remove previous content and animation
+  projectGrid.innerHTML = '';
+  projectGrid.classList.remove('active');
+  projectGrid.style.pointerEvents = 'none';
+
+  // Highlight active button
+  categoryBtns.forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.querySelector(`.category-btn[data-category="${category}"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  // Add new projects after a short delay for animation
+  setTimeout(() => {
+    const projects = projectCategories[category] || [];
+    projects.forEach(project => {
+      const card = document.createElement('div');
+      card.className = 'project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300 cursor-pointer';
+      card.innerHTML = `
+        <div class="relative overflow-hidden h-48 flex items-center justify-center">
+          <img src="${project.image}" alt="${project.name}" class="w-full h-full object-contain bg-black/20 project-image">
+        </div>
+        <div class="p-6">
+          <h4 class="text-white font-bold mb-2">${project.name}</h4>
+          <p class="text-gray-300 text-sm mb-4">${project.description}</p>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        window.open(project.link, '_blank');
+      });
+      projectGrid.appendChild(card);
+    });
+    projectGrid.classList.add('active');
+    projectGrid.style.pointerEvents = 'auto';
+  }, 100);
+}
+
+categoryBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const category = btn.getAttribute('data-category');
+    showProjects(category);
+  });
+});

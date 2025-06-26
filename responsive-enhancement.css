@@ -1298,4 +1298,218 @@
     padding: 1.25rem !important;
     min-height: 130px !important;
   }
+}
+
+/* Project Section Layout */
+#projects .container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  #projects .container {
+    flex-direction: row;
+  }
+}
+
+#project-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.category-btn {
+  background: #18181b;
+  color: #fff;
+  border: 1px solid #27272a;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.category-btn.active,
+.category-btn:focus {
+  background: #6366f1;
+  color: #fff;
+  border-color: #6366f1;
+  outline: none;
+}
+
+#project-grid-wrapper {
+  min-height: 400px;
+}
+#project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+  transition: opacity 0.5s, transform 0.5s;
+}
+#project-grid.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+@media (min-width: 640px) {
+  #project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  #project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Project Cards - Content Fit */
+.project-card {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 0 !important;
+}
+.project-card .p-6 {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+.project-card h4,
+.project-card p {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+.project-card img {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
+
+/* Certification Cards - Content Fit */
+.certificate-card {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.certificate-card img {
+  display: block !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Project & Certification Cards - Strict Content Fit */
+.project-card,
+.certificate-card {
+  width: 300px !important;
+  height: 300px !important;
+  min-width: 300px !important;
+  min-height: 300px !important;
+  max-width: 300px !important;
+  max-height: 300px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+}
+.project-card .relative,
+.certificate-card .relative {
+  flex: 0 0 120px !important;
+  max-height: 120px !important;
+  min-height: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+}
+.project-card img,
+.certificate-card img {
+  display: block !important;
+  max-width: 90% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  margin: 0 auto !important;
+}
+.project-card .p-6,
+.certificate-card .p-6 {
+  flex: 1 1 auto !important;
+  width: 100%;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem !important;
+}
+.project-card h4,
+.project-card p,
+.certificate-card h4,
+.certificate-card p {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  text-align: center;
+  max-width: 100%;
+}
+.project-card p,
+.certificate-card p {
+  font-size: 0.95rem;
+  line-height: 1.3;
+  margin-bottom: 0 !important;
+  max-height: 3.5em;
+}
+@media (max-width: 768px) {
+  .project-card,
+  .certificate-card {
+    width: 90vw !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 220px !important;
+    min-height: 0 !important;
+    max-height: 220px !important;
+  }
+  .project-card .relative,
+  .certificate-card .relative {
+    flex: 0 0 80px !important;
+    max-height: 80px !important;
+    min-height: 60px !important;
+  }
+}
+
+/* Certification Section Alignment */
+#certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  #certifications-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  #certifications-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.certificate-card {
+  margin: 0 auto;
 } 

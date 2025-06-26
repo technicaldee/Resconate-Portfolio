@@ -23,6 +23,7 @@ class PortfolioApp {
     this.initializeNotifications();
     this.initializeStatistics();
     this.initializeModals();
+    this.initializePortfolioFiltering();
   }
 
   initializeHeader() {
@@ -212,9 +213,53 @@ class PortfolioApp {
         card.style.transform = 'translateY(0)';
       });
     });
+
+    // Service card hover effects
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-5px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Team card hover effects
+    const teamCards = document.querySelectorAll('.team-card');
+    teamCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-5px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Scroll to top button visibility
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    if (scrollToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopBtn.classList.add('visible');
+        } else {
+          scrollToTopBtn.classList.remove('visible');
+        }
+      });
+    }
   }
 
   initializeThemeToggle() {
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      this.updateThemeIcon(savedTheme);
+    }
+
+    // Set up theme toggle
     if (this.themeToggle) {
       this.themeToggle.addEventListener('click', () => {
         this.toggleTheme();
@@ -257,6 +302,17 @@ class PortfolioApp {
         }
       }
     });
+  }
+
+  // Team Modal Methods
+  openTeamModal(memberId) {
+    const modalId = `${memberId}Modal`;
+    this.openModal(modalId);
+  }
+
+  closeTeamModal(memberId) {
+    const modalId = `${memberId}Modal`;
+    this.closeModal(modalId);
   }
 
   openModal(modalId) {
@@ -366,13 +422,20 @@ class PortfolioApp {
     }
 
     try {
-      // Simulate form submission (replace with actual API call)
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      this.showNotification('Message sent successfully!', 'success');
-      form.reset();
+      // Send form data to backend (multipart/form-data, do not set Content-Type)
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      if (response.ok) {
+        this.showNotification(result.message || 'Message sent successfully!', 'success');
+        form.reset();
+      } else {
+        this.showNotification(result.error || 'Failed to send message. Please try again.', 'error');
+      }
     } catch (error) {
-      this.showNotification('Failed to send message. Please try again.', 'error');
+      this.showNotification('Network error. Please try again later.', 'error');
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
@@ -427,24 +490,357 @@ class PortfolioApp {
     
     animatedElements.forEach(el => observer.observe(el));
   }
-}
 
-// Global modal functions for HTML onclick handlers
-function openModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  // Setup Methods
+  setupEventListeners() {
+    // Window resize handler
+    window.addEventListener('resize', () => {
+      this.handleWindowResize();
+    });
+
+    // Scroll to top functionality
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    if (scrollToTopBtn) {
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // External link handling
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    });
+  }
+
+  setupHeaderScrollEffect() {
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+
+    const updateHeader = () => {
+      if (this.header) {
+        if (window.scrollY > 100) {
+          this.header.classList.add('scrolled');
+        } else {
+          this.header.classList.remove('scrolled');
+        }
+      }
+      ticking = false;
+    };
+
+    const requestTick = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+  }
+
+  setupFormValidation() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    const inputs = form.querySelectorAll('input, textarea, select');
+    
+    inputs.forEach(input => {
+      // Real-time validation
+      input.addEventListener('blur', () => {
+        this.validateField(input);
+      });
+
+      input.addEventListener('input', () => {
+        this.clearFieldError(input);
+      });
+    });
+  }
+
+  setupThemeToggle() {
+    // Load saved theme from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      this.updateThemeIcon(savedTheme);
+    }
+
+    // Set up theme toggle
+    if (this.themeToggle) {
+      this.themeToggle.addEventListener('click', () => {
+        this.toggleTheme();
+      });
+    }
+  }
+
+  initializeNotifications() {
+    // Create notification container if it doesn't exist
+    if (!document.getElementById('notification-container')) {
+      const container = document.createElement('div');
+      container.id = 'notification-container';
+      container.className = 'notification-container';
+      document.body.appendChild(container);
+    }
+  }
+
+  initializeStatistics() {
+    // Initialize statistics counter animation
+    const statCards = document.querySelectorAll('.stat-card');
+    if (statCards.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateCounter(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      statCards.forEach(card => observer.observe(card));
+    }
+  }
+
+  // Utility Methods
+  handleWindowResize() {
+    // Close mobile menu on window resize if screen becomes large
+    if (window.innerWidth > 768 && this.mobileMenu?.classList.contains('active')) {
+      this.closeMobileMenu();
+    }
+  }
+
+  validateField(field) {
+    const value = field.value.trim();
+    let isValid = true;
+    let errorMessage = '';
+
+    // Required field validation
+    if (field.hasAttribute('required') && !value) {
+      isValid = false;
+      errorMessage = 'This field is required';
+    }
+
+    // Email validation
+    if (field.type === 'email' && value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        isValid = false;
+        errorMessage = 'Please enter a valid email address';
+      }
+    }
+
+    // Phone validation
+    if (field.type === 'tel' && value) {
+      const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+      if (!phoneRegex.test(value.replace(/\s/g, ''))) {
+        isValid = false;
+        errorMessage = 'Please enter a valid phone number';
+      }
+    }
+
+    if (!isValid) {
+      this.showFieldError(field, errorMessage);
+    } else {
+      this.clearFieldError(field);
+    }
+
+    return isValid;
+  }
+
+  showFieldError(field, message) {
+    this.clearFieldError(field);
+    
+    field.classList.add('error');
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'field-error';
+    errorDiv.textContent = message;
+    field.parentNode.appendChild(errorDiv);
+  }
+
+  clearFieldError(field) {
+    field.classList.remove('error');
+    const errorDiv = field.parentNode.querySelector('.field-error');
+    if (errorDiv) {
+      errorDiv.remove();
+    }
+  }
+
+  updateThemeIcon(theme) {
+    const icon = this.themeToggle?.querySelector('i');
+    if (icon) {
+      icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+  }
+
+  closeAllModals() {
+    const modals = document.querySelectorAll('[id$="Modal"]');
+    modals.forEach(modal => {
+      if (modal.style.display !== 'none') {
+        this.closeModal(modal.id);
+      }
+    });
+  }
+
+  // Portfolio Filtering
+  initializePortfolioFiltering() {
+    const filterBar = document.getElementById('project-filters');
+    const projectGrid = document.querySelector('#projects .mb-16 .grid');
+    if (!filterBar || !projectGrid) return;
+
+    let allProjects = [];
+
+    // Fetch projects from backend
+    fetch('/api/projects')
+      .then(res => res.json())
+      .then(projects => {
+        allProjects = projects;
+        this.renderProjects(projects, projectGrid);
+      });
+
+    // Filter logic
+    filterBar.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) {
+        // Set active state
+        filterBar.querySelectorAll('.filter-btn').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
+        e.target.setAttribute('aria-pressed', 'true');
+        const filter = e.target.dataset.filter;
+        let filtered = allProjects;
+        if (filter && filter !== 'all') {
+          filtered = allProjects.filter(p => p.category === filter);
+        }
+        this.renderProjects(filtered, projectGrid);
+      }
+    });
+  }
+
+  renderProjects(projects, grid) {
+    grid.innerHTML = '';
+    if (!projects.length) {
+      grid.innerHTML = '<div class="col-span-full text-center text-gray-400">No projects found for this category.</div>';
+      return;
+    }
+    projects.forEach(project => {
+      const card = document.createElement('div');
+      card.className = 'project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[' + (project.color || '#6366F1') + '] transition-all duration-300';
+      card.innerHTML = `
+        <div class="relative overflow-hidden h-48">
+          <img src="${project.image}" alt="${project.name}" class="w-full h-full object-contain bg-black/20 project-image cursor-pointer">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <h4 class="text-white font-bold mb-2">${project.name}</h4>
+              <p class="text-gray-300 text-sm">${project.description}</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${(project.technologies || []).map(tech => `<span class='px-3 py-1 bg-[${project.color || '#6366F1'}]/20 text-[${project.color || '#6366F1'}] rounded-full text-sm'>${tech}</span>`).join('')}
+          </div>
+          <a href="#" class="text-[${project.color || '#6366F1'}] hover:text-[#EC4899] transition-colors inline-flex items-center">View Project <i class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
   }
 }
 
-function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (modal) {
-    modal.classList.remove('active');
+// --- Universal Modal System ---
+const universalModal = document.getElementById('universalModal');
+const universalModalContent = document.getElementById('universalModalContent');
+const universalModalClose = document.getElementById('universalModalClose');
+
+const modalContent = {
+  about: `<h2>About Us</h2><p>Resconate is a multi-service secular agency ...</p>`,
+  privacy: `<h2>Privacy Policy</h2><p>Your privacy is important to us ...</p>`,
+  terms: `<h2>Terms of Service</h2><p>By using this site you agree to ...</p>`,
+  cookie: `<h2>Cookie Policy</h2><p>We use cookies to improve your experience ...</p>`,
+  careers: `<h2>Careers</h2><p>Join our team! Email us at careers@resconate.com</p>`,
+  contact: `<h2>Contact</h2><p>Email: contact@resconate.com<br>Phone: +1 (234) 567-890</p>`
+};
+
+const teamData = {
+  sarah: {
+    name: 'Sarah Chen',
+    role: 'Lead Designer',
+    bio: 'Sarah is a creative lead ...',
+    img: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+    socials: [
+      { icon: 'fab fa-linkedin-in', label: 'LinkedIn', url: '#' },
+      { icon: 'fab fa-dribbble', label: 'Dribbble', url: '#' }
+    ]
+  },
+  david: {
+    name: 'David Rodriguez',
+    role: 'Full Stack Developer',
+    bio: 'David builds robust ...',
+    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+    socials: [
+      { icon: 'fab fa-linkedin-in', label: 'LinkedIn', url: '#' },
+      { icon: 'fab fa-twitter', label: 'Twitter', url: '#' }
+    ]
+  }
+  // ...add other team members
+};
+
+function openUniversalModal(type, idOrData) {
+  let content = '';
+  if (type === 'team' && teamData[idOrData]) {
+    const member = teamData[idOrData];
+    content = `
+      <div class="modal__header">
+        <img src="${member.img}" alt="${member.name}" class="w-24 h-24 rounded-full mb-4">
+        <div>
+          <h2 class="modal__title">${member.name}</h2>
+          <p class="text-gray-400 mb-2">${member.role}</p>
+        </div>
+      </div>
+      <p class="mb-4">${member.bio}</p>
+      <div class="flex space-x-4">
+        ${member.socials.map(s => `<a href="${s.url}" aria-label="${s.label}" title="${s.label}" class="text-xl"><i class="${s.icon}"></i></a>`).join('')}
+      </div>
+    `;
+  } else if (type === 'image' && idOrData) {
+    content = `<img src="${idOrData.src}" alt="${idOrData.alt || ''}" class="max-h-[90vh] max-w-full">`;
+  } else if (modalContent[type]) {
+    content = modalContent[type];
+  } else {
+    content = '<p>Content not found.</p>';
+  }
+  universalModalContent.innerHTML = content;
+  universalModal.style.display = 'flex';
+  setTimeout(() => universalModal.classList.add('active'), 10);
+  document.body.style.overflow = 'hidden';
+}
+
+function closeUniversalModal() {
+  universalModal.classList.remove('active');
+  setTimeout(() => {
+    universalModal.style.display = 'none';
+    universalModalContent.innerHTML = '';
     document.body.style.overflow = '';
-  }
+  }, 300);
 }
+
+if (universalModalClose) universalModalClose.onclick = closeUniversalModal;
+if (universalModal) {
+  universalModal.onclick = function(e) {
+    if (e.target === universalModal) closeUniversalModal();
+  };
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && universalModal.classList.contains('active')) closeUniversalModal();
+});
+
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('[data-modal-type]');
+  if (btn) {
+    e.preventDefault();
+    const type = btn.getAttribute('data-modal-type');
+    const id = btn.getAttribute('data-modal-id');
+    if (type === 'image') {
+      openUniversalModal('image', { src: btn.getAttribute('data-img-src'), alt: btn.getAttribute('data-img-alt') });
+    } else {
+      openUniversalModal(type, id);
+    }
+  }
+});
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {

@@ -1183,4 +1183,119 @@
   .mb-12 { margin-bottom: 10rem !important; }
   .mb-8 { margin-bottom: 8rem !important; }
   .mb-6 { margin-bottom: 6rem !important; }
+}
+
+/* Statistics Section */
+@media (min-width: 1024px) {
+  #statistics-box {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+@media (max-width: 1023px) {
+  #statistics-box {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Services Section */
+@media (min-width: 1024px) {
+  #services .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 1023px) {
+  #services .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Project Showcase Section */
+@media (min-width: 1024px) {
+  #Showcase .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media (max-width: 1023px) {
+  #Showcase .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* About Us Section */
+@media (min-width: 1024px) {
+  #about .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    max-width: 100% !important;
+  }
+}
+@media (max-width: 1023px) {
+  #about .grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Certifications Section */
+@media (min-width: 1024px) {
+  #certs .grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .certificate-card {
+    max-width: 100% !important;
+  }
+}
+@media (max-width: 1023px) {
+  #certs .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .certificate-card {
+    max-width: 90vw !important;
+  }
+}
+@media (max-width: 639px) {
+  .certificate-card {
+    max-width: 95vw !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* Statistics Section */
+#statistics-box {
+  gap: 2rem !important;
+}
+
+.stat-card {
+  padding: 1.5rem !important;
+  height: auto !important;
+  min-height: 150px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.stat-card .text-3xl,
+.stat-card .text-4xl {
+  line-height: 1.2 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.stat-card p {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  word-wrap: break-word !important;
+}
+
+@media (max-width: 768px) {
+  #statistics-box {
+    gap: 1.5rem !important;
+  }
+  
+  .stat-card {
+    padding: 1.25rem !important;
+    min-height: 130px !important;
+  }
 } 

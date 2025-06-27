@@ -24,6 +24,9 @@ class PortfolioApp {
     this.initializeStatistics();
     this.initializeModals();
     this.initializePortfolioFiltering();
+    
+    // Add window resize handler
+    window.addEventListener('resize', () => this.handleWindowResize());
   }
 
   initializeHeader() {
@@ -252,12 +255,10 @@ class PortfolioApp {
   }
 
   initializeThemeToggle() {
-    // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      this.updateThemeIcon(savedTheme);
-    }
+    // Load saved theme from localStorage or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    this.updateThemeIcon(savedTheme);
 
     // Set up theme toggle
     if (this.themeToggle) {
@@ -398,16 +399,20 @@ class PortfolioApp {
 
   // Theme Methods
   toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     
     // Update theme toggle icon
+    this.updateThemeIcon(newTheme);
+  }
+
+  updateThemeIcon(theme) {
     const icon = this.themeToggle?.querySelector('i');
     if (icon) {
-      icon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+      icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     }
   }
 
@@ -557,12 +562,10 @@ class PortfolioApp {
   }
 
   setupThemeToggle() {
-    // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      this.updateThemeIcon(savedTheme);
-    }
+    // Load saved theme from localStorage or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    this.updateThemeIcon(savedTheme);
 
     // Set up theme toggle
     if (this.themeToggle) {
@@ -659,13 +662,6 @@ class PortfolioApp {
     const errorDiv = field.parentNode.querySelector('.field-error');
     if (errorDiv) {
       errorDiv.remove();
-    }
-  }
-
-  updateThemeIcon(theme) {
-    const icon = this.themeToggle?.querySelector('i');
-    if (icon) {
-      icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     }
   }
 
@@ -891,49 +887,52 @@ const projectCategories = {
   ]
 };
 
-const projectGrid = document.getElementById('project-grid');
-const categoryBtns = document.querySelectorAll('.category-btn');
+// Initialize project filtering when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  const projectGrid = document.getElementById('project-grid');
+  const categoryBtns = document.querySelectorAll('.category-btn');
 
-function showProjects(category) {
-  if (!projectGrid) return;
-  // Remove previous content and animation
-  projectGrid.innerHTML = '';
-  projectGrid.classList.remove('active');
-  projectGrid.style.pointerEvents = 'none';
+  function showProjects(category) {
+    if (!projectGrid) return;
+    // Remove previous content and animation
+    projectGrid.innerHTML = '';
+    projectGrid.classList.remove('active');
+    projectGrid.style.pointerEvents = 'none';
 
-  // Highlight active button
-  categoryBtns.forEach(btn => btn.classList.remove('active'));
-  const activeBtn = document.querySelector(`.category-btn[data-category="${category}"]`);
-  if (activeBtn) activeBtn.classList.add('active');
+    // Highlight active button
+    categoryBtns.forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.querySelector(`.category-btn[data-category="${category}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
 
-  // Add new projects after a short delay for animation
-  setTimeout(() => {
-    const projects = projectCategories[category] || [];
-    projects.forEach(project => {
-      const card = document.createElement('div');
-      card.className = 'project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300 cursor-pointer';
-      card.innerHTML = `
-        <div class="relative overflow-hidden h-48 flex items-center justify-center">
-          <img src="${project.image}" alt="${project.name}" class="w-full h-full object-contain bg-black/20 project-image">
-        </div>
-        <div class="p-6">
-          <h4 class="text-white font-bold mb-2">${project.name}</h4>
-          <p class="text-gray-300 text-sm mb-4">${project.description}</p>
-        </div>
-      `;
-      card.addEventListener('click', () => {
-        window.open(project.link, '_blank');
+    // Add new projects after a short delay for animation
+    setTimeout(() => {
+      const projects = projectCategories[category] || [];
+      projects.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300 cursor-pointer';
+        card.innerHTML = `
+          <div class="relative overflow-hidden h-48 flex items-center justify-center">
+            <img src="${project.image}" alt="${project.name}" class="w-full h-full object-contain bg-black/20 project-image">
+          </div>
+          <div class="p-6">
+            <h4 class="text-white font-bold mb-2">${project.name}</h4>
+            <p class="text-gray-300 text-sm mb-4">${project.description}</p>
+          </div>
+        `;
+        card.addEventListener('click', () => {
+          window.open(project.link, '_blank');
+        });
+        projectGrid.appendChild(card);
       });
-      projectGrid.appendChild(card);
-    });
-    projectGrid.classList.add('active');
-    projectGrid.style.pointerEvents = 'auto';
-  }, 100);
-}
+      projectGrid.classList.add('active');
+      projectGrid.style.pointerEvents = 'auto';
+    }, 100);
+  }
 
-categoryBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const category = btn.getAttribute('data-category');
-    showProjects(category);
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.getAttribute('data-category');
+      showProjects(category);
+    });
   });
 });

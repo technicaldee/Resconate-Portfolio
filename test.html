@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Mobile Menu and Theme Toggle</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./responsive-enhancement.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-black text-gray-100">
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <a href="#home" class="header__brand">
+                <img src="resconate-logo.png" alt="Resconate Logo" class="header__logo">
+                <span>Resconate</span>
+            </a>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="#home" class="header__nav-link">Home</a></li>
+                    <li><a href="#services" class="header__nav-link">Services</a></li>
+                    <li><a href="#projects" class="header__nav-link">Projects</a></li>
+                    <li><a href="#team" class="header__nav-link">Team</a></li>
+                    <li><a href="#about" class="header__nav-link">About</a></li>
+                    <li><a href="#contact" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <button id="theme-toggle" class="header__theme-toggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="mobile-menu-button" class="header__mobile-toggle" aria-label="Open mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="close-menu-button" class="mobile-menu__close" aria-label="Close mobile menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-menu__content">
+            <nav class="mobile-menu__nav">
+                <ul class="mobile-menu__nav-list">
+                    <li><a href="#home" class="mobile-menu__nav-link">Home</a></li>
+                    <li><a href="#services" class="mobile-menu__nav-link">Services</a></li>
+                    <li><a href="#projects" class="mobile-menu__nav-link">Projects</a></li>
+                    <li><a href="#team" class="mobile-menu__nav-link">Team</a></li>
+                    <li><a href="#about" class="mobile-menu__nav-link">About</a></li>
+                    <li><a href="#contact" class="mobile-menu__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu__actions">
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Content -->
+    <main style="padding-top: 100px; padding-left: 20px;">
+        <h1>Test Page</h1>
+        <p>This is a test page to verify mobile menu and theme toggle functionality.</p>
+        <p>Try clicking the hamburger menu button and the theme toggle button.</p>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+</html> 

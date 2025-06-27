@@ -2344,3 +2344,246 @@ select.error {
   background: var(--surface-secondary);
   border-color: var(--border-secondary);
 }
+ @media screen and (max-width:600px) {
+    .header__container .header__brand  span {
+        font-size: 27px;
+        margin-left: 2%;
+    }
+    .header__container .header__brand .header__logo{
+      width: 40px !important;
+      height: 45px !important;
+      margin-left: 1%;
+    }
+    .header { 
+       padding-bottom: 2.5% !important;
+        padding-top: 2.5% !important;
+      }
+    .header__container .header__theme-toggle i {
+        font-size: 23px;
+        margin-right: 3% !important;
+    }
+    .header #quote-mobile { display: none;}
+
+    .header .header__mobile-toggle {
+      margin-right: 10%;
+      transform: scale(1.09);
+      margin-left: 5% !important;
+      
+    }
+
+    /*next section*/
+    body #home .mx-auto {
+      padding: 8% !important;
+      
+    }
+    #home .mx-auto h1 {
+      font-size: 43px !important;
+      margin-top: 10%;
+      font-weight: 700 !important;
+    }
+     #home .mx-auto p.text-xl {
+       width: 90%;
+       
+        font-size: 18px !important;
+      font-weight: 300 !important;
+     }
+     #home #projectss {
+        transform: scale(1);
+     }
+     #home #statistics-box {
+      margin-top: 20% !important;
+           transform: scale(1.4);
+     }
+
+     /*services starts */
+     #services { margin-top: 12%;}
+
+      #services h3.text-lg {
+        font-size: 33px !important;
+        
+      }
+       #services #del {
+        font-size: 17px !important;
+        width: 80% !important;
+        margin-top: 5% !important;
+        display: block;
+        margin: auto;
+      }
+      #services #web-dev-card {
+        padding: 5% !important;
+        padding-bottom: 10% !important;
+        margin-top: 6% !important;
+        display: block !important;
+        width: 100% !important;
+        flex: 0 0 100% !important; /* For flexbox layouts */
+        grid-column: 1 / -1 !important; /* For grid layouts */
+      }
+
+          #services #web-dev-card i { 
+            font-size: 26px;
+          
+          }
+        #services #web-dev-card h3.text-lg {
+            font-size: 25px !important;
+            
+        margin-top: 6% !important;
+
+        }
+        #services #crd {
+            padding: 10% !important;
+            width: 90% !important;
+            display: block;
+            margin: auto;
+             margin-top: 10% !important;
+        }
+         #services #web-dev-card p {
+          font-size: 14px !important;
+          margin-top: 6% !important;
+        }
+
+        #services #web-dev-card li {
+          font-size: 14px !important;
+           margin-top: 4% !important;
+        }
+         #services #web-dev-card a {
+          font-size: 14px !important;
+           margin-top: 4% !important;
+           float: right !important;
+        }
+
+        #Showcase #project-card {
+            height: 1600px !important;
+            width: 600px !important;
+        }
+
+        #about .px-3 {
+          transform: scale(1.5);
+          margin-top: 17%;
+        }
+        #about h2.text-3xl {
+          margin-top: 10%;
+          font-size: 27px !important;
+        }
+        #about p {
+          margin-top: 9%;
+          width: 90% ;
+          display: block;
+          margin: auto;
+          font-size: 16px !important;
+       
+        }
+        #about .text-center h3.text-xl {
+           margin-top: 10%;
+          font-size: 27px !important;
+        }
+        #about .text-center i {
+           margin-top: 20%;
+          font-size: 50px !important;
+        }
+         #about .text-center i {
+           margin-top: 20%;
+          font-size: 50px !important;
+        }
+        #about .text-center  {
+           
+          font-size: 18px !important;
+        }
+
+        #certs h2.text-3xl {
+          font-size: 34px !important;
+          margin-top: 18% !important;
+        }
+        #certs {
+          transform: scale(0.95);
+        }
+        #certs .certificate-card {
+          font-size: px !important;
+          margin-left: 0em !important;
+           margin-top: 1% !important;
+        display: block !important;
+        width: 100% !important;
+        flex: 0 0 100% !important; /* For flexbox layouts */
+        grid-column: 1 / -1 !important;
+          
+        }
+         #certs h2.text-3xl {
+          font-size: 33px !important;
+          margin-top: 12% !important;
+        }
+        #certs .certificate-card p {
+          font-size:15px !important;
+        }
+         #certs .certificate-card h3 {
+          font-size:25px !important;
+          margin-top: 5% !important;
+        }
+        #certs .certificate-card a {
+         margin-bottom: 10% !important;
+          margin-top: 5% !important;
+        }
+
+ }
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  /* CSS styles for laptops go here */
+  
+     #services { margin-top: -8% !important;}
+
+      #services h3.text-lg {
+        font-size: 61px !important;
+        
+      }
+       #services #del {
+        font-size: 17px !important;
+        width: 80% !important;
+        margin-top: -5% !important;
+        display: block;
+        margin: auto;
+      }
+      #services #web-dev-card {
+        padding: 5% !important;
+        padding-bottom: 4% !important;
+        /* For grid layouts */
+      }
+
+          #services #web-dev-card i { 
+            font-size: 26px;
+          
+          }
+        #services #web-dev-card h3.text-lg {
+            font-size: 25px !important;
+            
+        margin-top: 2% !important;
+
+        }
+        #services #crd {
+            padding: 10% !important;
+            width: 90% !important;
+            display: block;
+            margin: auto;
+             margin-top: 10% !important;
+        }
+         #services #web-dev-card p {
+          font-size: 14px !important;
+          margin-top: 2% !important;
+        }
+
+        #services #web-dev-card li {
+          font-size: 14px !important;
+           margin-top: 2% !important;
+        }
+         #services #web-dev-card a {
+          font-size: 14px !important;
+           margin-top: -4% !important;
+           float: left !important;
+        }
+
+          #about {
+            margin-top: -15% !important;
+          }
+        #about  .mx-auto {
+          width: 90% !important;
+        }
+        #about .grid-cols-1 {
+          transform: scale(0.85);
+        }
+}

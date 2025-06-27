@@ -2552,8 +2552,12 @@ select.error {
         #services #web-dev-card h3.text-lg {
             font-size: 25px !important;
             
-        margin-top: 2% !important;
+        margin-top: -2% !important;
 
+        }
+         #services p {
+          font-size: 17px !important;
+          margin-top: -7% !important;
         }
         #services #crd {
             padding: 10% !important;
@@ -2562,9 +2566,22 @@ select.error {
             margin: auto;
              margin-top: 10% !important;
         }
+        #services #cords-holds {
+           margin-top: -10% !important;
+        }
+         #services #web-dev-card {
+          width: 110%;
+          transform: scaleY(0.9);
+          margin-top: 0% !important;
+        }
+        #services #web-dev-card:hover {
+          width: 110%;
+          transform: scaleY(0.91) !important;
+          margin-top: 0% !important;
+        }
          #services #web-dev-card p {
           font-size: 14px !important;
-          margin-top: 2% !important;
+          margin-top: -2% !important;
         }
 
         #services #web-dev-card li {

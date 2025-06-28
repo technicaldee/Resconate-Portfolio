@@ -132,55 +132,23 @@
   --breakpoint-2xl: 1536px;
 }
 
-/* Dark Mode Variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --surface-primary: var(--gray-950);
-    --surface-secondary: var(--gray-900);
-    --surface-tertiary: var(--gray-800);
-    --text-primary: var(--gray-50);
-    --text-secondary: var(--gray-300);
-    --text-tertiary: var(--gray-400);
-    --border-primary: var(--gray-800);
-    --border-secondary: var(--gray-700);
-  }
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: var(--leading-normal);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Light Mode Variables */
-@media (prefers-color-scheme: light) {
-  :root {
-    --surface-primary: var(--gray-50);
-    --surface-secondary: var(--gray-100);
-    --surface-tertiary: var(--gray-200);
-    --text-primary: var(--gray-900);
-    --text-secondary: var(--gray-700);
-    --text-tertiary: var(--gray-600);
-    --border-primary: var(--gray-200);
-    --border-secondary: var(--gray-300);
-  }
-}
-
-/* Theme-specific styles */
-[data-theme="light"] {
-  --surface-primary: var(--gray-50);
-  --surface-secondary: var(--gray-100);
-  --surface-tertiary: var(--gray-200);
-  --text-primary: var(--gray-900);
-  --text-secondary: var(--gray-700);
-  --text-tertiary: var(--gray-600);
-  --border-primary: var(--gray-200);
-  --border-secondary: var(--gray-300);
-}
-
-[data-theme="dark"] {
-  --surface-primary: var(--gray-950);
-  --surface-secondary: var(--gray-900);
-  --surface-tertiary: var(--gray-800);
-  --text-primary: var(--gray-50);
-  --text-secondary: var(--gray-300);
-  --text-tertiary: var(--gray-400);
-  --border-primary: var(--gray-800);
-  --border-secondary: var(--gray-700);
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--surface-primary);
+  transition: color var(--transition-normal), background-color var(--transition-normal);
 }
 
 /* Base Styles */
@@ -2603,4 +2571,99 @@ select.error {
         #about .grid-cols-1 {
           transform: scale(0.85);
         }
+}
+
+/* About Us Section Fixes for Desktop and Tablet */
+@media (min-width: 768px) {
+  #about .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 2.5rem;
+  }
+  #about .text-center > .inline-block {
+    margin-bottom: 1.5rem;
+  }
+  #about .grid > div {
+    background: rgba(0,0,0,0.7);
+    border-radius: 1rem;
+    border: 1px solid #22223b;
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 340px;
+    transition: box-shadow 0.2s;
+  }
+  #about .grid > div:hover {
+    box-shadow: 0 4px 32px 0 rgba(99,102,241,0.15);
+  }
+  #about .grid > div h3 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+  #about .grid > div p {
+    font-size: 1.05rem;
+    color: #e5e7eb;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  #about .grid {
+    gap: 3rem;
+  }
+  #about .grid > div {
+    min-height: 370px;
+    padding: 3rem 2rem 2.5rem 2rem;
+  }
+}
+
+/* Force About Us grid to always show 3 columns on tablet and desktop, and fix card appearance */
+@media (min-width: 640px) {
+  #about .grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2.5rem !important;
+    margin-top: 2.5rem !important;
+  }
+  #about .grid > .text-center {
+    background: rgba(0,0,0,0.7);
+    border-radius: 1rem;
+    border: 1px solid #22223b;
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 340px;
+    transition: box-shadow 0.2s;
+  }
+  #about .grid > .text-center:hover {
+    box-shadow: 0 4px 32px 0 rgba(99,102,241,0.15);
+  }
+  #about .grid > .text-center h3 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+  #about .grid > .text-center p {
+    font-size: 1.05rem;
+    color: #e5e7eb;
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 640px) {
+  #about .grid > .text-center h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  #about .grid > .text-center p {
+    font-size: 0.95rem;
+    color: #e5e7eb;
+    margin-bottom: 0;
+  }
 }

@@ -32,11 +32,9 @@ class PortfolioApp {
   initializeHeader() {
     this.setupEventListeners();
     this.setupIntersectionObserver();
-    this.setupSmoothScrolling();
     this.setupHeaderScrollEffect();
-    this.setupImageModals();
     this.setupFormValidation();
-    this.setupAnimations();
+    this.initializeAnimations();
     this.setupThemeToggle();
     this.updateCurrentYear();
   }
@@ -877,7 +875,7 @@ const projectCategories = {
     { name: 'Writing Project 5', image: 'writing5.png', link: 'https://example.com/writing5', description: 'Writing project description 5' },
     { name: 'Writing Project 6', image: 'writing6.png', link: 'https://example.com/writing6', description: 'Writing project description 6' }
   ],
-  devops: [
+  cybersecurity: [
     { name: 'DevOps Project 1', image: 'devops1.png', link: 'https://example.com/devops1', description: 'DevOps project description 1' },
     { name: 'DevOps Project 2', image: 'devops2.png', link: 'https://example.com/devops2', description: 'DevOps project description 2' },
     { name: 'DevOps Project 3', image: 'devops3.png', link: 'https://example.com/devops3', description: 'DevOps project description 3' },

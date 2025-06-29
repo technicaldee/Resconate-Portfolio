@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Test</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./responsive-enhancement.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .test-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .test-info h2 {
+            color: #6366F1;
+            margin-top: 0;
+        }
+        .test-info ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .test-info li {
+            margin: 5px 0;
+        }
+        .screen-size {
+            background: #6366F1;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-info">
+        <h2>Mobile Menu Test</h2>
+        <p>This page tests the mobile menu functionality. To test:</p>
+        <ul>
+            <li>Resize your browser window to be smaller than 1024px width</li>
+            <li>The hamburger menu button should appear in the top right</li>
+            <li>Click the hamburger menu to open the mobile menu</li>
+            <li>Click the X button or outside the menu to close it</li>
+        </ul>
+        <p><strong>Current screen size:</strong> <span id="screen-size">Calculating...</span></p>
+    </div>
+
+    <div class="screen-size" id="screen-size-display">
+        Desktop View (>1024px) - Mobile menu should be hidden
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <a href="#home" class="header__brand">
+                <img src="resconate-logo.png" alt="Resconate Logo" class="header__logo">
+                <span>Resconate</span>
+            </a>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="#home" class="header__nav-link">Home</a></li>
+                    <li><a href="#services" class="header__nav-link">Services</a></li>
+                    <li><a href="#projects" class="header__nav-link">Projects</a></li>
+                    <li><a href="#team" class="header__nav-link">Team</a></li>
+                    <li><a href="#about" class="header__nav-link">About</a></li>
+                    <li><a href="#contact" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <button id="mobile-menu-button" class="header__mobile-toggle" aria-label="Open mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="close-menu-button" class="mobile-menu__close" aria-label="Close mobile menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-menu__content">
+            <nav class="mobile-menu__nav">
+                <ul class="mobile-menu__nav-list">
+                    <li><a href="#home" class="mobile-menu__nav-link">Home</a></li>
+                    <li><a href="#services" class="mobile-menu__nav-link">Services</a></li>
+                    <li><a href="#projects" class="mobile-menu__nav-link">Projects</a></li>
+                    <li><a href="#team" class="mobile-menu__nav-link">Team</a></li>
+                    <li><a href="#about" class="mobile-menu__nav-link">About</a></li>
+                    <li><a href="#contact" class="mobile-menu__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu__actions">
+                <p>Mobile menu is working! 🎉</p>
+            </div>
+        </div>
+    </div>
+
+    <main style="margin-top: 100px;">
+        <h1>Test Content</h1>
+        <p>This is test content to verify the mobile menu functionality.</p>
+        <p>Resize your browser window to test the responsive behavior.</p>
+    </main>
+
+    <script>
+        // Simple mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+        }
+
+        if (closeMenuButton) {
+            closeMenuButton.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+        }
+
+        // Update screen size display
+        function updateScreenSize() {
+            const width = window.innerWidth;
+            const screenSizeSpan = document.getElementById('screen-size');
+            const screenSizeDisplay = document.getElementById('screen-size-display');
+            
+            screenSizeSpan.textContent = `${width}px`;
+            
+            if (width > 1024) {
+                screenSizeDisplay.textContent = `Desktop View (>1024px) - Mobile menu should be hidden`;
+                screenSizeDisplay.style.background = '#10B981';
+            } else if (width > 640) {
+                screenSizeDisplay.textContent = `Tablet View (640px-1024px) - Mobile menu should be visible`;
+                screenSizeDisplay.style.background = '#F59E0B';
+            } else {
+                screenSizeDisplay.textContent = `Mobile View (<640px) - Mobile menu should be visible`;
+                screenSizeDisplay.style.background = '#EF4444';
+            }
+        }
+
+        window.addEventListener('resize', updateScreenSize);
+        updateScreenSize();
+    </script>
+</body>
+</html> 

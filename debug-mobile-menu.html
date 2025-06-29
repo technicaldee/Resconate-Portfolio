@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Mobile Menu</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./responsive-enhancement.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .debug-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .debug-info h2 {
+            color: #6366F1;
+            margin-top: 0;
+        }
+        .error {
+            color: #EF4444;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success {
+            color: #10B981;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .warning {
+            color: #F59E0B;
+            background: rgba(245, 158, 11, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .test-button {
+            background: #6366F1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #4F46E5;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info">
+        <h2>Mobile Menu Debug Console</h2>
+        <div id="debug-output">
+            <p>Initializing debug...</p>
+        </div>
+        <div style="margin-top: 20px;">
+            <button class="test-button" onclick="testMobileMenu()">Test Mobile Menu</button>
+            <button class="test-button" onclick="checkElements()">Check Elements</button>
+            <button class="test-button" onclick="testCSS()">Test CSS</button>
+            <button class="test-button" onclick="clearDebug()">Clear Debug</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <a href="#home" class="header__brand">
+                <span>Resconate</span>
+            </a>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li><a href="#home" class="header__nav-link">Home</a></li>
+                    <li><a href="#services" class="header__nav-link">Services</a></li>
+                    <li><a href="#projects" class="header__nav-link">Projects</a></li>
+                    <li><a href="#team" class="header__nav-link">Team</a></li>
+                    <li><a href="#about" class="header__nav-link">About</a></li>
+                    <li><a href="#contact" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header__actions">
+                <button id="mobile-menu-button" class="header__mobile-toggle" aria-label="Open mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu">
+        <button id="close-menu-button" class="mobile-menu__close" aria-label="Close mobile menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="mobile-menu__content">
+            <nav class="mobile-menu__nav">
+                <ul class="mobile-menu__nav-list">
+                    <li><a href="#home" class="mobile-menu__nav-link">Home</a></li>
+                    <li><a href="#services" class="mobile-menu__nav-link">Services</a></li>
+                    <li><a href="#projects" class="mobile-menu__nav-link">Projects</a></li>
+                    <li><a href="#team" class="mobile-menu__nav-link">Team</a></li>
+                    <li><a href="#about" class="mobile-menu__nav-link">About</a></li>
+                    <li><a href="#contact" class="mobile-menu__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu__actions">
+                <p>Mobile menu is working! 🎉</p>
+            </div>
+        </div>
+    </div>
+
+    <main style="margin-top: 100px;">
+        <h1>Debug Content</h1>
+        <p>Check the debug console above for information about the mobile menu.</p>
+    </main>
+
+    <script>
+        const debugOutput = document.getElementById('debug-output');
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : type === 'warning' ? 'warning' : '';
+            const div = document.createElement('div');
+            div.innerHTML = `<strong>[${timestamp}]</strong> ${message}`;
+            if (className) div.className = className;
+            debugOutput.appendChild(div);
+            console.log(`[${timestamp}] ${message}`);
+        }
+
+        function clearDebug() {
+            debugOutput.innerHTML = '<p>Debug cleared...</p>';
+        }
+
+        // Check if elements exist
+        function checkElements() {
+            log('Checking for required elements...');
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton) {
+                log('✓ Mobile menu button found', 'success');
+                log(`  - ID: ${mobileMenuButton.id}`);
+                log(`  - Classes: ${mobileMenuButton.className}`);
+                log(`  - Display: ${window.getComputedStyle(mobileMenuButton).display}`);
+                log(`  - Visibility: ${window.getComputedStyle(mobileMenuButton).visibility}`);
+            } else {
+                log('✗ Mobile menu button NOT found', 'error');
+            }
+            
+            if (closeMenuButton) {
+                log('✓ Close menu button found', 'success');
+            } else {
+                log('✗ Close menu button NOT found', 'error');
+            }
+            
+            if (mobileMenu) {
+                log('✓ Mobile menu container found', 'success');
+                log(`  - Classes: ${mobileMenu.className}`);
+                log(`  - Display: ${window.getComputedStyle(mobileMenu).display}`);
+                log(`  - Opacity: ${window.getComputedStyle(mobileMenu).opacity}`);
+                log(`  - Visibility: ${window.getComputedStyle(mobileMenu).visibility}`);
+            } else {
+                log('✗ Mobile menu container NOT found', 'error');
+            }
+        }
+
+        // Test CSS variables
+        function testCSS() {
+            log('Testing CSS variables...');
+            
+            const root = document.documentElement;
+            const computedStyle = getComputedStyle(root);
+            
+            const variables = [
+                '--text-primary',
+                '--surface-primary',
+                '--border-primary',
+                '--z-modal',
+                '--transition-normal'
+            ];
+            
+            variables.forEach(variable => {
+                const value = computedStyle.getPropertyValue(variable);
+                if (value && value.trim() !== '') {
+                    log(`✓ ${variable}: ${value}`, 'success');
+                } else {
+                    log(`✗ ${variable}: NOT DEFINED`, 'error');
+                }
+            });
+        }
+
+        // Test mobile menu functionality
+        function testMobileMenu() {
+            log('Testing mobile menu functionality...');
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!mobileMenuButton || !mobileMenu) {
+                log('Cannot test - missing elements', 'error');
+                return;
+            }
+            
+            // Simulate click
+            log('Simulating click on mobile menu button...');
+            mobileMenuButton.click();
+            
+            // Check if menu opened
+            setTimeout(() => {
+                const isActive = mobileMenu.classList.contains('active');
+                const opacity = window.getComputedStyle(mobileMenu).opacity;
+                const visibility = window.getComputedStyle(mobileMenu).visibility;
+                
+                if (isActive) {
+                    log('✓ Mobile menu opened successfully', 'success');
+                    log(`  - Active class: ${isActive}`);
+                    log(`  - Opacity: ${opacity}`);
+                    log(`  - Visibility: ${visibility}`);
+                } else {
+                    log('✗ Mobile menu did not open', 'error');
+                    log(`  - Active class: ${isActive}`);
+                    log(`  - Opacity: ${opacity}`);
+                    log(`  - Visibility: ${visibility}`);
+                }
+            }, 100);
+        }
+
+        // Simple mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function openMobileMenu() {
+            log('Opening mobile menu...');
+            if (mobileMenu) {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                log('Mobile menu opened', 'success');
+            } else {
+                log('Cannot open - mobile menu not found', 'error');
+            }
+        }
+
+        function closeMobileMenu() {
+            log('Closing mobile menu...');
+            if (mobileMenu) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                log('Mobile menu closed', 'success');
+            }
+        }
+
+        // Add event listeners
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', (e) => {
+                log('Mobile menu button clicked');
+                openMobileMenu();
+            });
+            log('Event listener added to mobile menu button', 'success');
+        } else {
+            log('Cannot add event listener - mobile menu button not found', 'error');
+        }
+
+        if (closeMenuButton) {
+            closeMenuButton.addEventListener('click', (e) => {
+                log('Close menu button clicked');
+                closeMobileMenu();
+            });
+            log('Event listener added to close menu button', 'success');
+        }
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    log('Clicked outside mobile menu');
+                    closeMobileMenu();
+                }
+            });
+            log('Event listener added to mobile menu container', 'success');
+        }
+
+        // Initialize debug
+        log('Debug console initialized');
+        log(`Screen width: ${window.innerWidth}px`);
+        log(`Screen height: ${window.innerHeight}px`);
+        
+        // Check elements on load
+        setTimeout(() => {
+            checkElements();
+            testCSS();
+        }, 100);
+    </script>
+</body>
+</html> 

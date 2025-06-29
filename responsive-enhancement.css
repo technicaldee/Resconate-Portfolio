@@ -28,6 +28,10 @@
     display: none !important;
   }
 
+  .header__mobile-toggle {
+    display: block !important;
+  }
+
   .header__actions {
     gap: 0.125rem !important;
   }
@@ -413,17 +417,26 @@
 
 /* TABLET - TRANSITIONAL (640px - 1023px) */
 @media (min-width: 640px) and (max-width: 1023px) {
-  /* Tablet Header */
+  /* Tablet Header - Balanced */
   .header__container {
-    padding: 0 1.5rem !important;
+    padding: 0 2rem !important;
+    gap: 1rem !important;
   }
 
   .header__brand {
-    font-size: 1.125rem !important;
+    font-size: 1.25rem !important;
   }
 
   .header__logo {
-    height: 1.5rem !important;
+    height: 1.75rem !important;
+  }
+
+  .header__nav {
+    display: none !important;
+  }
+
+  .header__mobile-toggle {
+    display: block !important;
   }
 
   /* Tablet Hero */

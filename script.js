@@ -860,12 +860,42 @@ const projectCategories = {
     { name: 'Mobile Project 6', image: 'mobile6.png', link: 'https://example.com/mobile6', description: 'Mobile project description 6' }
   ],
   design: [
-    { name: 'Design Project 1', image: 'design1.png', link: 'https://example.com/design1', description: 'Design project description 1' },
-    { name: 'Design Project 2', image: 'design2.png', link: 'https://example.com/design2', description: 'Design project description 2' },
-    { name: 'Design Project 3', image: 'design3.png', link: 'https://example.com/design3', description: 'Design project description 3' },
-    { name: 'Design Project 4', image: 'design4.png', link: 'https://example.com/design4', description: 'Design project description 4' },
-    { name: 'Design Project 5', image: 'design5.png', link: 'https://example.com/design5', description: 'Design project description 5' },
-    { name: 'Design Project 6', image: 'design6.png', link: 'https://example.com/design6', description: 'Design project description 6' }
+    { 
+      name: 'Purdy and Figg Design', 
+      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80', 
+      link: 'https://www.figma.com/design/N0yjQ9UBdWbhBxGwk0jbkJ/Purdy-and-Figg?node-id=0-1&t=621Q84JDdSsSd495-1', 
+      description: 'Modern design system and brand identity for Purdy and Figg' 
+    },
+    { 
+      name: 'Slate Landing Page', 
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=815&q=80', 
+      link: 'https://www.figma.com/design/sGXReqpIdFw5YScNsl6nuw/Landing-Page-For-Slate?node-id=0-1&t=vRvZvOm8hS2IYUG9-1', 
+      description: 'Responsive landing page design for Slate platform' 
+    },
+    { 
+      name: 'Slate App Dashboard', 
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80', 
+      link: 'https://www.figma.com/design/ADlt8KWFyMpqLKQXRr3M8U/Slate?node-id=0-1&t=1dFmosVPtLWcduTB-1', 
+      description: 'User interface design for Slate mobile app and dashboard' 
+    },
+    { 
+      name: 'Movie Ticketing App', 
+      image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80', 
+      link: 'https://www.figma.com/design/APy8rMh2oDd520HJB1A5qu/Movie-TIcket-App?node-id=0-1&t=bYUeGFE8K6gfFLL0-1', 
+      description: 'Mobile app design for movie ticket booking and management' 
+    },
+    { 
+      name: 'Simpsons Illustration', 
+      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80', 
+      link: 'https://www.figma.com/design/aJjzSj6OJ5clYf3XXG41TD/bArt-Simpsons?node-id=0-1&t=zlIc5SUkhr8sQbgv-1', 
+      description: 'Creative illustration project featuring The Simpsons characters' 
+    },
+    { 
+      name: 'Design System Components', 
+      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80', 
+      link: 'https://www.figma.com/design/N0yjQ9UBdWbhBxGwk0jbkJ/Purdy-and-Figg?node-id=0-1&t=621Q84JDdSsSd495-1', 
+      description: 'Comprehensive design system with reusable components and patterns' 
+    }
   ],
   writing: [
     { name: 'Writing Project 1', image: 'writing1.png', link: 'https://example.com/writing1', description: 'Writing project description 1' },
@@ -876,12 +906,30 @@ const projectCategories = {
     { name: 'Writing Project 6', image: 'writing6.png', link: 'https://example.com/writing6', description: 'Writing project description 6' }
   ],
   cybersecurity: [
-    { name: 'DevOps Project 1', image: 'devops1.png', link: 'https://example.com/devops1', description: 'DevOps project description 1' },
-    { name: 'DevOps Project 2', image: 'devops2.png', link: 'https://example.com/devops2', description: 'DevOps project description 2' },
-    { name: 'DevOps Project 3', image: 'devops3.png', link: 'https://example.com/devops3', description: 'DevOps project description 3' },
-    { name: 'DevOps Project 4', image: 'devops4.png', link: 'https://example.com/devops4', description: 'DevOps project description 4' },
-    { name: 'DevOps Project 5', image: 'devops5.png', link: 'https://example.com/devops5', description: 'DevOps project description 5' },
-    { name: 'DevOps Project 6', image: 'devops6.png', link: 'https://example.com/devops6', description: 'DevOps project description 6' }
+    {
+      name: 'Web Pentesting',
+      image: 'https://images.unsplash.com/photo-1510511233900-192d6d7d963d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/deejonsen/Web_pentesting',
+      description: 'Comprehensive web application security testing tools and methodologies for vulnerability assessment.'
+    },
+    {
+      name: 'Steganography Challenge',
+      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/deejonsen/Steghide_Task.md',
+      description: 'Solutions for extracting hidden messages from images using steganography tools.'
+    },
+    {
+      name: 'Exploitation Task',
+      image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/deejonsen/Exploitation_Task',
+      description: 'Educational demonstration of gaining initial access to a Windows machine using a Meterpreter reverse shell.'
+    },
+    {
+      name: 'Advanced Persistent Threat',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/deejonsen/Advanced_Persistent_Threat',
+      description: 'Comprehensive analysis of APT breaches and their impact on information security infrastructure.'
+    }
   ]
 };
 
@@ -913,7 +961,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${project.image}" alt="${project.name}" class="w-full h-full object-contain bg-black/20 project-image">
           </div>
           <div class="p-6">
-            <h4 class="text-white font-bold mb-2">${project.name}</h4>
+            <p class="text-white font-bold mb-2">${project.name}</p>
             <p class="text-gray-300 text-sm mb-4">${project.description}</p>
           </div>
         `;

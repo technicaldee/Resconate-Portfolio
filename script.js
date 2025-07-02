@@ -844,20 +844,80 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- Project Section Logic ---
 const projectCategories = {
   web: [
-    { name: 'Web Project 1', image: 'web1.png', link: 'https://example.com/web1', description: 'Web project description 1' },
-    { name: 'Web Project 2', image: 'web2.png', link: 'https://example.com/web2', description: 'Web project description 2' },
-    { name: 'Web Project 3', image: 'web3.png', link: 'https://example.com/web3', description: 'Web project description 3' },
-    { name: 'Web Project 4', image: 'web4.png', link: 'https://example.com/web4', description: 'Web project description 4' },
-    { name: 'Web Project 5', image: 'web5.png', link: 'https://example.com/web5', description: 'Web project description 5' },
-    { name: 'Web Project 6', image: 'web6.png', link: 'https://example.com/web6', description: 'Web project description 6' }
+    {
+      name: 'Lace and Legacy',
+      image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://laceand-legacy.vercel.app/',
+      description: 'A modern e-commerce platform for unique fashion and legacy pieces.'
+    },
+    {
+      name: 'Lace and Legacy Dashboard',
+      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://laceand-legacy-dashboard.vercel.app/',
+      description: 'Admin dashboard for managing products, orders, and analytics for Lace and Legacy.'
+    },
+    {
+      name: 'Digital Scouting Africa',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://vercel.com/inimfon-udohs-projects-ded7da96/dsa-main2',
+      description: 'A digital platform for scouting and connecting African sports talent.'
+    },
+    {
+      name: 'SuShi',
+      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://su-shi-kohl.vercel.app/',
+      description: 'A vibrant food delivery web app for sushi and international cuisine.'
+    },
+    {
+      name: 'Quokkaonbase',
+      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://quokkaonbase.io/',
+      description: 'A memecoin and NFT project with community-driven evolution and gamification.'
+    },
+    {
+      name: 'Khoj AI',
+      image: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b41?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: '#',
+      description: 'AI-powered search and productivity platform for teams and individuals.'
+    }
   ],
   mobile: [
-    { name: 'Mobile Project 1', image: 'mobile1.png', link: 'https://example.com/mobile1', description: 'Mobile project description 1' },
-    { name: 'Mobile Project 2', image: 'mobile2.png', link: 'https://example.com/mobile2', description: 'Mobile project description 2' },
-    { name: 'Mobile Project 3', image: 'mobile3.png', link: 'https://example.com/mobile3', description: 'Mobile project description 3' },
-    { name: 'Mobile Project 4', image: 'mobile4.png', link: 'https://example.com/mobile4', description: 'Mobile project description 4' },
-    { name: 'Mobile Project 5', image: 'mobile5.png', link: 'https://example.com/mobile5', description: 'Mobile project description 5' },
-    { name: 'Mobile Project 6', image: 'mobile6.png', link: 'https://example.com/mobile6', description: 'Mobile project description 6' }
+    {
+      name: 'Bagisto',
+      image: 'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/bagisto/opensource-ecommerce-mobile-app',
+      description: 'Open-source mobile eCommerce app for Bagisto, built with Flutter and Laravel.'
+    },
+    {
+      name: 'Immich',
+      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://immich.app/',
+      description: 'Self-hosted photo and video backup and management app for privacy-focused users.'
+    },
+    {
+      name: 'Organicmaps',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://organicmaps.app/',
+      description: 'Privacy-focused, open-source offline maps app for travelers and explorers.'
+    },
+    {
+      name: 'RTranslator',
+      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/niedev/RTranslator',
+      description: 'Open-source translation app supporting multiple languages and offline use.'
+    },
+    {
+      name: 'Berty',
+      image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://berty.tech/',
+      description: 'A secure, peer-to-peer messaging app focused on privacy and decentralization.'
+    },
+    {
+      name: 'Pentest Mobile Cheatsheet',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet',
+      description: 'A comprehensive mobile app penetration testing cheatsheet for security professionals.'
+    }
   ],
   design: [
     { 
@@ -898,12 +958,42 @@ const projectCategories = {
     }
   ],
   writing: [
-    { name: 'Writing Project 1', image: 'writing1.png', link: 'https://example.com/writing1', description: 'Writing project description 1' },
-    { name: 'Writing Project 2', image: 'writing2.png', link: 'https://example.com/writing2', description: 'Writing project description 2' },
-    { name: 'Writing Project 3', image: 'writing3.png', link: 'https://example.com/writing3', description: 'Writing project description 3' },
-    { name: 'Writing Project 4', image: 'writing4.png', link: 'https://example.com/writing4', description: 'Writing project description 4' },
-    { name: 'Writing Project 5', image: 'writing5.png', link: 'https://example.com/writing5', description: 'Writing project description 5' },
-    { name: 'Writing Project 6', image: 'writing6.png', link: 'https://example.com/writing6', description: 'Writing project description 6' }
+    {
+      name: 'The Role of Blockchain in Agribusiness Marketing',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://docs.google.com/document/d/1LZsxuhBi_2nIS21n_coBpuXS4kzDSZLW5k4bvWmOStw/edit?tab=t.0',
+      description: 'Exploring how blockchain ensures transparency and traceability in agribusiness marketing.'
+    },
+    {
+      name: 'Prayer To Start A New Business',
+      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://docs.google.com/document/d/1H9YTa_kd58eHCpW6PREG5EzE4-rWsI98-C0SHb2_umg/edit?tab=t.0',
+      description: 'A thoughtful prayer and reflection for entrepreneurs embarking on new ventures.'
+    },
+    {
+      name: 'Cheapest Dental Schools In USA For International Students',
+      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://docs.google.com/document/d/1FhhN2QEOvDlX-0XrOlTMA-qm-mi3OP8-tuchjagZi_E/edit?tab=t.0',
+      description: 'A guide to affordable dental schools in the USA for international students.'
+    },
+    {
+      name: 'Can Rabbits Eat Pumpkin Seeds?',
+      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://docs.google.com/document/d/1qO7oEhz0Evfk_HzoCZaHnBYm6OK3QAm-9TM9wYm18as/edit?tab=t.0',
+      description: 'An informative article on the dietary safety of pumpkin seeds for rabbits.'
+    },
+    {
+      name: 'Best Intensive Outpatient Program For Depression',
+      image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://docs.google.com/document/d/1Jv7-V-WNVLL69xiDsbXGTKXmAD1F_xhjxPaJ91s0UXw/edit?tab=t.0#heading=h.d37zrj2zgwct',
+      description: 'A review of top intensive outpatient programs for depression treatment.'
+    },
+    {
+      name: 'Affordable Eye Clinics In Singapore',
+      image: 'https://images.unsplash.com/photo-1510511233900-192d6d7d963d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://docs.google.com/document/d/1tQhbAPUvg-hfHQi_YXOl1cG6URVNnKDWjKO5ABJdqEM/edit?tab=t.0#heading=h.577dqrc6qwm0',
+      description: 'A curated list of affordable eye clinics in Singapore for quality eye care.'
+    }
   ],
   cybersecurity: [
     {

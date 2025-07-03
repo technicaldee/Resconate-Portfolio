@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <script src="https://smtpjs.com/v3/smtp.js">
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resconate - Premium Software Development Agency</title>
@@ -639,8 +641,8 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     <!-- Contact Form -->
                     <div class="bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-gray-800">
-                        <form id="contactForm" class="space-y-6" enctype="multipart/form-data">
-                            <div>
+                      <!--  <form id="contactForm"  onsubmit="emailSend()" class="space-y-6" enctype="multipart/form-data">
+                      --> <div>
                                 <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name</label>
                                 <input type="text" id="name" name="name" required
                                     class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white">
@@ -706,12 +708,40 @@
                                 <textarea id="message" name="message" rows="4" required
                                     class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-white"></textarea>
                             </div>
-                            <button type="submit"
+                            <button onclick="emailSend()"
                                 class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity">
                                 Send Message
                             </button>
                         </form>
-                    </div>
+                <script>
+                    function emailSend() {
+                        var name = document.getElementById('name').value;
+                        var email = document.getElementById('email').value;
+                        var comp = document.getElementById('company').value;
+                        var projectType = document.getElementById('projectType').value;
+                        var Budget = document.getElementById('budget').value;
+                        var timeline = document.getElementById('timeline').value;
+                        var message = document.getElementById('message').value;
+                        
+                        const fileInput = document.getElementById('file');
+                        const file = fileInput.files[0];
+
+                        alert(name+email+Budget+comp+message);
+
+                        Email.send({
+                            Host : "smtp.elasticemail.com",
+                            Username : "michaelnwankwoscloud@gmail.com",
+                            Password : "35B14AFAB7C89DB4F66D69C0B26F57832CB4",
+                            To : 'hectorchris60@gmail.com',
+                            From : "michaelnwankwoscloud@gmail.com",
+                            Subject : "This is the subject",
+                            Body : "And this is the body"
+                        }).then(
+                        message => console.log(message)
+                        );
+                    }
+                </script>
+            </div>
 
                     <!-- Contact Information -->
                     <div class="space-y-8">

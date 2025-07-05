@@ -710,35 +710,55 @@
                             </div>
                             <button onclick="emailSend()"
                                 class="w-full bg-gradient-to-r from-[#6366F1] to-[#EC4899] text-white px-8 py-3 rounded-lg hover:opacity-90 transition-opacity">
-                                Send Message
+                                <i class="fab fa-whatsapp mr-2"></i>Send via WhatsApp
                             </button>
                         </form>
                 <script>
                     function emailSend() {
+                        // Get form values
                         var name = document.getElementById('name').value;
                         var email = document.getElementById('email').value;
                         var comp = document.getElementById('company').value;
                         var projectType = document.getElementById('projectType').value;
-                        var Budget = document.getElementById('budget').value;
+                        var budget = document.getElementById('budget').value;
                         var timeline = document.getElementById('timeline').value;
                         var message = document.getElementById('message').value;
                         
-                        const fileInput = document.getElementById('file');
-                        const file = fileInput.files[0];
+                        // Validate required fields
+                        if (!name || !email || !projectType || !budget || !timeline || !message) {
+                            alert('Please fill in all required fields');
+                            return;
+                        }
 
-                        alert(name+email+Budget+comp+message);
+                        // Format the message for WhatsApp
+                        var whatsappMessage = `*New Project Inquiry from Resconate Website*
 
-                        Email.send({
-                            Host : "smtp.elasticemail.com",
-                            Username : "michaelnwankwoscloud@gmail.com",
-                            Password : "35B14AFAB7C89DB4F66D69C0B26F57832CB4",
-                            To : 'hectorchris60@gmail.com',
-                            From : "michaelnwankwoscloud@gmail.com",
-                            Subject : "This is the subject",
-                            Body : "And this is the body"
-                        }).then(
-                        message => console.log(message)
-                        );
+*Name:* ${name}
+*Email:* ${email}
+${comp ? `*Company:* ${comp}` : ''}
+*Project Type:* ${projectType}
+*Budget Range:* ${budget}
+*Timeline:* ${timeline}
+*Message:* ${message}
+
+*Contact Information:*
+📧 Email: ${email}
+📱 Phone: ${comp ? 'Company provided' : 'Not provided'}
+
+---
+Sent from Resconate Website Contact Form`;
+
+                        // Encode the message for URL
+                        var encodedMessage = encodeURIComponent(whatsappMessage);
+                        
+                        // Create WhatsApp URL with your number
+                        var whatsappURL = `https://wa.me/2349072415907?text=${encodedMessage}`;
+                        
+                        // Open WhatsApp in new tab
+                        window.open(whatsappURL, '_blank');
+                        
+                        // Show success message
+                        alert('Redirecting to WhatsApp... Please send the message to complete your inquiry.');
                     }
                 </script>
             </div>

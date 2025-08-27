@@ -1,4 +1,4 @@
-﻿// Modern JavaScript for Resconate Portfolio
+// Modern JavaScript for Resconate Portfolio
 // ES6+ syntax with modular architecture and performance optimizations
 
 class PortfolioApp {
@@ -863,22 +863,10 @@ const projectCategories = {
       description: 'A digital platform for scouting and connecting African sports talent.'
     },
     {
-      name: 'SuShi',
-      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-      link: 'https://su-shi-kohl.vercel.app/',
-      description: 'A vibrant food delivery web app for sushi and international cuisine.'
-    },
-    {
       name: 'Quokkaonbase',
       image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
       link: 'https://quokkaonbase.io/',
       description: 'A memecoin and NFT project with community-driven evolution and gamification.'
-    },
-    {
-      name: 'Khoj AI',
-      image: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b41?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-      link: '#',
-      description: 'AI-powered search and productivity platform for teams and individuals.'
     }
   ],
   mobile: [
@@ -901,22 +889,10 @@ const projectCategories = {
       description: 'Privacy-focused, open-source offline maps app for travelers and explorers.'
     },
     {
-      name: 'RTranslator',
-      image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-      link: 'https://github.com/niedev/RTranslator',
-      description: 'Open-source translation app supporting multiple languages and offline use.'
-    },
-    {
       name: 'Berty',
       image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
       link: 'https://berty.tech/',
       description: 'A secure, peer-to-peer messaging app focused on privacy and decentralization.'
-    },
-    {
-      name: 'Pentest Mobile Cheatsheet',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-      link: 'https://github.com/tanprathan/MobileApp-Pentest-Cheatsheet',
-      description: 'A comprehensive mobile app penetration testing cheatsheet for security professionals.'
     }
   ],
   design: [
@@ -943,18 +919,6 @@ const projectCategories = {
       image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80', 
       link: 'https://www.figma.com/design/APy8rMh2oDd520HJB1A5qu/Movie-TIcket-App?node-id=0-1&t=bYUeGFE8K6gfFLL0-1', 
       description: 'Mobile app design for movie ticket booking and management' 
-    },
-    { 
-      name: 'Simpsons Illustration', 
-      image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80', 
-      link: 'https://www.figma.com/design/aJjzSj6OJ5clYf3XXG41TD/bArt-Simpsons?node-id=0-1&t=zlIc5SUkhr8sQbgv-1', 
-      description: 'Creative illustration project featuring The Simpsons characters' 
-    },
-    { 
-      name: 'Design System Components', 
-      image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80', 
-      link: 'https://www.figma.com/design/N0yjQ9UBdWbhBxGwk0jbkJ/Purdy-and-Figg?node-id=0-1&t=621Q84JDdSsSd495-1', 
-      description: 'Comprehensive design system with reusable components and patterns' 
     }
   ],
   writing: [
@@ -965,22 +929,10 @@ const projectCategories = {
       description: 'Exploring how blockchain ensures transparency and traceability in agribusiness marketing.'
     },
     {
-      name: 'Prayer To Start A New Business',
-      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-      link: 'https://docs.google.com/document/d/1H9YTa_kd58eHCpW6PREG5EzE4-rWsI98-C0SHb2_umg/edit?tab=t.0',
-      description: 'A thoughtful prayer and reflection for entrepreneurs embarking on new ventures.'
-    },
-    {
       name: 'Cheapest Dental Schools In USA For International Students',
       image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
       link: 'https://docs.google.com/document/d/1FhhN2QEOvDlX-0XrOlTMA-qm-mi3OP8-tuchjagZi_E/edit?tab=t.0',
       description: 'A guide to affordable dental schools in the USA for international students.'
-    },
-    {
-      name: 'Can Rabbits Eat Pumpkin Seeds?',
-      image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-      link: 'https://docs.google.com/document/d/1qO7oEhz0Evfk_HzoCZaHnBYm6OK3QAm-9TM9wYm18as/edit?tab=t.0',
-      description: 'An informative article on the dietary safety of pumpkin seeds for rabbits.'
     },
     {
       name: 'Best Intensive Outpatient Program For Depression',
@@ -1003,12 +955,6 @@ const projectCategories = {
       description: 'Comprehensive web application security testing tools and methodologies for vulnerability assessment.'
     },
     {
-      name: 'Steganography Challenge',
-      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-      link: 'https://github.com/deejonsen/Steghide_Task.md',
-      description: 'Solutions for extracting hidden messages from images using steganography tools.'
-    },
-    {
       name: 'Exploitation Task',
       image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
       link: 'https://github.com/deejonsen/Exploitation_Task',
@@ -1019,6 +965,12 @@ const projectCategories = {
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
       link: 'https://github.com/deejonsen/Advanced_Persistent_Threat',
       description: 'Comprehensive analysis of APT breaches and their impact on information security infrastructure.'
+    },
+    {
+      name: 'Steganography Challenge',
+      image: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      link: 'https://github.com/deejonsen/Steghide_Task.md',
+      description: 'Solutions for extracting hidden messages from images using steganography tools.'
     }
   ]
 };
@@ -1045,16 +997,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const projects = projectCategories[category] || [];
       projects.forEach(project => {
         const card = document.createElement('div');
-        card.className = 'project-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#6366F1] transition-all duration-300 cursor-pointer';
+        card.className = 'project-card';
+        
+        // Get icon based on category
+        const getIcon = (category) => {
+          const icons = {
+            web: '🌐',
+            mobile: '📱',
+            design: '🎨',
+            writing: '✍️',
+            cybersecurity: '🔒'
+          };
+          return icons[category] || '💼';
+        };
+        
         card.innerHTML = `
-          <div class="relative overflow-hidden h-48 flex items-center justify-center">
-            <img src="${project.image}" alt="${project.name}" class="w-full h-full object-contain bg-black/20 project-image">
-          </div>
-          <div class="p-6">
-            <p class="text-white font-bold mb-2">${project.name}</p>
-            <p class="text-gray-300 text-sm mb-4">${project.description}</p>
+          <div class="project-card__content">
+            <div class="project-card__icon">
+              ${getIcon(category)}
+            </div>
+            <h3 class="project-card__title">${project.name}</h3>
+            <p class="project-card__description">${project.description}</p>
           </div>
         `;
+        
         card.addEventListener('click', () => {
           window.open(project.link, '_blank');
         });

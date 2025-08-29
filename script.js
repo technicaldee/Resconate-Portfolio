@@ -795,7 +795,8 @@ function openUniversalModal(type, idOrData) {
   } else if (modalContent[type]) {
     content = modalContent[type];
   } else {
-    content = '<p>Content not found.</p>';
+    // No valid content found, don't open the modal
+    return;
   }
   universalModalContent.innerHTML = content;
   universalModal.style.display = 'flex';
@@ -1016,7 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="project-card__icon">
               ${getIcon(category)}
             </div>
-            <h3 class="project-card__title">${project.name}</h3>
+            <p class="project-card__title">${project.name}</p>
             <p class="project-card__description">${project.description}</p>
           </div>
         `;
@@ -1037,4 +1038,300 @@ document.addEventListener('DOMContentLoaded', () => {
       showProjects(category);
     });
   });
+});
+
+// --- Team Popup Logic ---
+const teamMemberData = {
+  'innie': {
+    name: 'Inimfon Udoh',
+    role: 'Full Stack Developer',
+    bio: 'A passionate full-stack developer with expertise in modern web technologies, mobile development, and cybersecurity. I love creating innovative solutions that bridge the gap between design and functionality.',
+    techStack: ['JavaScript', 'React', 'Node.js', 'Python', 'Flutter', 'Laravel', 'MongoDB', 'PostgreSQL', 'AWS', 'Docker'],
+    projects: [
+      {
+        title: 'Lace and Legacy',
+        description: 'A modern e-commerce platform for unique fashion and legacy pieces.',
+        image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: 'https://laceand-legacy.vercel.app/',
+        githubLink: 'https://github.com/inimfon/lace-and-legacy'
+      },
+      {
+        title: 'Digital Scouting Africa',
+        description: 'A digital platform for scouting and connecting African sports talent.',
+        image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: 'https://vercel.com/inimfon-udohs-projects-ded7da96/dsa-main2',
+        githubLink: 'https://github.com/inimfon/dsa-main'
+      },
+      {
+        title: 'Quokkaonbase',
+        description: 'A memecoin and NFT project with community-driven evolution and gamification.',
+        image: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: 'https://quokkaonbase.io/',
+        githubLink: 'https://github.com/inimfon/quokkaonbase'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/inimfon',
+      linkedin: 'https://linkedin.com/in/inimfon-udoh',
+      twitter: 'https://twitter.com/inimfon_udoh',
+      email: 'inimfon@resconate.com'
+    }
+  },
+  'michael': {
+    name: 'Michael Nwankwo',
+    role: 'Lead Frontend Developer',
+    bio: 'Web development expert specializing in frontend building of web applications. I create responsive, modern interfaces that provide exceptional user experiences.',
+    techStack: ['ReactJS', 'NextJS', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'SASS', 'TypeScript', 'Vue.js', 'Design'],
+    projects: [
+      {
+        title: 'Purdy and Figg Design',
+        description: 'Modern design system and brand identity for Purdy and Figg',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=764&q=80',
+        liveLink: 'https://www.figma.com/design/N0yjQ9UBdWbhBxGwk0jbkJ/Purdy-and-Figg',
+        githubLink: '#'
+      },
+      {
+        title: 'Slate Landing Page',
+        description: 'Responsive landing page design for Slate platform',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=815&q=80',
+        liveLink: 'https://www.figma.com/design/sGXReqpIdFw5YScNsl6nuw/Landing-Page-For-Slate',
+        githubLink: '#'
+      },
+      {
+        title: 'Movie Ticketing App',
+        description: 'Mobile app design for movie ticket booking and management',
+        image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: 'https://www.figma.com/design/APy8rMh2oDd520HJB1A5qu/Movie-TIcket-App',
+        githubLink: '#'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/Michael47009',
+      twitter: 'https://x.com/@RnaEu_',
+      linkedin: 'https://linkedin.com/in/michael-nwankwo',
+      email: 'michael@resconate.com'
+    }
+  },
+  'dorcas': {
+    name: 'Dorcas Johnson',
+    role: 'Cybersecurity Expert',
+    bio: 'Cybersecurity specialist with expertise in penetration testing, ethical hacking, and digital forensics. I focus on securing systems and identifying vulnerabilities.',
+    techStack: ['Penetration Testing', 'Ethical Hacking', 'Digital Forensics', 'Python', 'Kali Linux', 'Metasploit', 'Burp Suite', 'Network Security', 'Incident Response', 'Risk Assessment'],
+    projects: [
+      {
+        title: 'Web Pentesting',
+        description: 'Comprehensive web application security testing tools and methodologies for vulnerability assessment.',
+        image: 'https://images.unsplash.com/photo-1510511233900-192d6d7d963d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: 'https://github.com/deejonsen/Web_pentesting'
+      },
+      {
+        title: 'Advanced Persistent Threat',
+        description: 'Comprehensive analysis of APT breaches and their impact on information security infrastructure.',
+        image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: 'https://github.com/deejonsen/Advanced_Persistent_Threat'
+      },
+      {
+        title: 'Exploitation Task',
+        description: 'Educational demonstration of gaining initial access to a Windows machine using a Meterpreter reverse shell.',
+        image: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: 'https://github.com/deejonsen/Exploitation_Task'
+      }
+    ],
+    socialLinks: {
+      github: 'https://github.com/deejonsen',
+      linkedin: 'https://linkedin.com/in/dee-johnson-security',
+      twitter: 'https://twitter.com/dee_security',
+      email: 'dee@resconate.com'
+    }
+  },
+  'sherah': {
+    name: 'Sherah David',
+    role: 'Social & Content Lead',
+    bio: 'Creative designer with expertise in user-centered design and design systems. I specialize in creating engaging content and managing social media presence.',
+    techStack: ['Figma', 'Adobe XD', 'Sketch', 'Content Creation', 'Social Media Management', 'Brand Strategy', 'Graphic Design', 'Photography', 'Video Editing', 'Marketing'],
+    projects: [
+      {
+        title: 'Brand Identity Design',
+        description: 'Creative brand identity and visual design systems for various clients.',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      },
+      {
+        title: 'Social Media Campaigns',
+        description: 'Engaging social media content and campaign designs for brand awareness.',
+        image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      },
+      {
+        title: 'Content Strategy',
+        description: 'Comprehensive content strategies and creative direction for digital platforms.',
+        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      }
+    ],
+    socialLinks: {
+      linkedin: 'https://linkedin.com/in/sherah-david',
+      dribbble: 'https://dribbble.com/sherah-david',
+      instagram: 'https://instagram.com/sherah_david',
+      email: 'sherah@resconate.com'
+    }
+  },
+  'emediong': {
+    name: 'Emediong Inwek',
+    role: 'UI/UX and Product Designer',
+    bio: 'Creative designer specializing in user experience and product design. I focus on creating intuitive, beautiful interfaces that enhance user engagement and drive business results.',
+    techStack: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator', 'Sketch', 'InVision', 'Principle', 'After Effects', 'User Research', 'Prototyping'],
+    projects: [
+      {
+        title: 'E-commerce Mobile App',
+        description: 'Complete UI/UX design for a modern e-commerce mobile application with seamless user experience.',
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      },
+      {
+        title: 'SaaS Dashboard Design',
+        description: 'Modern dashboard design for a SaaS platform with focus on data visualization and user workflow.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      },
+      {
+        title: 'Brand Identity System',
+        description: 'Complete brand identity and design system for a tech startup including logo, colors, and guidelines.',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      }
+    ],
+    socialLinks: {
+      instagram: 'https://www.instagram.com/emedionginwek',
+      twitter: 'https://x.com/emedionginwek',
+      linkedin: 'https://linkedin.com/in/emediong-inwek',
+      email: 'emediong@resconate.com'
+    }
+  }
+};
+
+function openTeamPopup(memberId) {
+  const popup = document.getElementById('teamPopup');
+  const member = teamMemberData[memberId];
+  
+  if (!member || !popup) {
+    console.error('Team member not found or popup element missing');
+    return;
+  }
+  
+  // Create the complete popup content without projects section
+  const popupContent = `
+    <div class="popup-hero">
+      <div class="popup-header">
+        <h2 class="popup-name">${member.name}</h2>
+        <p class="popup-role">${member.role}</p>
+      </div>
+      <div class="popup-tech-icons">
+        ${member.techStack.slice(0, 8).map(tech => `<span class="tech-icon">${tech}</span>`).join('')}
+      </div>
+    </div>
+    
+    <div class="popup-section">
+      <h3>About Me</h3>
+      <p class="popup-bio">${member.bio}</p>
+    </div>
+    
+    <div class="popup-section">
+      <h3>Skills & Technologies</h3>
+      <div class="popup-tech-stack">
+        ${member.techStack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+      </div>
+    </div>
+    
+    <div class="popup-section">
+      <h3>Connect With Me</h3>
+      <div class="popup-social-links">
+        ${Object.entries(member.socialLinks).map(([platform, url]) => {
+          const icons = {
+            github: '<i class="fab fa-github"></i>',
+            linkedin: '<i class="fab fa-linkedin-in"></i>',
+            twitter: '<i class="fab fa-twitter"></i>',
+            instagram: '<i class="fab fa-instagram"></i>',
+            dribbble: '<i class="fab fa-dribbble"></i>',
+            email: '<i class="fas fa-envelope"></i>'
+          };
+          const displayName = platform.charAt(0).toUpperCase() + platform.slice(1);
+          return `<a href="${platform === 'email' ? 'mailto:' + url : url}" target="_blank" class="popup-social-link" title="${displayName}">
+            ${icons[platform] || '<i class="fas fa-link"></i>'}
+            <span>${displayName}</span>
+          </a>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+  
+  // Insert content into the popup
+  const contentContainer = document.getElementById('teamPopupContent');
+  if (contentContainer) {
+    contentContainer.innerHTML = popupContent;
+  } else {
+    console.error('teamPopupContent container not found');
+    return;
+  }
+  
+  // Show popup with smooth animation
+  popup.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  
+  // Add animation class after a brief delay
+  requestAnimationFrame(() => {
+    popup.classList.add('active');
+  });
+}
+
+function closeTeamPopup() {
+  const popup = document.getElementById('teamPopup');
+  if (!popup) return;
+  
+  popup.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 300);
+}
+
+// Make closeTeamPopup globally accessible
+window.closeTeamPopup = closeTeamPopup;
+
+// Initialize popup event listeners when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('teamPopup');
+  
+  if (popup) {
+    // Close popup when clicking on the backdrop (outside the content)
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup || e.target.classList.contains('team-popup')) {
+        closeTeamPopup();
+      }
+    });
+    
+    // Close popup when clicking the close button
+    popup.addEventListener('click', (e) => {
+      if (e.target.classList.contains('close-popup') || e.target.closest('.close-popup')) {
+        closeTeamPopup();
+      }
+    });
+    
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.style.display === 'flex') {
+        closeTeamPopup();
+      }
+    });
+  }
 });

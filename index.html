@@ -389,7 +389,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
                 <!-- Team Member 1 -->
-                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="michael" onclick="window.location.href='innie-portfolio.html'" tabindex="0" role="button" aria-label="View Inimfon Udoh Portfolio">
+                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="innie" onclick="openTeamPopup('innie')" tabindex="0" role="button" aria-label="View Inimfon Udoh Portfolio">
                     <div class="relative">
                        
                           <img src="innie.jpg" alt="Inimfon Udoh" class="w-full h-64 object-cover">
@@ -420,7 +420,7 @@
                 </div>
 
                 <!-- Team Member 2 -->
-                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="michael" onclick="window.location.href='mike-portfolio.html'" tabindex="0" role="button" aria-label="View Michael Nwankwo Portfolio">
+                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="michael" onclick="openTeamPopup('michael')" tabindex="0" role="button" aria-label="View Michael Nwankwo Portfolio">
                     <div class="relative">
                      
                           <img src="mike.jpg" alt="Michael Nwankwo" class="w-full h-64 object-cover">
@@ -451,7 +451,7 @@
                 </div>
 
                 <!-- Team Member 3 -->
-                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="michael" onclick="window.location.href='sherah-portfolio.html'" tabindex="0" role="button" aria-label="View Sherah David Portfolio">
+                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#EC4899] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="sherah" onclick="openTeamPopup('sherah')" tabindex="0" role="button" aria-label="View Sherah David Portfolio">
                     <div class="relative">
                         <img src="sherah.jpg" alt="Sherah David" class="w-full h-64 object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -480,12 +480,12 @@
                 </div>
 
                 <!-- Team Member 4 -->
-                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#F59E0B] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="david">
+                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#F59E0B] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="emediong" onclick="openTeamPopup('emediong')" tabindex="0" role="button" aria-label="View Emediong Inwek Portfolio">
                     <div class="relative">
                         <img src="emediong.jpg" alt="Emediong Inwek" class="w-full h-64 object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                             <div class="flex space-x-4">
-                                <a href="https://www.instagram.com/emedionginwek" class="text-white hover:text-[#F59E0B] transition-colors" aria-label="Instagram profile" title="LinkedIn profile">
+                                <a href="https://www.instagram.com/emedionginwek" class="text-white hover:text-[#F59E0B] transition-colors" aria-label="Instagram profile" title="Instagram profile">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                                 <a href="https://x.com/emedionginwek" class="text-white hover:text-[#F59E0B] transition-colors" aria-label="Twitter profile" title="Twitter profile">
@@ -498,7 +498,7 @@
                         <h3 class="text-xl font-bold mb-2">Emediong Inwek</h3>
                         <p class="text-[#F59E0B] mb-4">UI/UX and Product Designer</p>
                         <p class="text-gray-200 text-sm mb-4">
-                            Marketing expert specializing in growth strategies and digital campaigns
+                            Creative designer specializing in user experience and product design
                         </p>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 bg-[#F59E0B]/20 text-[#F59E0B] rounded-full text-sm">Figma</span>
@@ -509,7 +509,7 @@
                 </div>
 
                 <!-- Team Member 5 -->
-                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#DC2626] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="dorcas" onclick="window.location.href='dorcas-portfolio.html'" tabindex="0" role="button" aria-label="View Dorcas Johnson Portfolio">
+                <div class="team-card bg-black/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#DC2626] transition-all duration-300 cursor-pointer" data-modal-type="team" data-modal-id="dorcas" onclick="openTeamPopup('dorcas')" tabindex="0" role="button" aria-label="View Dorcas Johnson Portfolio">
                     <div class="relative">
                         <img src="dorcas.jpg" alt="Dorcas Johnson" class="w-full h-64 object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
@@ -824,6 +824,18 @@ Sent from Resconate Website Contact Form`;
                 </div>
             </div>
         </section>
+
+        <!-- Team Member Popup -->
+        <div id="teamPopup" class="team-popup">
+          <div class="team-popup-content">
+            <button class="team-popup-close" onclick="closeTeamPopup()">
+              <i class="fas fa-times"></i>
+            </button>
+            <div id="teamPopupContent">
+              <!-- Team member content will be injected here -->
+            </div>
+          </div>
+        </div>
 
         <!-- Universal Modal (for all dynamic content) -->
         <div id="universalModal" class="modal" tabindex="-1" aria-modal="true" role="dialog" style="display:none;">

@@ -458,6 +458,7 @@ a:hover {
   
   .header__mobile-toggle {
     display: block;
+    color: #000000;
   }
 }
 

@@ -1176,10 +1176,47 @@ const teamMemberData = {
       }
     ],
     socialLinks: {
-      linkedin: 'https://linkedin.com/in/sherah-david',
-      dribbble: 'https://dribbble.com/sherah-david',
+      facebook: 'https://facebook.com/sherah.david',
+      twitter: 'https://twitter.com/sherah_david',
       instagram: 'https://instagram.com/sherah_david',
+      linkedin: 'https://linkedin.com/in/sherah-david',
       email: 'sherah@resconate.com'
+    }
+  },
+  'itoro': {
+    name: 'Itoro Umoette',
+    role: 'PR Manager',
+    bio: 'Strategic PR professional with expertise in brand communication, media relations, and digital marketing. I specialize in crafting compelling narratives that elevate brand presence and drive engagement across multiple platforms.',
+    techStack: ['Media Relations', 'Brand Strategy', 'Content Marketing', 'Social Media Management', 'Crisis Communication', 'Press Release Writing', 'Influencer Relations', 'Digital PR', 'Event Management', 'Analytics'],
+    projects: [
+      {
+        title: 'Brand Awareness Campaign',
+        description: 'Comprehensive PR campaign that increased brand visibility by 300% across digital and traditional media channels.',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      },
+      {
+        title: 'Crisis Communication Strategy',
+        description: 'Developed and executed crisis communication plan that successfully managed brand reputation during challenging times.',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      },
+      {
+        title: 'Influencer Partnership Program',
+        description: 'Created and managed influencer partnership program resulting in 250% increase in social media engagement.',
+        image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      }
+    ],
+    socialLinks: {
+      facebook: 'https://facebook.com/itoro.umoette',
+      twitter: 'https://x.com/itoro_umoette',
+      instagram: 'https://instagram.com/itoro_umoette',
+      linkedin: 'https://linkedin.com/in/itoro-umoette',
+      email: 'itoro@resconate.com'
     }
   },
   'emediong': {

@@ -176,6 +176,7 @@
   .project-card {
     margin-bottom: 0.5rem !important;
     border-radius: 0.375rem !important;
+    padding: 1.5rem !important;
   }
 
   .project-card img {
@@ -747,6 +748,7 @@
     border-radius: 1.5rem !important;
     overflow: hidden !important;
     transition: all 0.3s ease !important;
+    padding: 3rem !important;
   }
 
   .project-card:hover {

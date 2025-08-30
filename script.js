@@ -1150,27 +1150,27 @@ const teamMemberData = {
   'sherah': {
     name: 'Sherah David',
     role: 'Social & Content Lead',
-    bio: 'Creative designer with expertise in user-centered design and design systems. I specialize in creating engaging content and managing social media presence.',
-    techStack: ['Figma', 'Adobe XD', 'Sketch', 'Content Creation', 'Social Media Management', 'Brand Strategy', 'Graphic Design', 'Photography', 'Video Editing', 'Marketing'],
+    bio: 'Strategic social media and content specialist with expertise in building brand communities and driving engagement. I create compelling content strategies that connect brands with their audiences across digital platforms.',
+    techStack: ['Content Strategy', 'Social Media Management', 'Copywriting', 'SEO', 'Google Analytics', 'Hootsuite', 'Canva', 'Buffer', 'Email Marketing', 'Influencer Relations'],
     projects: [
       {
-        title: 'Brand Identity Design',
-        description: 'Creative brand identity and visual design systems for various clients.',
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-        liveLink: '#',
-        githubLink: '#'
-      },
-      {
-        title: 'Social Media Campaigns',
-        description: 'Engaging social media content and campaign designs for brand awareness.',
+        title: 'Multi-Platform Content Strategy',
+        description: 'Developed comprehensive content strategy across Instagram, LinkedIn, and TikTok, resulting in 400% increase in engagement.',
         image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
         liveLink: '#',
         githubLink: '#'
       },
       {
-        title: 'Content Strategy',
-        description: 'Comprehensive content strategies and creative direction for digital platforms.',
+        title: 'Brand Community Building',
+        description: 'Built and managed online communities for tech startups, growing follower base by 250% in 6 months.',
         image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        liveLink: '#',
+        githubLink: '#'
+      },
+      {
+        title: 'Viral Content Campaigns',
+        description: 'Created viral content campaigns that generated over 2M impressions and increased brand awareness by 300%.',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
         liveLink: '#',
         githubLink: '#'
       }

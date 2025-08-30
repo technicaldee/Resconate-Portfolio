@@ -703,7 +703,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
+  padding: 2.5rem;
   text-align: center;
 }
 
@@ -758,7 +758,7 @@ a:hover {
 .project-card__icon {
   width: 60px;
   height: 60px;
-  margin: 0 auto 1.5rem;
+  margin: 1rem auto 1.5rem;
   background: linear-gradient(135deg, #6366F1, #EC4899);
   border-radius: 50%;
   display: flex;

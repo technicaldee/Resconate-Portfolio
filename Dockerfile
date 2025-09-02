@@ -4,13 +4,11 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files for both root and server
+# Copy package.json files
 COPY package*.json ./
-COPY server/package*.json ./server/
 
-# Install all dependencies (including dev) for build
+# Install dependencies for build
 RUN npm install
-RUN cd server && npm install --omit=dev
 
 # Copy all project files
 COPY . .
@@ -19,17 +17,11 @@ COPY . .
 RUN mkdir -p dist
 RUN npm run build:prod
 
-# Clean up dev dependencies after build
-RUN npm prune --omit=dev
+# Install a simple static file server
+RUN npm install -g serve
 
-# Create uploads directory for server
-RUN mkdir -p server/uploads
+# Expose port 3000 for static serving
+EXPOSE 3000
 
-# Expose the port the server runs on
-EXPOSE 5000
-
-# Set working directory to server for startup
-WORKDIR /app/server
-
-# Start the server
-CMD ["npm", "start"]
+# Serve the static files
+CMD ["serve", "-s", ".", "-l", "3000"]

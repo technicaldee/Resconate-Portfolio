@@ -8,9 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 COPY server/package*.json ./server/
 
-# Clean install dependencies for both frontend and backend
-RUN npm ci --only=production || npm install
-RUN cd server && (npm ci --only=production || npm install)
+# Install dependencies for both frontend and backend
+RUN npm install --omit=dev
+RUN cd server && npm install --omit=dev
 
 # Copy all project files
 COPY . .

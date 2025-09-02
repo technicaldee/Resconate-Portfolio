@@ -8,8 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY server/package*.json ./server/
 
-# Install dependencies for both frontend and backend
-RUN npm install --omit=dev
+# Install all dependencies (including dev) for build
+RUN npm install
 RUN cd server && npm install --omit=dev
 
 # Copy all project files
@@ -18,6 +18,9 @@ COPY . .
 # Create dist directory and build Tailwind CSS
 RUN mkdir -p dist
 RUN npm run build:prod
+
+# Clean up dev dependencies after build
+RUN npm prune --omit=dev
 
 # Create uploads directory for server
 RUN mkdir -p server/uploads

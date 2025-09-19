@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Portal - Forgot Password</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full mx-4">
+        <!-- Logo and Header -->
+        <div class="text-center mb-8">
+            <div class="mx-auto w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-key text-white text-2xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Forgot Password</h1>
+            <p class="text-gray-600">Enter your username to reset your password</p>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <form id="forgotForm">
+                <div class="mb-6">
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+                        Username
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="username" name="username" required
+                               class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                               placeholder="Enter your username">
+                        <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <button type="submit" id="resetBtn"
+                        class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200 font-medium">
+                    <span id="resetBtnText">Send Reset Instructions</span>
+                    <i id="resetSpinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                </button>
+            </form>
+
+            <!-- Back to Login -->
+            <div class="mt-6 text-center">
+                <a href="/hr" class="text-indigo-600 hover:text-indigo-500 transition duration-200 text-sm">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Login
+                </a>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm hidden">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                <span id="errorText"></span>
+            </div>
+
+            <!-- Success Message -->
+            <div id="successMessage" class="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm hidden">
+                <i class="fas fa-check-circle mr-2"></i>
+                <span id="successText"></span>
+            </div>
+
+            <!-- Info Message -->
+            <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <div class="flex">
+                    <i class="fas fa-info-circle text-blue-500 mt-0.5 mr-3"></i>
+                    <div class="text-sm text-blue-700">
+                        <p class="font-medium mb-1">Password Reset Instructions</p>
+                        <p>If your username is found in our system, you will receive instructions on how to reset your password. Please contact your system administrator if you continue to have issues.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-8 text-sm text-gray-500">
+            <p>&copy; 2024 Resconate Portfolio. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission
+        document.getElementById('forgotForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const resetBtn = document.getElementById('resetBtn');
+            const resetBtnText = document.getElementById('resetBtnText');
+            const resetSpinner = document.getElementById('resetSpinner');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Show loading state
+            resetBtn.disabled = true;
+            resetBtnText.textContent = 'Sending...';
+            resetSpinner.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+            successMessage.classList.add('hidden');
+            
+            const formData = new FormData(this);
+            const username = formData.get('username');
+            
+            try {
+                const response = await fetch('/api/auth/forgot-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    successMessage.classList.remove('hidden');
+                    document.getElementById('successText').textContent = 'If the username exists, password reset instructions have been sent.';
+                    
+                    // Clear the form
+                    this.reset();
+                } else {
+                    throw new Error(data.error || 'Failed to send reset instructions');
+                }
+            } catch (error) {
+                errorMessage.classList.remove('hidden');
+                document.getElementById('errorText').textContent = error.message || 'An error occurred while sending reset instructions';
+            } finally {
+                // Reset button state
+                resetBtn.disabled = false;
+                resetBtnText.textContent = 'Send Reset Instructions';
+                resetSpinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

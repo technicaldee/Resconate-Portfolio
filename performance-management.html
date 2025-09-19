@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Management - HR Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-in-progress {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-overdue {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .star.active,
+        .star:hover {
+            color: #ffc107;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Performance Management</h1>
+            <p>Goal Setting, Performance Reviews & Training Management</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('dashboard')">Dashboard</button>
+            <button class="nav-tab" onclick="switchTab('goals')">Goals</button>
+            <button class="nav-tab" onclick="switchTab('reviews')">Reviews</button>
+            <button class="nav-tab" onclick="switchTab('training')">Training</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="activeGoals">0</h3>
+                    <p>Active Goals</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="pendingReviews">0</h3>
+                    <p>Pending Reviews</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="completedTraining">0</h3>
+                    <p>Training Completed</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="avgPerformance">0%</h3>
+                    <p>Avg Performance</p>
+                </div>
+            </div>
+
+            <h3>Recent Performance Activities</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Activity</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="recentActivities">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Goals Tab -->
+        <div id="goals" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Goal Management</h3>
+                <button class="btn" onclick="openGoalModal()">Set New Goal</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Goal Title</th>
+                        <th>Progress</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="goalsTable">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Reviews Tab -->
+        <div id="reviews" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Performance Reviews</h3>
+                <button class="btn" onclick="openReviewModal()">Create Review</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Review Period</th>
+                        <th>Overall Rating</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="reviewsTable">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Training Tab -->
+        <div id="training" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Training Management</h3>
+                <button class="btn" onclick="openTrainingModal()">Add Training</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Training Program</th>
+                        <th>Assigned To</th>
+                        <th>Progress</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="trainingTable">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Goal Modal -->
+    <div id="goalModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('goalModal')">&times;</span>
+            <h2>Set Performance Goal</h2>
+            <form id="goalForm">
+                <div class="form-group">
+                    <label for="goalEmployee">Employee</label>
+                    <select id="goalEmployee" required>
+                        <option value="">Select Employee</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="goalTitle">Goal Title</label>
+                    <input type="text" id="goalTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="goalDescription">Description</label>
+                    <textarea id="goalDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="goalCategory">Category</label>
+                    <select id="goalCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="performance">Performance</option>
+                        <option value="skill_development">Skill Development</option>
+                        <option value="leadership">Leadership</option>
+                        <option value="productivity">Productivity</option>
+                        <option value="collaboration">Collaboration</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="goalDueDate">Due Date</label>
+                    <input type="date" id="goalDueDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="goalPriority">Priority</label>
+                    <select id="goalPriority" required>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Set Goal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('reviewModal')">&times;</span>
+            <h2>Performance Review</h2>
+            <form id="reviewForm">
+                <div class="form-group">
+                    <label for="reviewEmployee">Employee</label>
+                    <select id="reviewEmployee" required>
+                        <option value="">Select Employee</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reviewPeriod">Review Period</label>
+                    <select id="reviewPeriod" required>
+                        <option value="">Select Period</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="semi-annual">Semi-Annual</option>
+                        <option value="annual">Annual</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Overall Performance Rating</label>
+                    <div class="rating-stars" id="overallRating">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reviewStrengths">Strengths</label>
+                    <textarea id="reviewStrengths" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reviewAreas">Areas for Improvement</label>
+                    <textarea id="reviewAreas" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reviewGoals">Goals for Next Period</label>
+                    <textarea id="reviewGoals" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reviewDueDate">Due Date</label>
+                    <input type="date" id="reviewDueDate" required>
+                </div>
+                <button type="submit" class="btn">Create Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Training Modal -->
+    <div id="trainingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('trainingModal')">&times;</span>
+            <h2>Assign Training</h2>
+            <form id="trainingForm">
+                <div class="form-group">
+                    <label for="trainingProgram">Training Program</label>
+                    <input type="text" id="trainingProgram" required>
+                </div>
+                <div class="form-group">
+                    <label for="trainingDescription">Description</label>
+                    <textarea id="trainingDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="trainingEmployees">Assign to Employees</label>
+                    <select id="trainingEmployees" multiple required>
+                        <!-- Options will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="trainingType">Training Type</label>
+                    <select id="trainingType" required>
+                        <option value="">Select Type</option>
+                        <option value="online">Online Course</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="seminar">Seminar</option>
+                        <option value="certification">Certification</option>
+                        <option value="mentoring">Mentoring</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="trainingDuration">Duration (hours)</label>
+                    <input type="number" id="trainingDuration" required>
+                </div>
+                <div class="form-group">
+                    <label for="trainingDueDate">Due Date</label>
+                    <input type="date" id="trainingDueDate" required>
+                </div>
+                <button type="submit" class="btn">Assign Training</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentRating = 0;
+
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // Load data for the selected tab
+            loadTabData(tabName);
+        }
+
+        // Load data based on selected tab
+        function loadTabData(tabName) {
+            switch(tabName) {
+                case 'dashboard':
+                    loadDashboardData();
+                    break;
+                case 'goals':
+                    loadGoalsData();
+                    break;
+                case 'reviews':
+                    loadReviewsData();
+                    break;
+                case 'training':
+                    loadTrainingData();
+                    break;
+            }
+        }
+
+        // Load dashboard statistics
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('/api/performance/stats');
+                const data = await response.json();
+                
+                document.getElementById('activeGoals').textContent = data.activeGoals;
+                document.getElementById('pendingReviews').textContent = data.pendingReviews;
+                document.getElementById('completedTraining').textContent = data.completedTraining;
+                document.getElementById('avgPerformance').textContent = data.avgPerformance + '%';
+
+                // Load recent activities
+                loadRecentActivities();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        // Load recent activities
+        async function loadRecentActivities() {
+            try {
+                const response = await fetch('/api/performance/recent-activities');
+                const activities = await response.json();
+                
+                const tbody = document.getElementById('recentActivities');
+                tbody.innerHTML = activities.map(activity => `
+                    <tr>
+                        <td>${activity.employee_name}</td>
+                        <td>${activity.activity}</td>
+                        <td><span class="status-badge status-${activity.status}">${activity.status}</span></td>
+                        <td>${new Date(activity.created_at).toLocaleDateString()}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="viewActivity(${activity.id})">View</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading recent activities:', error);
+            }
+        }
+
+        // Load goals data
+        async function loadGoalsData() {
+            try {
+                const response = await fetch('/api/performance/goals');
+                const goals = await response.json();
+                
+                const tbody = document.getElementById('goalsTable');
+                tbody.innerHTML = goals.map(goal => `
+                    <tr>
+                        <td>${goal.employee_name}</td>
+                        <td>${goal.title}</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${goal.progress}%"></div>
+                            </div>
+                            ${goal.progress}%
+                        </td>
+                        <td>${new Date(goal.due_date).toLocaleDateString()}</td>
+                        <td><span class="status-badge status-${goal.status}">${goal.status}</span></td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="editGoal(${goal.id})">Edit</button>
+                            <button class="btn btn-warning" onclick="updateProgress(${goal.id})">Update</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading goals data:', error);
+            }
+        }
+
+        // Load reviews data
+        async function loadReviewsData() {
+            try {
+                const response = await fetch('/api/performance/reviews');
+                const reviews = await response.json();
+                
+                const tbody = document.getElementById('reviewsTable');
+                tbody.innerHTML = reviews.map(review => `
+                    <tr>
+                        <td>${review.employee_name}</td>
+                        <td>${review.review_period}</td>
+                        <td>
+                            <div class="rating-stars">
+                                ${generateStars(review.overall_rating)}
+                            </div>
+                        </td>
+                        <td><span class="status-badge status-${review.status}">${review.status}</span></td>
+                        <td>${new Date(review.due_date).toLocaleDateString()}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="viewReview(${review.id})">View</button>
+                            <button class="btn btn-warning" onclick="editReview(${review.id})">Edit</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading reviews data:', error);
+            }
+        }
+
+        // Load training data
+        async function loadTrainingData() {
+            try {
+                const response = await fetch('/api/performance/training');
+                const training = await response.json();
+                
+                const tbody = document.getElementById('trainingTable');
+                tbody.innerHTML = training.map(item => `
+                    <tr>
+                        <td>${item.program_name}</td>
+                        <td>${item.employee_name}</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${item.progress}%"></div>
+                            </div>
+                            ${item.progress}%
+                        </td>
+                        <td>${new Date(item.due_date).toLocaleDateString()}</td>
+                        <td><span class="status-badge status-${item.status}">${item.status}</span></td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="viewTraining(${item.id})">View</button>
+                            <button class="btn btn-success" onclick="markComplete(${item.id})">Complete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading training data:', error);
+            }
+        }
+
+        // Modal functions
+        function openGoalModal() {
+            loadEmployees('goalEmployee');
+            document.getElementById('goalModal').style.display = 'block';
+        }
+
+        function openReviewModal() {
+            loadEmployees('reviewEmployee');
+            document.getElementById('reviewModal').style.display = 'block';
+        }
+
+        function openTrainingModal() {
+            loadEmployees('trainingEmployees');
+            document.getElementById('trainingModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Load employees for dropdowns
+        async function loadEmployees(selectId) {
+            try {
+                const response = await fetch('/api/employees');
+                const employees = await response.json();
+                
+                const select = document.getElementById(selectId);
+                select.innerHTML = '<option value="">Select Employee</option>' + 
+                    employees.map(emp => `<option value="${emp.id}">${emp.name}</option>`).join('');
+            } catch (error) {
+                console.error('Error loading employees:', error);
+            }
+        }
+
+        // Form submissions
+        document.getElementById('goalForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                employee_id: document.getElementById('goalEmployee').value,
+                title: document.getElementById('goalTitle').value,
+                description: document.getElementById('goalDescription').value,
+                category: document.getElementById('goalCategory').value,
+                due_date: document.getElementById('goalDueDate').value,
+                priority: document.getElementById('goalPriority').value
+            };
+
+            try {
+                const response = await fetch('/api/performance/goals', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    showAlert('Goal set successfully!', 'success');
+                    closeModal('goalModal');
+                    loadGoalsData();
+                    document.getElementById('goalForm').reset();
+                } else {
+                    showAlert('Error setting goal', 'error');
+                }
+            } catch (error) {
+                console.error('Error setting goal:', error);
+                showAlert('Error setting goal', 'error');
+            }
+        });
+
+        document.getElementById('reviewForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                employee_id: document.getElementById('reviewEmployee').value,
+                review_period: document.getElementById('reviewPeriod').value,
+                overall_rating: currentRating,
+                strengths: document.getElementById('reviewStrengths').value,
+                areas_for_improvement: document.getElementById('reviewAreas').value,
+                goals_next_period: document.getElementById('reviewGoals').value,
+                due_date: document.getElementById('reviewDueDate').value
+            };
+
+            try {
+                const response = await fetch('/api/performance/reviews', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    showAlert('Review created successfully!', 'success');
+                    closeModal('reviewModal');
+                    loadReviewsData();
+                    document.getElementById('reviewForm').reset();
+                    currentRating = 0;
+                    updateStars();
+                } else {
+                    showAlert('Error creating review', 'error');
+                }
+            } catch (error) {
+                console.error('Error creating review:', error);
+                showAlert('Error creating review', 'error');
+            }
+        });
+
+        document.getElementById('trainingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const selectedEmployees = Array.from(document.getElementById('trainingEmployees').selectedOptions)
+                .map(option => option.value);
+
+            const formData = {
+                program_name: document.getElementById('trainingProgram').value,
+                description: document.getElementById('trainingDescription').value,
+                employee_ids: selectedEmployees,
+                training_type: document.getElementById('trainingType').value,
+                duration_hours: document.getElementById('trainingDuration').value,
+                due_date: document.getElementById('trainingDueDate').value
+            };
+
+            try {
+                const response = await fetch('/api/performance/training', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    showAlert('Training assigned successfully!', 'success');
+                    closeModal('trainingModal');
+                    loadTrainingData();
+                    document.getElementById('trainingForm').reset();
+                } else {
+                    showAlert('Error assigning training', 'error');
+                }
+            } catch (error) {
+                console.error('Error assigning training:', error);
+                showAlert('Error assigning training', 'error');
+            }
+        });
+
+        // Rating stars functionality
+        document.getElementById('overallRating').addEventListener('click', (e) => {
+            if (e.target.classList.contains('star')) {
+                currentRating = parseInt(e.target.dataset.rating);
+                updateStars();
+            }
+        });
+
+        function updateStars() {
+            const stars = document.querySelectorAll('#overallRating .star');
+            stars.forEach((star, index) => {
+                if (index < currentRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<span class="star ${i <= rating ? 'active' : ''}">★</span>`;
+            }
+            return stars;
+        }
+
+        // Utility functions
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.textContent = message;
+            
+            document.body.insertBefore(alertDiv, document.body.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboardData();
+        });
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

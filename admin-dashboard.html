@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Platform - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50" x-data="adminApp()">
+    <!-- Login Modal -->
+    <div x-show="!isAuthenticated" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
+            <div class="text-center mb-6">
+                <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-900">Admin Login</h2>
+                <p class="text-gray-600">Access the HR Platform Admin Dashboard</p>
+            </div>
+            
+            <form @submit.prevent="login()">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Username or Email</label>
+                    <input type="text" x-model="loginForm.username" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" x-model="loginForm.password" 
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           required>
+                </div>
+                
+                <button type="submit" :disabled="loading"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50">
+                    <span x-show="!loading">Login</span>
+                    <span x-show="loading">Logging in...</span>
+                </button>
+            </form>
+            
+            <div x-show="error" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                <span x-text="error"></span>
+            </div>
+            
+            <div class="mt-6 text-center text-sm text-gray-600">
+                <p>Default credentials: <strong>admin</strong> / <strong>admin123</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div x-show="isAuthenticated" class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-users-cog text-2xl text-blue-600 mr-3"></i>
+                        <h1 class="text-2xl font-bold text-gray-900">HR Admin Dashboard</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-600">Welcome, <span x-text="currentAdmin?.username"></span></span>
+                        <button @click="logout()" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">
+                            <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex space-x-8">
+                    <button @click="activeTab = 'overview'" 
+                            :class="activeTab === 'overview' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                            class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-chart-line mr-2"></i>Overview
+                    </button>
+                    <button @click="activeTab = 'users'" 
+                            :class="activeTab === 'users' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                            class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-users mr-2"></i>User Management
+                    </button>
+                    <button @click="activeTab = 'onboarding'" 
+                            :class="activeTab === 'onboarding' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                            class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-user-plus mr-2"></i>Employee Onboarding
+                    </button>
+                    <button @click="activeTab = 'jobs'" 
+                            :class="activeTab === 'jobs' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                            class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-briefcase mr-2"></i>Job Management
+                    </button>
+                    <button @click="activeTab = 'candidates'" 
+                            :class="activeTab === 'candidates' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'"
+                            class="py-4 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-user-tie mr-2"></i>Candidates
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <!-- Overview Tab -->
+            <div x-show="activeTab === 'overview'">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-briefcase text-2xl text-blue-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Active Jobs</p>
+                                <p class="text-2xl font-semibold text-gray-900" x-text="stats.jobs"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-user-tie text-2xl text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Candidates</p>
+                                <p class="text-2xl font-semibold text-gray-900" x-text="stats.candidates"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-calendar-check text-2xl text-yellow-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Interviews</p>
+                                <p class="text-2xl font-semibold text-gray-900" x-text="stats.interviews"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-users text-2xl text-purple-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Employees</p>
+                                <p class="text-2xl font-semibold text-gray-900" x-text="stats.employees"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Management Tab -->
+            <div x-show="activeTab === 'users'">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-900">Admin Users</h3>
+                        <button @click="showCreateAdminModal = true" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                            <i class="fas fa-plus mr-2"></i>Add Admin
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <template x-for="admin in admins" :key="admin.id">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" x-text="admin.username"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="admin.email"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span :class="admin.role === 'super_admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'" 
+                                                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" x-text="admin.role"></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="new Date(admin.created_at).toLocaleDateString()"></td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee Onboarding Tab -->
+            <div x-show="activeTab === 'onboarding'">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-900">Employee Onboarding</h3>
+                        <button @click="showOnboardingModal = true" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                            <i class="fas fa-user-plus mr-2"></i>Onboard Employee
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employee ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <template x-for="employee in employees" :key="employee.id">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" x-text="employee.employee_id"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="employee.name"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="employee.department"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="employee.position"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="new Date(employee.start_date).toLocaleDateString()"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span :class="employee.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'" 
+                                                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" x-text="employee.status"></span>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs Tab -->
+            <div x-show="activeTab === 'jobs'">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-900">Job Postings</h3>
+                        <button @click="showJobModal = true" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                            <i class="fas fa-plus mr-2"></i>Post Job
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Posted</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <template x-for="job in jobs" :key="job.id">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" x-text="job.title"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="job.department"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="job.location"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="job.type"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="new Date(job.posted_date).toLocaleDateString()"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span :class="job.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'" 
+                                                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" x-text="job.status"></span>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidates Tab -->
+            <div x-show="activeTab === 'candidates'">
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Candidate Applications</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Experience</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applied</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <template x-for="candidate in candidates" :key="candidate.id">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" x-text="candidate.name"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="candidate.email"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="candidate.position"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="candidate.experience + ' years'"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" x-text="new Date(candidate.applied_date).toLocaleDateString()"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span :class="getStatusColor(candidate.status)" 
+                                                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" x-text="candidate.status"></span>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modals -->
+        <!-- Create Admin Modal -->
+        <div x-show="showCreateAdminModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Create New Admin</h3>
+                <form @submit.prevent="createAdmin()">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                        <input type="text" x-model="newAdmin.username" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" x-model="newAdmin.email" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <input type="password" x-model="newAdmin.password" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Role</label>
+                        <select x-model="newAdmin.role" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                            <option value="admin">Admin</option>
+                            <option value="super_admin">Super Admin</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" @click="showCreateAdminModal = false" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Create Admin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Employee Onboarding Modal -->
+        <div x-show="showOnboardingModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Onboard New Employee</h3>
+                <form @submit.prevent="onboardEmployee()">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Employee ID</label>
+                            <input type="text" x-model="newEmployee.employee_id" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" x-model="newEmployee.name" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" x-model="newEmployee.email" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                            <input type="text" x-model="newEmployee.department" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Position</label>
+                            <input type="text" x-model="newEmployee.position" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Salary</label>
+                            <input type="number" x-model="newEmployee.salary" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                            <input type="date" x-model="newEmployee.start_date" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" @click="showOnboardingModal = false" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Onboard Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Job Posting Modal -->
+        <div x-show="showJobModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Post New Job</h3>
+                <form @submit.prevent="postJob()">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Job Title</label>
+                        <input type="text" x-model="newJob.title" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                            <input type="text" x-model="newJob.department" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                            <input type="text" x-model="newJob.location" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Type</label>
+                            <select x-model="newJob.type" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+                                <option value="full-time">Full-time</option>
+                                <option value="part-time">Part-time</option>
+                                <option value="contract">Contract</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Salary</label>
+                            <input type="text" x-model="newJob.salary" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                        <textarea x-model="newJob.description" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Requirements</label>
+                        <textarea x-model="newJob.requirements" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" @click="showJobModal = false" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Post Job</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function adminApp() {
+            return {
+                isAuthenticated: false,
+                currentAdmin: null,
+                activeTab: 'overview',
+                loading: false,
+                error: '',
+                
+                // Login form
+                loginForm: {
+                    username: '',
+                    password: ''
+                },
+                
+                // Data
+                stats: {
+                    jobs: 0,
+                    candidates: 0,
+                    interviews: 0,
+                    employees: 0
+                },
+                admins: [],
+                employees: [],
+                jobs: [],
+                candidates: [],
+                
+                // Modals
+                showCreateAdminModal: false,
+                showOnboardingModal: false,
+                showJobModal: false,
+                
+                // Forms
+                newAdmin: {
+                    username: '',
+                    email: '',
+                    password: '',
+                    role: 'admin'
+                },
+                newEmployee: {
+                    employee_id: '',
+                    name: '',
+                    email: '',
+                    department: '',
+                    position: '',
+                    salary: '',
+                    start_date: ''
+                },
+                newJob: {
+                    title: '',
+                    department: '',
+                    location: '',
+                    type: 'full-time',
+                    description: '',
+                    requirements: '',
+                    salary: ''
+                },
+
+                async init() {
+                    // Check if already authenticated
+                    const token = localStorage.getItem('adminToken');
+                    if (token) {
+                        try {
+                            const response = await fetch('http://localhost:3001/api/admin/me', {
+                                headers: {
+                                    'Authorization': `Bearer ${token}`
+                                }
+                            });
+                            if (response.ok) {
+                                const data = await response.json();
+                                this.currentAdmin = data.admin;
+                                this.isAuthenticated = true;
+                                await this.loadData();
+                            }
+                        } catch (error) {
+                            console.error('Auth check failed:', error);
+                            localStorage.removeItem('adminToken');
+                        }
+                    }
+                },
+
+                async login() {
+                    this.loading = true;
+                    this.error = '';
+                    
+                    try {
+                        const response = await fetch('http://localhost:3001/api/auth/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(this.loginForm)
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (response.ok) {
+                            localStorage.setItem('adminToken', data.token);
+                            this.currentAdmin = data.admin;
+                            this.isAuthenticated = true;
+                            await this.loadData();
+                        } else {
+                            this.error = data.error || 'Login failed';
+                        }
+                    } catch (error) {
+                        this.error = 'Network error. Please try again.';
+                    } finally {
+                        this.loading = false;
+                    }
+                },
+
+                async logout() {
+                    try {
+                        await fetch('http://localhost:3001/api/auth/logout', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                            }
+                        });
+                    } catch (error) {
+                        console.error('Logout error:', error);
+                    } finally {
+                        localStorage.removeItem('adminToken');
+                        this.isAuthenticated = false;
+                        this.currentAdmin = null;
+                        this.loginForm = { username: '', password: '' };
+                        window.location.href = '/hr';
+                    }
+                },
+
+                async loadData() {
+                    const token = localStorage.getItem('adminToken');
+                    const headers = {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    };
+
+                    try {
+                        // Load all data
+                        const [jobsRes, candidatesRes, employeesRes, adminsRes, analyticsRes] = await Promise.all([
+                            fetch('http://localhost:3001/api/hr/jobs', { headers }),
+                            fetch('http://localhost:3001/api/hr/candidates', { headers }),
+                            fetch('http://localhost:3001/api/hr/employees', { headers }),
+                            fetch('http://localhost:3001/api/admin/all', { headers }),
+                            fetch('http://localhost:3001/api/hr/analytics', { headers })
+                        ]);
+
+                        if (jobsRes.ok) {
+                            const jobsData = await jobsRes.json();
+                            this.jobs = jobsData.success ? jobsData.data : [];
+                            this.stats.jobs = this.jobs.length;
+                        }
+
+                        if (candidatesRes.ok) {
+                            const candidatesData = await candidatesRes.json();
+                            this.candidates = candidatesData.success ? candidatesData.data : [];
+                            this.stats.candidates = this.candidates.length;
+                        }
+
+                        if (employeesRes.ok) {
+                            const employeesData = await employeesRes.json();
+                            this.employees = employeesData.success ? employeesData.data : [];
+                            this.stats.employees = this.employees.length;
+                        }
+
+                        if (adminsRes.ok) {
+                            const adminsData = await adminsRes.json();
+                            this.admins = adminsData.success ? adminsData.data : [];
+                        }
+
+                        if (analyticsRes.ok) {
+                            const analyticsData = await analyticsRes.json();
+                            if (analyticsData.success) {
+                                this.stats = {
+                                    jobs: analyticsData.data.totalJobs || 0,
+                                    candidates: analyticsData.data.totalCandidates || 0,
+                                    employees: analyticsData.data.totalEmployees || 0,
+                                    interviews: analyticsData.data.scheduledInterviews || 0
+                                };
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error loading data:', error);
+                        this.error = 'Failed to load dashboard data';
+                    }
+                },
+
+                async createAdmin() {
+                    const token = localStorage.getItem('adminToken');
+                    
+                    try {
+                        const response = await fetch('http://localhost:3001/api/admin/create', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify(this.newAdmin)
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (response.ok && data.success) {
+                            this.showCreateAdminModal = false;
+                            this.newAdmin = { username: '', email: '', password: '', role: 'admin' };
+                            await this.loadData();
+                        } else {
+                            this.error = data.error || 'Failed to create admin';
+                        }
+                    } catch (error) {
+                        console.error('Error creating admin:', error);
+                        this.error = 'Network error while creating admin';
+                    }
+                },
+
+                async onboardEmployee() {
+                    const token = localStorage.getItem('adminToken');
+                    
+                    try {
+                        const response = await fetch('http://localhost:3001/api/hr/employees', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                ...this.newEmployee,
+                                status: 'active'
+                            })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (response.ok && data.success) {
+                            this.showOnboardingModal = false;
+                            this.newEmployee = {
+                                employee_id: '',
+                                name: '',
+                                email: '',
+                                department: '',
+                                position: '',
+                                salary: '',
+                                start_date: ''
+                            };
+                            await this.loadData();
+                        } else {
+                            this.error = data.error || 'Failed to onboard employee';
+                        }
+                    } catch (error) {
+                        console.error('Error onboarding employee:', error);
+                        this.error = 'Network error while onboarding employee';
+                    }
+                },
+
+                async postJob() {
+                    const token = localStorage.getItem('adminToken');
+                    
+                    try {
+                        const response = await fetch('http://localhost:3001/api/hr/jobs', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                ...this.newJob,
+                                status: 'active',
+                                posted_date: new Date().toISOString()
+                            })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (response.ok && data.success) {
+                            this.showJobModal = false;
+                            this.newJob = {
+                                title: '',
+                                department: '',
+                                location: '',
+                                type: 'full-time',
+                                description: '',
+                                requirements: '',
+                                salary: ''
+                            };
+                            await this.loadData();
+                        } else {
+                            this.error = data.error || 'Failed to post job';
+                        }
+                    } catch (error) {
+                        console.error('Error posting job:', error);
+                        this.error = 'Network error while posting job';
+                    }
+                },
+
+                getStatusColor(status) {
+                    const colors = {
+                        'new': 'bg-blue-100 text-blue-800',
+                        'reviewed': 'bg-yellow-100 text-yellow-800',
+                        'interviewed': 'bg-purple-100 text-purple-800',
+                        'hired': 'bg-green-100 text-green-800',
+                        'rejected': 'bg-red-100 text-red-800'
+                    };
+                    return colors[status] || 'bg-gray-100 text-gray-800';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

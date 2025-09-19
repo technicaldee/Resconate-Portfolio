@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Self-Service Portal - Resconate HR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="gradient-bg shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="resconate-logo.png" alt="Resconate" class="h-8 w-auto">
+                    <span class="ml-3 text-white text-xl font-bold">Employee Portal</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-white" id="employeeName">Welcome, Employee</span>
+                    <button onclick="logout()" class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-lg hover:bg-opacity-30 transition-colors">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Dashboard Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Profile Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover cursor-pointer" onclick="showSection('profile')">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-user text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">My Profile</h3>
+                        <p class="text-gray-600">View & update details</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leave Requests Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover cursor-pointer" onclick="showSection('leave')">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600">
+                        <i class="fas fa-calendar-alt text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Leave Requests</h3>
+                        <p class="text-gray-600">Apply & track leave</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payroll Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover cursor-pointer" onclick="showSection('payroll')">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                        <i class="fas fa-money-bill-wave text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Payroll</h3>
+                        <p class="text-gray-600">View pay slips</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Card -->
+            <div class="bg-white rounded-lg shadow-md p-6 card-hover cursor-pointer" onclick="showSection('training')">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Training</h3>
+                        <p class="text-gray-600">My courses & progress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="bg-white rounded-lg shadow-md">
+            <!-- Profile Section -->
+            <div id="profile-section" class="section-content p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">My Profile</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                        <input type="text" id="employeeFullName" class="w-full px-3 py-2 border border-gray-300 rounded-md" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Employee ID</label>
+                        <input type="text" id="employeeId" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="employeeEmail" class="w-full px-3 py-2 border border-gray-300 rounded-md" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                        <input type="tel" id="employeePhone" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                        <input type="text" id="employeeDepartment" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Position</label>
+                        <input type="text" id="employeePosition" class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50" readonly>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <button onclick="updateProfile()" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                        Update Profile
+                    </button>
+                </div>
+            </div>
+
+            <!-- Leave Section -->
+            <div id="leave-section" class="section-content p-6 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Leave Management</h2>
+                
+                <!-- Leave Request Form -->
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <h3 class="text-lg font-semibold mb-4">Request Leave</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Leave Type</label>
+                            <select id="leaveType" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <option value="annual">Annual Leave</option>
+                                <option value="sick">Sick Leave</option>
+                                <option value="maternity">Maternity Leave</option>
+                                <option value="emergency">Emergency Leave</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                            <input type="date" id="leaveStartDate" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">End Date</label>
+                            <input type="date" id="leaveEndDate" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Reason</label>
+                        <textarea id="leaveReason" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <button onclick="submitLeaveRequest()" class="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors">
+                            Submit Request
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Leave History -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Leave History</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dates</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Days</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaveHistory" class="bg-white divide-y divide-gray-200">
+                                <!-- Leave history will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payroll Section -->
+            <div id="payroll-section" class="section-content p-6 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Payroll Information</h2>
+                
+                <!-- Current Salary Info -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Current Salary Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <p class="text-sm text-gray-600">Basic Salary</p>
+                            <p class="text-xl font-bold text-gray-900" id="basicSalary">₦0</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Allowances</p>
+                            <p class="text-xl font-bold text-gray-900" id="allowances">₦0</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Gross Salary</p>
+                            <p class="text-xl font-bold text-green-600" id="grossSalary">₦0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pay Slips -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Pay Slips</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="paySlips">
+                        <!-- Pay slips will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Section -->
+            <div id="training-section" class="section-content p-6 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Training & Development</h2>
+                
+                <!-- Available Courses -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold mb-4">Available Training Programs</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="availableTraining">
+                        <!-- Training programs will be populated here -->
+                    </div>
+                </div>
+
+                <!-- My Training -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">My Training Progress</h3>
+                    <div class="space-y-4" id="myTraining">
+                        <!-- Employee training progress will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentEmployee = null;
+
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+        });
+
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/employee/me', {
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    currentEmployee = await response.json();
+                    populateEmployeeData();
+                } else {
+                    window.location.href = '/employee-login.html';
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = '/employee-login.html';
+            }
+        }
+
+        function populateEmployeeData() {
+            if (!currentEmployee) return;
+
+            document.getElementById('employeeName').textContent = `Welcome, ${currentEmployee.name}`;
+            document.getElementById('employeeFullName').value = currentEmployee.name || '';
+            document.getElementById('employeeId').value = currentEmployee.employee_id || '';
+            document.getElementById('employeeEmail').value = currentEmployee.email || '';
+            document.getElementById('employeePhone').value = currentEmployee.phone || '';
+            document.getElementById('employeeDepartment').value = currentEmployee.department || '';
+            document.getElementById('employeePosition').value = currentEmployee.position || '';
+            
+            // Populate salary information
+            if (currentEmployee.salary) {
+                document.getElementById('basicSalary').textContent = `₦${currentEmployee.salary.toLocaleString()}`;
+                document.getElementById('allowances').textContent = `₦${(currentEmployee.salary * 0.2).toLocaleString()}`;
+                document.getElementById('grossSalary').textContent = `₦${(currentEmployee.salary * 1.2).toLocaleString()}`;
+            }
+
+            loadLeaveHistory();
+            loadPaySlips();
+            loadTrainingPrograms();
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => section.classList.add('hidden'));
+
+            // Show selected section
+            document.getElementById(`${sectionName}-section`).classList.remove('hidden');
+        }
+
+        async function updateProfile() {
+            const phone = document.getElementById('employeePhone').value;
+
+            try {
+                const response = await fetch('/api/employee/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({ phone })
+                });
+
+                if (response.ok) {
+                    alert('Profile updated successfully!');
+                } else {
+                    alert('Failed to update profile');
+                }
+            } catch (error) {
+                console.error('Profile update failed:', error);
+                alert('Failed to update profile');
+            }
+        }
+
+        async function submitLeaveRequest() {
+            const leaveType = document.getElementById('leaveType').value;
+            const startDate = document.getElementById('leaveStartDate').value;
+            const endDate = document.getElementById('leaveEndDate').value;
+            const reason = document.getElementById('leaveReason').value;
+
+            if (!startDate || !endDate || !reason) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const daysRequested = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+
+            try {
+                const response = await fetch('/api/employee/leave-request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        leave_type: leaveType,
+                        start_date: startDate,
+                        end_date: endDate,
+                        days_requested: daysRequested,
+                        reason
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Leave request submitted successfully!');
+                    // Clear form
+                    document.getElementById('leaveStartDate').value = '';
+                    document.getElementById('leaveEndDate').value = '';
+                    document.getElementById('leaveReason').value = '';
+                    loadLeaveHistory();
+                } else {
+                    alert('Failed to submit leave request');
+                }
+            } catch (error) {
+                console.error('Leave request failed:', error);
+                alert('Failed to submit leave request');
+            }
+        }
+
+        async function loadLeaveHistory() {
+            try {
+                const response = await fetch('/api/employee/leave-history', {
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const leaveHistory = await response.json();
+                    const tbody = document.getElementById('leaveHistory');
+                    tbody.innerHTML = '';
+
+                    leaveHistory.forEach(leave => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${leave.leave_type}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${leave.start_date} to ${leave.end_date}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${leave.days_requested}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                    ${leave.status === 'approved' ? 'bg-green-100 text-green-800' : 
+                                      leave.status === 'rejected' ? 'bg-red-100 text-red-800' : 
+                                      'bg-yellow-100 text-yellow-800'}">
+                                    ${leave.status}
+                                </span>
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+            } catch (error) {
+                console.error('Failed to load leave history:', error);
+            }
+        }
+
+        async function loadPaySlips() {
+            // Placeholder for pay slips - would be implemented with actual payroll data
+            const paySlipsContainer = document.getElementById('paySlips');
+            paySlipsContainer.innerHTML = `
+                <div class="bg-white border border-gray-200 rounded-lg p-4">
+                    <h4 class="font-semibold text-gray-900">December 2024</h4>
+                    <p class="text-sm text-gray-600 mt-2">Net Pay: ₦${currentEmployee?.salary ? (currentEmployee.salary * 0.85).toLocaleString() : '0'}</p>
+                    <button class="mt-3 text-blue-600 hover:text-blue-800 text-sm">Download PDF</button>
+                </div>
+            `;
+        }
+
+        async function loadTrainingPrograms() {
+            // Placeholder for training programs
+            const availableTraining = document.getElementById('availableTraining');
+            const myTraining = document.getElementById('myTraining');
+            
+            availableTraining.innerHTML = `
+                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 class="font-semibold text-gray-900 mb-2">Leadership Development</h4>
+                    <p class="text-sm text-gray-600 mb-4">40 hours • Management</p>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700">Enroll</button>
+                </div>
+            `;
+
+            myTraining.innerHTML = `
+                <div class="bg-white border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-semibold text-gray-900">Digital Marketing Basics</h4>
+                        <span class="text-sm text-green-600">75% Complete</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-600 h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function logout() {
+            try {
+                const response = await fetch('/api/employee/logout', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    window.location.href = '/employee-login.html';
+                }
+            } catch (error) {
+                console.error('Logout failed:', error);
+                window.location.href = '/employee-login.html';
+            }
+        }
+
+        // Show profile section by default
+        showSection('profile');
+    </script>
+</body>
+</html>

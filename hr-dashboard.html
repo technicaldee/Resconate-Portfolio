@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR as a Service Platform - Resconate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E40AF',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans" x-data="hrDashboard()">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img src="resconate-logo.png" alt="Resconate" class="h-8 w-auto">
+                    <h1 class="ml-3 text-xl font-bold text-gray-900">HR as a Service Platform</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm text-gray-600">
+                        <span>Welcome, HR Admin</span>
+                    </div>
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fas fa-user-circle mr-2"></i>Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Dashboard Overview -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">Dashboard Overview</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                            <i class="fas fa-users text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Total Employees</p>
+                            <p class="text-2xl font-bold text-gray-900" x-text="analytics.totalEmployees">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-green-100 text-green-600">
+                            <i class="fas fa-briefcase text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Active Jobs</p>
+                            <p class="text-2xl font-bold text-gray-900" x-text="analytics.activeJobs">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                            <i class="fas fa-calendar-alt text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Pending Interviews</p>
+                            <p class="text-2xl font-bold text-gray-900" x-text="analytics.pendingInterviews">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                            <i class="fas fa-chart-line text-xl"></i>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-gray-600">Compliance Score</p>
+                            <p class="text-2xl font-bold text-gray-900" x-text="analytics.complianceScore + '%'">0%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8 overflow-x-auto">
+                    <button @click="activeTab = 'employees'" 
+                            :class="activeTab === 'employees' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                            class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-users mr-2"></i>Employees
+                    </button>
+                    <button @click="activeTab = 'recruitment'" 
+                            :class="activeTab === 'recruitment' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                            class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-user-plus mr-2"></i>Recruitment
+                    </button>
+                    <button @click="activeTab = 'payroll'" 
+                            :class="activeTab === 'payroll' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                            class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-money-bill-wave mr-2"></i>Payroll
+                    </button>
+                    <button @click="activeTab = 'performance'" 
+                            :class="activeTab === 'performance' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                            class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-chart-bar mr-2"></i>Performance
+                    </button>
+                    <button @click="activeTab = 'banking'" 
+                            :class="activeTab === 'banking' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                            class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-university mr-2"></i>Banking
+                    </button>
+                    <button @click="activeTab = 'compliance'" 
+                            :class="activeTab === 'compliance' ? 'border-primary text-primary' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                            class="whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm">
+                        <i class="fas fa-shield-alt mr-2"></i>Compliance
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="bg-white rounded-lg shadow-md border border-gray-200">
+            <!-- Employees Tab -->
+            <div x-show="activeTab === 'employees'" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Employee Management</h3>
+                    <div class="flex space-x-3">
+                        <button onclick="window.open('/employee-portal.html', '_blank')" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Employee Portal
+                        </button>
+                        <button @click="showEmployeeForm = true" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                            <i class="fas fa-plus mr-2"></i>Add Employee
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Employee Directory</h4>
+                        <div class="space-y-4">
+                            <template x-for="employee in employees" :key="employee.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h5 class="font-medium text-gray-900" x-text="employee.name"></h5>
+                                            <p class="text-sm text-gray-600" x-text="employee.position + ' • ' + employee.department"></p>
+                                            <p class="text-sm text-gray-500 mt-1" x-text="'Employee ID: ' + employee.employeeId"></p>
+                                        </div>
+                                        <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full" x-text="employee.status"></span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Recent Activities</h4>
+                        <div class="space-y-4">
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-blue-100 rounded-full">
+                                        <i class="fas fa-user-plus text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">New Employee Onboarded</p>
+                                        <p class="text-xs text-gray-500">John Doe joined as Software Engineer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-yellow-100 rounded-full">
+                                        <i class="fas fa-calendar-alt text-yellow-600"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Leave Request Pending</p>
+                                        <p class="text-xs text-gray-500">Jane Smith requested 3 days leave</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recruitment Tab -->
+            <div x-show="activeTab === 'recruitment'" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Recruitment & Talent Acquisition</h3>
+                    <button @click="showJobForm = true" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Post New Job
+                    </button>
+                </div>
+
+                <!-- Job Listings -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Active Job Postings</h4>
+                        <div class="space-y-4">
+                            <template x-for="job in jobs" :key="job.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h5 class="font-medium text-gray-900" x-text="job.title"></h5>
+                                            <p class="text-sm text-gray-600" x-text="job.department + ' • ' + job.location"></p>
+                                            <p class="text-sm text-gray-500 mt-1" x-text="'Posted: ' + new Date(job.postedDate).toLocaleDateString()"></p>
+                                        </div>
+                                        <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Active</span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Recent Candidates</h4>
+                        <div class="space-y-4">
+                            <template x-for="candidate in candidates" :key="candidate.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h5 class="font-medium text-gray-900" x-text="candidate.name"></h5>
+                                            <p class="text-sm text-gray-600" x-text="candidate.position"></p>
+                                            <p class="text-sm text-gray-500 mt-1" x-text="candidate.experience + ' years experience'"></p>
+                                        </div>
+                                        <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full" x-text="candidate.status"></span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Form Modal -->
+                <div x-show="showJobForm" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50" x-cloak>
+                    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                        <div class="mt-3">
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Post New Job</h3>
+                            <form @submit.prevent="createJob()">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Job Title</label>
+                                        <input type="text" x-model="newJob.title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Department</label>
+                                        <input type="text" x-model="newJob.department" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Location</label>
+                                        <input type="text" x-model="newJob.location" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Job Type</label>
+                                        <select x-model="newJob.type" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary" required>
+                                            <option value="full-time">Full-time</option>
+                                            <option value="part-time">Part-time</option>
+                                            <option value="contract">Contract</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Salary Range</label>
+                                        <input type="text" x-model="newJob.salary" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary" placeholder="e.g., ₦500,000 - ₦800,000">
+                                    </div>
+                                </div>
+                                <div class="flex justify-end space-x-3 mt-6">
+                                    <button type="button" @click="showJobForm = false" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300">Cancel</button>
+                                    <button type="submit" class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-secondary">Post Job</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payroll Tab -->
+            <div x-show="activeTab === 'payroll'" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Payroll & Benefits Management</h3>
+                    <button @click="processPayroll()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fas fa-play mr-2"></i>Process Payroll
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Employee List</h4>
+                        <div class="space-y-4">
+                            <template x-for="employee in employees" :key="employee.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h5 class="font-medium text-gray-900" x-text="employee.name"></h5>
+                                            <p class="text-sm text-gray-600" x-text="employee.position + ' • ' + employee.department"></p>
+                                            <p class="text-sm text-gray-500 mt-1" x-text="'Salary: ₦' + employee.salary?.toLocaleString()"></p>
+                                        </div>
+                                        <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full" x-text="employee.status"></span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Benefits Package</h4>
+                        <div class="space-y-4">
+                            <template x-for="benefit in benefits" :key="benefit.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <h5 class="font-medium text-gray-900" x-text="benefit.name"></h5>
+                                            <p class="text-sm text-gray-600 capitalize" x-text="benefit.type"></p>
+                                        </div>
+                                        <p class="text-sm font-medium text-gray-900" x-text="'₦' + benefit.cost.toLocaleString()"></p>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Tab -->
+            <div x-show="activeTab === 'performance'" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Performance Management</h3>
+                    <button @click="showGoalForm = true" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Set New Goal
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Active Goals</h4>
+                        <div class="space-y-4">
+                            <template x-for="goal in goals" :key="goal.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h5 class="font-medium text-gray-900" x-text="goal.title"></h5>
+                                        <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full" x-text="goal.status"></span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-2" x-text="goal.description"></p>
+                                    <div class="flex justify-between items-center">
+                                        <p class="text-sm text-gray-500" x-text="'Target: ' + new Date(goal.targetDate).toLocaleDateString()"></p>
+                                        <div class="flex items-center">
+                                            <div class="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                                                <div class="bg-primary h-2 rounded-full" :style="'width: ' + goal.progress + '%'"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-600" x-text="goal.progress + '%'"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Training Programs</h4>
+                        <div class="space-y-4">
+                            <template x-for="training in trainings" :key="training.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <h5 class="font-medium text-gray-900" x-text="training.title"></h5>
+                                    <p class="text-sm text-gray-600" x-text="'Duration: ' + training.duration"></p>
+                                    <p class="text-sm text-gray-500 capitalize" x-text="'Type: ' + training.type"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banking Tab -->
+            <div x-show="activeTab === 'banking'" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Banking & Financial Integration</h3>
+                    <div class="flex space-x-3">
+                        <button onclick="window.open('/banking-integration.html', '_blank')" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            <i class="fas fa-external-link-alt mr-2"></i>Full Banking Portal
+                        </button>
+                        <button @click="connectBank()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                            <i class="fas fa-link mr-2"></i>Connect Bank
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Connected Banks</h4>
+                        <div class="space-y-4">
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium text-gray-900">First Bank of Nigeria</h5>
+                                        <p class="text-sm text-gray-600">Account: ****1234</p>
+                                        <p class="text-sm text-gray-500 mt-1">Balance: ₦2,450,000</p>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Active</span>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h5 class="font-medium text-gray-900">Access Bank</h5>
+                                        <p class="text-sm text-gray-600">Account: ****5678</p>
+                                        <p class="text-sm text-gray-500 mt-1">Balance: ₦1,850,000</p>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Recent Transactions</h4>
+                        <div class="space-y-4">
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-green-100 rounded-full">
+                                        <i class="fas fa-arrow-down text-green-600"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Salary Payment</p>
+                                        <p class="text-xs text-gray-500">₦450,000 • Today</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-blue-100 rounded-full">
+                                        <i class="fas fa-university text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Tax Remittance</p>
+                                        <p class="text-xs text-gray-500">₦125,000 • Yesterday</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <div class="p-2 bg-purple-100 rounded-full">
+                                        <i class="fas fa-piggy-bank text-purple-600"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">Pension Contribution</p>
+                                        <p class="text-xs text-gray-500">₦85,000 • 2 days ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Tab -->
+            <div x-show="activeTab === 'compliance'" class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900">Compliance & Documentation</h3>
+                    <button @click="showPolicyForm = true" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
+                        <i class="fas fa-plus mr-2"></i>Add Policy
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Compliance Status</h4>
+                        <div class="space-y-4">
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="font-medium text-gray-900">Labor Laws</h5>
+                                    <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Compliant</span>
+                                </div>
+                                <p class="text-sm text-gray-600">All employment practices align with Nigerian labor laws</p>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="font-medium text-gray-900">Tax Regulations</h5>
+                                    <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Compliant</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Tax filings and remittances are up to date</p>
+                            </div>
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h5 class="font-medium text-gray-900">Safety Standards</h5>
+                                    <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Compliant</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Workplace safety measures meet regulatory requirements</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-4">Company Policies</h4>
+                        <div class="space-y-4">
+                            <template x-for="policy in policies" :key="policy.id">
+                                <div class="border border-gray-200 rounded-lg p-4">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <h5 class="font-medium text-gray-900" x-text="policy.title"></h5>
+                                            <p class="text-sm text-gray-600 capitalize" x-text="policy.category"></p>
+                                            <p class="text-sm text-gray-500 mt-1" x-text="'Effective: ' + new Date(policy.effectiveDate).toLocaleDateString()"></p>
+                                        </div>
+                                        <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full" x-text="policy.status"></span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hrDashboard() {
+            return {
+                activeTab: 'employees',
+                showJobForm: false,
+                showEmployeeForm: false,
+                showPolicyForm: false,
+                showGoalForm: false,
+                showPolicyForm: false,
+                analytics: {
+                    totalEmployees: 0,
+                    activeJobs: 0,
+                    pendingInterviews: 0,
+                    complianceScore: 95,
+                    employeeEngagement: 87
+                },
+                jobs: [],
+                candidates: [],
+                employees: [],
+                benefits: [],
+                goals: [],
+                trainings: [],
+                policies: [],
+                newJob: {
+                    title: '',
+                    department: '',
+                    location: '',
+                    type: 'full-time',
+                    salary: ''
+                },
+
+                async init() {
+                    await this.loadAnalytics();
+                    await this.loadJobs();
+                    await this.loadCandidates();
+                    await this.loadEmployees();
+                    await this.loadBenefits();
+                    await this.loadGoals();
+                    await this.loadTrainings();
+                    await this.loadPolicies();
+                },
+
+                async loadAnalytics() {
+                    try {
+                        const response = await fetch('/api/hr/analytics');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.analytics = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading analytics:', error);
+                    }
+                },
+
+                async loadJobs() {
+                    try {
+                        const response = await fetch('/api/hr/jobs');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.jobs = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading jobs:', error);
+                    }
+                },
+
+                async loadCandidates() {
+                    try {
+                        const response = await fetch('/api/hr/candidates');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.candidates = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading candidates:', error);
+                    }
+                },
+
+                async loadEmployees() {
+                    try {
+                        const response = await fetch('/api/hr/employees');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.employees = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading employees:', error);
+                    }
+                },
+
+                async loadBenefits() {
+                    try {
+                        const response = await fetch('/api/hr/benefits');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.benefits = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading benefits:', error);
+                    }
+                },
+
+                async loadGoals() {
+                    try {
+                        const response = await fetch('/api/hr/goals');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.goals = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading goals:', error);
+                    }
+                },
+
+                async loadTrainings() {
+                    try {
+                        const response = await fetch('/api/hr/training');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.trainings = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading trainings:', error);
+                    }
+                },
+
+                async loadPolicies() {
+                    try {
+                        const response = await fetch('/api/hr/policies');
+                        const data = await response.json();
+                        if (data.success) {
+                            this.policies = data.data;
+                        }
+                    } catch (error) {
+                        console.error('Error loading policies:', error);
+                    }
+                },
+
+                async createJob() {
+                    try {
+                        const response = await fetch('/api/hr/jobs', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(this.newJob)
+                        });
+                        const data = await response.json();
+                        if (data.success) {
+                            this.jobs.push(data.data);
+                            this.newJob = { title: '', department: '', location: '', type: 'full-time', salary: '' };
+                            this.showJobForm = false;
+                            await this.loadAnalytics();
+                        }
+                    } catch (error) {
+                        console.error('Error creating job:', error);
+                    }
+                },
+
+                async processPayroll() {
+                    try {
+                        const payrollData = {
+                            period: new Date().toISOString().slice(0, 7),
+                            employees: this.employees.map(emp => emp.id),
+                            totalAmount: this.employees.reduce((sum, emp) => sum + (emp.salary || 0), 0),
+                            taxes: 0,
+                            deductions: 0
+                        };
+
+                        const response = await fetch('/api/hr/payroll/process', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payrollData)
+                        });
+                        const data = await response.json();
+                        if (data.success) {
+                            alert('Payroll processed successfully!');
+                            await this.loadAnalytics();
+                        }
+                    } catch (error) {
+                        console.error('Error processing payroll:', error);
+                    }
+                },
+
+                async connectBank() {
+                    try {
+                        // Simulate bank connection process
+                        alert('Bank connection initiated. Please follow the authentication process.');
+                        // In a real implementation, this would redirect to bank's OAuth flow
+                        window.open('/banking-integration.html', '_blank');
+                    } catch (error) {
+                        console.error('Error connecting bank:', error);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

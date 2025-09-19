@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruitment System - Resconate HR Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            padding: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-closed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-draft {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-applied {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-interviewed {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .status-hired {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .candidate-card {
+            border: 1px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .candidate-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .candidate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .candidate-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .candidate-info {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .skill-tag {
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .interview-slot {
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .interview-slot:hover {
+            background: #e9ecef;
+        }
+
+        .interview-slot.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px 10px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Recruitment System</h1>
+        <p>Manage job postings, candidates, and interviews</p>
+    </div>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('dashboard')">Dashboard</div>
+            <div class="tab" onclick="switchTab('jobs')">Job Postings</div>
+            <div class="tab" onclick="switchTab('candidates')">Candidates</div>
+            <div class="tab" onclick="switchTab('interviews')">Interviews</div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="dashboard-grid">
+                <div class="card stat-card">
+                    <div class="stat-number" id="activeJobs">0</div>
+                    <div class="stat-label">Active Job Postings</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-number" id="totalCandidates">0</div>
+                    <div class="stat-label">Total Candidates</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-number" id="scheduledInterviews">0</div>
+                    <div class="stat-label">Scheduled Interviews</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-number" id="hiredCandidates">0</div>
+                    <div class="stat-label">Hired This Month</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Quick Actions</h3>
+                <button class="btn" onclick="openJobModal()">Post New Job</button>
+                <button class="btn btn-secondary" onclick="switchTab('candidates')">Review Candidates</button>
+                <button class="btn btn-success" onclick="switchTab('interviews')">Schedule Interviews</button>
+                <button class="btn btn-warning" onclick="generateRecruitmentReport()">Generate Report</button>
+            </div>
+        </div>
+
+        <!-- Jobs Tab -->
+        <div id="jobs" class="tab-content">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>Job Postings</h3>
+                    <button class="btn" onclick="openJobModal()">Post New Job</button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="jobsTable">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Department</th>
+                                <th>Location</th>
+                                <th>Applications</th>
+                                <th>Status</th>
+                                <th>Posted Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="jobsTableBody">
+                            <!-- Jobs data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidates Tab -->
+        <div id="candidates" class="tab-content">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>Candidates</h3>
+                    <div>
+                        <select id="candidateFilter" onchange="filterCandidates()">
+                            <option value="all">All Candidates</option>
+                            <option value="applied">Applied</option>
+                            <option value="interviewed">Interviewed</option>
+                            <option value="hired">Hired</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="candidatesList">
+                    <!-- Candidates will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Interviews Tab -->
+        <div id="interviews" class="tab-content">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3>Interview Schedule</h3>
+                    <button class="btn" onclick="openInterviewModal()">Schedule Interview</button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="interviewsTable">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Position</th>
+                                <th>Date & Time</th>
+                                <th>Interviewer</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="interviewsTableBody">
+                            <!-- Interviews data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Posting Modal -->
+    <div id="jobModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('jobModal')">&times;</span>
+            <h2>Post New Job</h2>
+            
+            <form id="jobForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title *</label>
+                        <input type="text" id="jobTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobDepartment">Department *</label>
+                        <select id="jobDepartment" name="department" required>
+                            <option value="">Select Department</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Sales">Sales</option>
+                            <option value="HR">Human Resources</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Operations">Operations</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobLocation">Location *</label>
+                        <input type="text" id="jobLocation" name="location" placeholder="e.g., Lagos, Nigeria" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobType">Employment Type *</label>
+                        <select id="jobType" name="type" required>
+                            <option value="">Select Type</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="salaryMin">Minimum Salary (₦)</label>
+                        <input type="number" id="salaryMin" name="salary_min" placeholder="e.g., 150000">
+                    </div>
+                    <div class="form-group">
+                        <label for="salaryMax">Maximum Salary (₦)</label>
+                        <input type="number" id="salaryMax" name="salary_max" placeholder="e.g., 300000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobDescription">Job Description *</label>
+                    <textarea id="jobDescription" name="description" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobRequirements">Requirements *</label>
+                    <textarea id="jobRequirements" name="requirements" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="jobSkills">Required Skills (comma-separated)</label>
+                    <input type="text" id="jobSkills" name="skills" placeholder="e.g., JavaScript, React, Node.js">
+                </div>
+
+                <button type="submit" class="btn">Post Job</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('jobModal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Interview Scheduling Modal -->
+    <div id="interviewModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('interviewModal')">&times;</span>
+            <h2>Schedule Interview</h2>
+            
+            <form id="interviewForm">
+                <div class="form-group">
+                    <label for="candidateSelect">Select Candidate *</label>
+                    <select id="candidateSelect" name="candidate_id" required>
+                        <option value="">Choose a candidate</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="interviewDate">Interview Date *</label>
+                        <input type="date" id="interviewDate" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interviewTime">Interview Time *</label>
+                        <input type="time" id="interviewTime" name="time" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="interviewer">Interviewer *</label>
+                        <input type="text" id="interviewer" name="interviewer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interviewType">Interview Type *</label>
+                        <select id="interviewType" name="type" required>
+                            <option value="">Select Type</option>
+                            <option value="Phone">Phone Interview</option>
+                            <option value="Video">Video Interview</option>
+                            <option value="In-person">In-person Interview</option>
+                            <option value="Technical">Technical Interview</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="interviewNotes">Notes</label>
+                    <textarea id="interviewNotes" name="notes" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Schedule Interview</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('interviewModal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardStats();
+            loadJobs();
+            loadCandidates();
+            loadInterviews();
+            populateCandidateSelect();
+        });
+
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        async function loadDashboardStats() {
+            try {
+                const response = await fetch('/api/recruitment/stats');
+                const stats = await response.json();
+                
+                document.getElementById('activeJobs').textContent = stats.activeJobs || 0;
+                document.getElementById('totalCandidates').textContent = stats.totalCandidates || 0;
+                document.getElementById('scheduledInterviews').textContent = stats.scheduledInterviews || 0;
+                document.getElementById('hiredCandidates').textContent = stats.hiredCandidates || 0;
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+            }
+        }
+
+        async function loadJobs() {
+            try {
+                const response = await fetch('/api/hr/jobs');
+                const jobs = await response.json();
+                
+                const tbody = document.getElementById('jobsTableBody');
+                tbody.innerHTML = '';
+                
+                jobs.forEach(job => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${job.title}</td>
+                        <td>${job.department}</td>
+                        <td>${job.location}</td>
+                        <td>${job.application_count || 0}</td>
+                        <td><span class="status-badge status-${job.status}">${job.status}</span></td>
+                        <td>${formatDate(job.created_at)}</td>
+                        <td>
+                            <button class="btn" onclick="viewJob(${job.id})">View</button>
+                            <button class="btn btn-secondary" onclick="editJob(${job.id})">Edit</button>
+                            ${job.status === 'active' ? `<button class="btn btn-danger" onclick="closeJob(${job.id})">Close</button>` : ''}
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+            }
+        }
+
+        async function loadCandidates() {
+            try {
+                const response = await fetch('/api/hr/candidates');
+                const candidates = await response.json();
+                
+                const container = document.getElementById('candidatesList');
+                container.innerHTML = '';
+                
+                candidates.forEach(candidate => {
+                    const candidateCard = document.createElement('div');
+                    candidateCard.className = 'candidate-card';
+                    candidateCard.innerHTML = `
+                        <div class="candidate-header">
+                            <div class="candidate-name">${candidate.name}</div>
+                            <span class="status-badge status-${candidate.status}">${candidate.status}</span>
+                        </div>
+                        <div class="candidate-info">
+                            <strong>Position:</strong> ${candidate.position} | 
+                            <strong>Email:</strong> ${candidate.email} | 
+                            <strong>Phone:</strong> ${candidate.phone}
+                        </div>
+                        <div class="candidate-info">
+                            <strong>Experience:</strong> ${candidate.experience} years | 
+                            <strong>Applied:</strong> ${formatDate(candidate.created_at)}
+                        </div>
+                        ${candidate.skills ? `
+                            <div class="skills-tags">
+                                ${candidate.skills.split(',').map(skill => `<span class="skill-tag">${skill.trim()}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                        <div>
+                            <button class="btn" onclick="viewCandidate(${candidate.id})">View Details</button>
+                            <button class="btn btn-success" onclick="scheduleInterview(${candidate.id})">Schedule Interview</button>
+                            <button class="btn btn-secondary" onclick="updateCandidateStatus(${candidate.id}, 'interviewed')">Mark Interviewed</button>
+                            <button class="btn btn-success" onclick="updateCandidateStatus(${candidate.id}, 'hired')">Hire</button>
+                            <button class="btn btn-danger" onclick="updateCandidateStatus(${candidate.id}, 'rejected')">Reject</button>
+                        </div>
+                    `;
+                    container.appendChild(candidateCard);
+                });
+            } catch (error) {
+                console.error('Error loading candidates:', error);
+            }
+        }
+
+        async function loadInterviews() {
+            try {
+                const response = await fetch('/api/hr/interviews');
+                const interviews = await response.json();
+                
+                const tbody = document.getElementById('interviewsTableBody');
+                tbody.innerHTML = '';
+                
+                interviews.forEach(interview => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${interview.candidate_name}</td>
+                        <td>${interview.position}</td>
+                        <td>${formatDateTime(interview.date, interview.time)}</td>
+                        <td>${interview.interviewer}</td>
+                        <td>${interview.type}</td>
+                        <td><span class="status-badge status-${interview.status}">${interview.status}</span></td>
+                        <td>
+                            <button class="btn" onclick="viewInterview(${interview.id})">View</button>
+                            <button class="btn btn-secondary" onclick="rescheduleInterview(${interview.id})">Reschedule</button>
+                            <button class="btn btn-success" onclick="completeInterview(${interview.id})">Complete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error loading interviews:', error);
+            }
+        }
+
+        function openJobModal() {
+            document.getElementById('jobModal').style.display = 'block';
+        }
+
+        function openInterviewModal() {
+            document.getElementById('interviewModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Job form submission
+        document.getElementById('jobForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const response = await fetch('/api/hr/jobs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Job posted successfully!');
+                    closeModal('jobModal');
+                    loadJobs();
+                    loadDashboardStats();
+                    this.reset();
+                } else {
+                    const result = await response.json();
+                    alert('Error posting job: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error posting job:', error);
+                alert('Error posting job. Please try again.');
+            }
+        });
+
+        // Interview form submission
+        document.getElementById('interviewForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const response = await fetch('/api/hr/interviews', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Interview scheduled successfully!');
+                    closeModal('interviewModal');
+                    loadInterviews();
+                    loadDashboardStats();
+                    this.reset();
+                } else {
+                    const result = await response.json();
+                    alert('Error scheduling interview: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error scheduling interview:', error);
+                alert('Error scheduling interview. Please try again.');
+            }
+        });
+
+        async function populateCandidateSelect() {
+            try {
+                const response = await fetch('/api/hr/candidates');
+                const candidates = await response.json();
+                
+                const select = document.getElementById('candidateSelect');
+                select.innerHTML = '<option value="">Choose a candidate</option>';
+                
+                candidates.forEach(candidate => {
+                    const option = document.createElement('option');
+                    option.value = candidate.id;
+                    option.textContent = `${candidate.name} - ${candidate.position}`;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error loading candidates for select:', error);
+            }
+        }
+
+        async function updateCandidateStatus(candidateId, status) {
+            try {
+                const response = await fetch(`/api/hr/candidates/${candidateId}/status`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ status })
+                });
+
+                if (response.ok) {
+                    alert(`Candidate status updated to ${status}`);
+                    loadCandidates();
+                    loadDashboardStats();
+                } else {
+                    alert('Error updating candidate status');
+                }
+            } catch (error) {
+                console.error('Error updating candidate status:', error);
+            }
+        }
+
+        function filterCandidates() {
+            const filter = document.getElementById('candidateFilter').value;
+            // Implementation for filtering candidates
+            loadCandidates(); // For now, just reload all candidates
+        }
+
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-NG');
+        }
+
+        function formatDateTime(dateString, timeString) {
+            const date = new Date(dateString + 'T' + timeString);
+            return date.toLocaleString('en-NG');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

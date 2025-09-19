@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance & Reporting - HR Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 30px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-draft {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-expired {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-compliant {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-non-compliant {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-pending {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .file-upload {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .file-upload:hover {
+            border-color: #667eea;
+        }
+
+        .file-upload.dragover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .document-card {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .document-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .document-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .document-title {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .document-meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .compliance-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .score-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .score-high {
+            background: #28a745;
+        }
+
+        .score-medium {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .score-low {
+            background: #dc3545;
+        }
+
+        .report-filters {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Compliance & Reporting</h1>
+            <p>Policy Management, Document Storage & Regulatory Reporting</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('dashboard')">Dashboard</button>
+            <button class="nav-tab" onclick="switchTab('policies')">Policies</button>
+            <button class="nav-tab" onclick="switchTab('documents')">Documents</button>
+            <button class="nav-tab" onclick="switchTab('reports')">Reports</button>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="activePolicies">0</h3>
+                    <p>Active Policies</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="totalDocuments">0</h3>
+                    <p>Documents Stored</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="pendingReports">0</h3>
+                    <p>Pending Reports</p>
+                </div>
+                <div class="stat-card">
+                    <div class="compliance-score">
+                        <div class="score-circle score-high" id="complianceScore">95%</div>
+                        <span>Compliance Score</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Recent Compliance Activities</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Activity</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="recentActivities">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Policies Tab -->
+        <div id="policies" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Policy Management</h3>
+                <button class="btn" onclick="openPolicyModal()">Create Policy</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Policy Name</th>
+                        <th>Category</th>
+                        <th>Version</th>
+                        <th>Status</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="policiesTable">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Documents Tab -->
+        <div id="documents" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Document Management</h3>
+                <button class="btn" onclick="openDocumentModal()">Upload Document</button>
+            </div>
+
+            <div id="documentsList">
+                <!-- Documents will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports" class="tab-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3>Regulatory Reports</h3>
+                <button class="btn" onclick="generateReport()">Generate Report</button>
+            </div>
+
+            <div class="report-filters">
+                <div class="filter-row">
+                    <div class="form-group">
+                        <label for="reportType">Report Type</label>
+                        <select id="reportType">
+                            <option value="">All Reports</option>
+                            <option value="paye">PAYE Tax Report</option>
+                            <option value="pension">Pension Contribution Report</option>
+                            <option value="nhf">NHF Contribution Report</option>
+                            <option value="nsitf">NSITF Report</option>
+                            <option value="itf">ITF Report</option>
+                            <option value="employee_summary">Employee Summary Report</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportPeriod">Period</label>
+                        <select id="reportPeriod">
+                            <option value="monthly">Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="annually">Annually</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportYear">Year</label>
+                        <select id="reportYear">
+                            <!-- Years will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportMonth">Month</label>
+                        <select id="reportMonth">
+                            <option value="">All Months</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="filterReports()">Filter</button>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Report Name</th>
+                        <th>Type</th>
+                        <th>Period</th>
+                        <th>Status</th>
+                        <th>Generated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="reportsTable">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Policy Modal -->
+    <div id="policyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('policyModal')">&times;</span>
+            <h2>Create/Edit Policy</h2>
+            <form id="policyForm">
+                <div class="form-group">
+                    <label for="policyName">Policy Name</label>
+                    <input type="text" id="policyName" required>
+                </div>
+                <div class="form-group">
+                    <label for="policyCategory">Category</label>
+                    <select id="policyCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="hr">Human Resources</option>
+                        <option value="safety">Health & Safety</option>
+                        <option value="compliance">Compliance</option>
+                        <option value="conduct">Code of Conduct</option>
+                        <option value="data_protection">Data Protection</option>
+                        <option value="financial">Financial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="policyDescription">Description</label>
+                    <textarea id="policyDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="policyContent">Policy Content</label>
+                    <textarea id="policyContent" required style="min-height: 200px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="policyVersion">Version</label>
+                    <input type="text" id="policyVersion" value="1.0" required>
+                </div>
+                <div class="form-group">
+                    <label for="policyEffectiveDate">Effective Date</label>
+                    <input type="date" id="policyEffectiveDate" required>
+                </div>
+                <button type="submit" class="btn">Save Policy</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Document Modal -->
+    <div id="documentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('documentModal')">&times;</span>
+            <h2>Upload Document</h2>
+            <form id="documentForm">
+                <div class="form-group">
+                    <label for="documentName">Document Name</label>
+                    <input type="text" id="documentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="documentCategory">Category</label>
+                    <select id="documentCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="policy">Policy Document</option>
+                        <option value="contract">Contract</option>
+                        <option value="certificate">Certificate</option>
+                        <option value="report">Report</option>
+                        <option value="form">Form</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="documentDescription">Description</label>
+                    <textarea id="documentDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Document File</label>
+                    <div class="file-upload" id="fileUpload">
+                        <p>Drag and drop files here or click to browse</p>
+                        <input type="file" id="documentFile" style="display: none;" accept=".pdf,.doc,.docx,.xls,.xlsx,.txt">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="documentTags">Tags (comma-separated)</label>
+                    <input type="text" id="documentTags" placeholder="e.g., policy, hr, compliance">
+                </div>
+                <button type="submit" class="btn">Upload Document</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+
+            // Load data for the selected tab
+            loadTabData(tabName);
+        }
+
+        // Load data based on selected tab
+        function loadTabData(tabName) {
+            switch(tabName) {
+                case 'dashboard':
+                    loadDashboardData();
+                    break;
+                case 'policies':
+                    loadPoliciesData();
+                    break;
+                case 'documents':
+                    loadDocumentsData();
+                    break;
+                case 'reports':
+                    loadReportsData();
+                    break;
+            }
+        }
+
+        // Load dashboard statistics
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('/api/compliance/stats');
+                const data = await response.json();
+                
+                document.getElementById('activePolicies').textContent = data.activePolicies;
+                document.getElementById('totalDocuments').textContent = data.totalDocuments;
+                document.getElementById('pendingReports').textContent = data.pendingReports;
+                
+                const scoreElement = document.getElementById('complianceScore');
+                scoreElement.textContent = data.complianceScore + '%';
+                
+                // Update score color based on value
+                scoreElement.className = 'score-circle';
+                if (data.complianceScore >= 90) {
+                    scoreElement.classList.add('score-high');
+                } else if (data.complianceScore >= 70) {
+                    scoreElement.classList.add('score-medium');
+                } else {
+                    scoreElement.classList.add('score-low');
+                }
+
+                // Load recent activities
+                loadRecentActivities();
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+            }
+        }
+
+        // Load recent activities
+        async function loadRecentActivities() {
+            try {
+                const response = await fetch('/api/compliance/recent-activities');
+                const activities = await response.json();
+                
+                const tbody = document.getElementById('recentActivities');
+                tbody.innerHTML = activities.map(activity => `
+                    <tr>
+                        <td>${activity.activity}</td>
+                        <td>${activity.type}</td>
+                        <td><span class="status-badge status-${activity.status}">${activity.status}</span></td>
+                        <td>${new Date(activity.created_at).toLocaleDateString()}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="viewActivity(${activity.id})">View</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading recent activities:', error);
+            }
+        }
+
+        // Load policies data
+        async function loadPoliciesData() {
+            try {
+                const response = await fetch('/api/compliance/policies');
+                const policies = await response.json();
+                
+                const tbody = document.getElementById('policiesTable');
+                tbody.innerHTML = policies.map(policy => `
+                    <tr>
+                        <td>${policy.name}</td>
+                        <td>${policy.category}</td>
+                        <td>${policy.version}</td>
+                        <td><span class="status-badge status-${policy.status}">${policy.status}</span></td>
+                        <td>${new Date(policy.updated_at).toLocaleDateString()}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="viewPolicy(${policy.id})">View</button>
+                            <button class="btn btn-warning" onclick="editPolicy(${policy.id})">Edit</button>
+                            <button class="btn btn-danger" onclick="deletePolicy(${policy.id})">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading policies data:', error);
+            }
+        }
+
+        // Load documents data
+        async function loadDocumentsData() {
+            try {
+                const response = await fetch('/api/compliance/documents');
+                const documents = await response.json();
+                
+                const container = document.getElementById('documentsList');
+                container.innerHTML = documents.map(doc => `
+                    <div class="document-card">
+                        <div class="document-header">
+                            <div class="document-title">${doc.name}</div>
+                            <div>
+                                <button class="btn btn-secondary" onclick="downloadDocument(${doc.id})">Download</button>
+                                <button class="btn btn-danger" onclick="deleteDocument(${doc.id})">Delete</button>
+                            </div>
+                        </div>
+                        <div class="document-meta">
+                            Category: ${doc.category} | Size: ${formatFileSize(doc.file_size)} | 
+                            Uploaded: ${new Date(doc.created_at).toLocaleDateString()}
+                        </div>
+                        <p>${doc.description || 'No description available'}</p>
+                        ${doc.tags ? `<div style="margin-top: 10px;"><strong>Tags:</strong> ${doc.tags}</div>` : ''}
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading documents data:', error);
+            }
+        }
+
+        // Load reports data
+        async function loadReportsData() {
+            try {
+                // Populate year dropdown
+                const currentYear = new Date().getFullYear();
+                const yearSelect = document.getElementById('reportYear');
+                yearSelect.innerHTML = '';
+                for (let year = currentYear; year >= currentYear - 5; year--) {
+                    yearSelect.innerHTML += `<option value="${year}" ${year === currentYear ? 'selected' : ''}>${year}</option>`;
+                }
+
+                const response = await fetch('/api/compliance/reports');
+                const reports = await response.json();
+                
+                const tbody = document.getElementById('reportsTable');
+                tbody.innerHTML = reports.map(report => `
+                    <tr>
+                        <td>${report.name}</td>
+                        <td>${report.type}</td>
+                        <td>${report.period}</td>
+                        <td><span class="status-badge status-${report.status}">${report.status}</span></td>
+                        <td>${new Date(report.created_at).toLocaleDateString()}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="downloadReport(${report.id})">Download</button>
+                            <button class="btn btn-warning" onclick="regenerateReport(${report.id})">Regenerate</button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading reports data:', error);
+            }
+        }
+
+        // Modal functions
+        function openPolicyModal() {
+            document.getElementById('policyModal').style.display = 'block';
+        }
+
+        function openDocumentModal() {
+            document.getElementById('documentModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // File upload functionality
+        const fileUpload = document.getElementById('fileUpload');
+        const fileInput = document.getElementById('documentFile');
+
+        fileUpload.addEventListener('click', () => fileInput.click());
+        fileUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUpload.classList.add('dragover');
+        });
+        fileUpload.addEventListener('dragleave', () => {
+            fileUpload.classList.remove('dragover');
+        });
+        fileUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUpload.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                updateFileUploadText(files[0].name);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                updateFileUploadText(e.target.files[0].name);
+            }
+        });
+
+        function updateFileUploadText(fileName) {
+            fileUpload.innerHTML = `<p>Selected: ${fileName}</p>`;
+        }
+
+        // Form submissions
+        document.getElementById('policyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('policyName').value,
+                category: document.getElementById('policyCategory').value,
+                description: document.getElementById('policyDescription').value,
+                content: document.getElementById('policyContent').value,
+                version: document.getElementById('policyVersion').value,
+                effective_date: document.getElementById('policyEffectiveDate').value
+            };
+
+            try {
+                const response = await fetch('/api/compliance/policies', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    showAlert('Policy created successfully!', 'success');
+                    closeModal('policyModal');
+                    loadPoliciesData();
+                    document.getElementById('policyForm').reset();
+                } else {
+                    showAlert('Error creating policy', 'error');
+                }
+            } catch (error) {
+                console.error('Error creating policy:', error);
+                showAlert('Error creating policy', 'error');
+            }
+        });
+
+        document.getElementById('documentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('name', document.getElementById('documentName').value);
+            formData.append('category', document.getElementById('documentCategory').value);
+            formData.append('description', document.getElementById('documentDescription').value);
+            formData.append('tags', document.getElementById('documentTags').value);
+            formData.append('file', document.getElementById('documentFile').files[0]);
+
+            try {
+                const response = await fetch('/api/compliance/documents', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    showAlert('Document uploaded successfully!', 'success');
+                    closeModal('documentModal');
+                    loadDocumentsData();
+                    document.getElementById('documentForm').reset();
+                    fileUpload.innerHTML = '<p>Drag and drop files here or click to browse</p>';
+                } else {
+                    showAlert('Error uploading document', 'error');
+                }
+            } catch (error) {
+                console.error('Error uploading document:', error);
+                showAlert('Error uploading document', 'error');
+            }
+        });
+
+        // Report generation
+        async function generateReport() {
+            const reportType = document.getElementById('reportType').value || 'employee_summary';
+            const period = document.getElementById('reportPeriod').value;
+            const year = document.getElementById('reportYear').value;
+            const month = document.getElementById('reportMonth').value;
+
+            try {
+                const response = await fetch('/api/compliance/generate-report', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reportType, period, year, month })
+                });
+
+                if (response.ok) {
+                    showAlert('Report generated successfully!', 'success');
+                    loadReportsData();
+                } else {
+                    showAlert('Error generating report', 'error');
+                }
+            } catch (error) {
+                console.error('Error generating report:', error);
+                showAlert('Error generating report', 'error');
+            }
+        }
+
+        function filterReports() {
+            loadReportsData(); // Reload with current filter values
+        }
+
+        // Utility functions
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            alertDiv.textContent = message;
+            
+            document.body.insertBefore(alertDiv, document.body.firstChild);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 3000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboardData();
+        });
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
